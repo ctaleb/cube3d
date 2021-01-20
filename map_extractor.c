@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 13:27:33 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/19 15:25:13 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/01/20 11:25:45 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@ static int	analyne(t_map *map_data, char *line)
 	if (!data_check(map_data))
 	{
 		if (line[0] == 'R')
-			get_resolution(map_data, line);
+			get_resolution(map_data->size_x, map_data->size_y, &line[1]);
 		else if (line[0] == 'F')
 			get_colour(map_data->floor_c, line);
 		else if (line[0] == 'C')
 			get_colour(map_data->ceiling_c, line);
-		else if (line[0] == 'S')
-			get_path(map_data->sprite_t, line);
-		else if (line[0] == 'N')
-			get_path(map_data->north_t, line);
-		else if (line[0] == 'S')
-			get_path(map_data->south_t, line);
-		else if (line[0] == 'E')
-			get_path(map_data->east_t, line);
-		else if (line[0] == 'W')
-			get_path(map_data->west_t, line);
+		else if (line[0] == 'S' && line[1] == ' ')
+			get_path(map_data->sprite_t, &line[1]);
+		else if (line[0] == 'N' && line[1] == 'O')
+			get_path(map_data->north_t, &line[2]);
+		else if (line[0] == 'S' && line [1] == 'O')
+			get_path(map_data->south_t, &line[2]);
+		else if (line[0] == 'E' && line[1] == 'A')
+			get_path(map_data->east_t, &line[2]);
+		else if (line[0] == 'W' && line[1] == 'E')
+			get_path(map_data->west_t, &line[2]);
 	}
 	else
 	{
@@ -46,8 +46,8 @@ static void	map_data_init(t_map *map_data)
 	map_data->valid = 0;
 	map_data->size_x = 0;
 	map_data->size_y = 0;
-	map_data->floor_c = 0;
-	map_data->ceiling_c = 0;
+	map_data->floor_c = -1;
+	map_data->ceiling_c = -1;
 	map_data->north_t = NULL;
 	map_data->south_t = NULL;
 	map_data->east_t = NULL;

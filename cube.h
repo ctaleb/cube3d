@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/19 15:29:52 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/01/20 11:20:05 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ typedef struct	s_map {
 
 t_map			*map_open(char *path);
 int				data_check(t_map *map_data);
+void			get_colour(int n, char *line);
+void			get_path(char *dest, char *line);
+void			get_map(int **grid, char *line);
+void			get_resolution(int x, int y, char *line);
+
 void			error_handler(int ernum);
 
 int				rgbtoi(int t, int r, int g, int b);
