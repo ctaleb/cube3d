@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 14:00:22 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/20 11:45:12 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 11:44:13 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,13 @@ int		data_check(t_map *map_data)
 	return (0);
 }
 
-void	get_colour(int n, char *line)
+int		get_colour(char *line)
 {
 	int i;
 	int r;
 	int g;
 	int b;
 
-	if (n >= 0)
-		error_handler(23);
 	i = 0;
 	if (line[i] != 'C' || line[i] != 'F')
 		error_handler(21);
@@ -47,22 +45,21 @@ void	get_colour(int n, char *line)
 	b = ft_atoi(&line[i]);
 	if (r > 255 || r < 0 || g > 255 || g < 0 || b > 255 || b < 0)
 		error_handler(22);
-	n = rgbtoi(0, r, g, b);
+	return (rgbtoi(0, r, g, b));
 }
 
-void	get_path(char *dest, char *line)
+char	*get_path(char *line)
 {
 	int i;
-	int j;
+	int		j;
+	char	*dest;
 
-	if (dest)
-		error_handler(23);
 	i = 0;
 	while (line[i] == ' ')
 		i++;
 	dest = malloc(sizeof(char) * (ft_strlen(&line[i]) + 1));
 	j = 0;
-	while (line[i])
+	while (line[i + j])
 	{
 		if (ft_isspace(line[i]))
 			error_handler(21);
@@ -70,33 +67,53 @@ void	get_path(char *dest, char *line)
 		j++;
 	}
 	dest[j] = '\0';
+	return (dest);
 }
 
-void	get_resolution(int x, int y, char *line)
+void	get_resolution(t_map *map_data, char *line)
 {
 	int i;
 
-	if (x >= 0 || y >= 0)
+	if (map_data->size_x >= 0 || map_data->size_y >= 0)
 		error_handler(23);
 	i = 0;
 	while (line[i] == ' ')
 		i++;
-	x = ft_atoi(&line[i]);
+	map_data->size_x = ft_atoi(&line[i]);
 	while (ft_isdigit(line[i]))
 		i++;
 	while (line[i] == ' ')
 		i++;
-	y = ft_atoi(&line[i]);
-	if (x > 5120 || y > 2880)
+	map_data->size_y = ft_atoi(&line[i]);
+	if (map_data->size_x > 5120 || map_data->size_y > 2880)
 		error_handler(22);
 }
 
 void	get_map(int **grid, char *line)
 {
-	int	i;
+	static int	i;
+	int			j;
 
-	i = 0;
-	while(line[i])
-		i++;
-	(void)grid;
+	j = 0;
+	while(line[j])
+	{
+		if (line[j] == ' ')
+			grid[i][j] = -1;
+		else if (line[j] == '0')
+			grid[i][j] = 0;
+		else if (line[j] == '1')
+			grid[i][j] = 1;
+		else if (line[j] == '2')
+			grid[i][j] = 2;
+		else if (line[j] == 'N')
+			grid[i][j] = 8;
+		else if (line[j] == 'S')
+			grid[i][j] = 5;
+		else if (line[j] == 'E')
+			grid[i][j] = 6;
+		else if (line[j] == 'W')
+			grid[i][j] = 4;
+		j++;
+	}
+	i++;
 }
