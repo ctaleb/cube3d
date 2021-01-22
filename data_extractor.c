@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 14:00:22 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/21 11:44:13 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/01/22 16:41:17 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ char	*get_path(char *line)
 	i = 0;
 	while (line[i] == ' ')
 		i++;
-	dest = malloc(sizeof(char) * (ft_strlen(&line[i]) + 1));
+	if (!(dest = malloc(sizeof(char) * (ft_strlen(&line[i]) + 1))))
+		error_handler(2);
 	j = 0;
 	while (line[i + j])
 	{
@@ -115,5 +116,6 @@ void	get_map(int **grid, char *line)
 			grid[i][j] = 4;
 		j++;
 	}
+	printf("3%s\n", line);
 	i++;
 }

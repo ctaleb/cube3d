@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 13:27:33 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/21 16:26:40 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/01/22 16:41:15 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	analyne(t_map *map_data, char *line)
 	return (0);
 }
 
-static void	map_data_init(t_map *map_data)
+static void	map_data_init(t_map *map_data, char *path)
 {
 	map_data->grid = 0;
 	map_data->valid = 0;
@@ -55,12 +55,15 @@ static void	map_data_init(t_map *map_data)
 	map_data->east_t = NULL;
 	map_data->west_t = NULL;
 	map_data->sprite_t = NULL;
+	map_data->file = ft_calloc(file_len(path) + 1, sizeof(char *));
 }
 
 static int	is_map(char *line)
 {
 	int i;
 
+	if (!line)
+		return (0);
 	i = 0;
 	while (line[i])
 	{
@@ -86,7 +89,7 @@ static void	grid_init(t_map *map_data)
 	while (!is_map(map_data->file[i]))
 		i++;
 	j = 0;
-	while (is_map(map_data->file[i]))
+	while (map_data->file[i] != NULL && is_map(map_data->file[i]))
 	{
 		temp = ft_strlen(map_data->file[i]);
 		if (temp > map_data->grid_len)
@@ -94,11 +97,11 @@ static void	grid_init(t_map *map_data)
 		i++;
 		j++;
 	}
-	map_data->grid = ft_calloc(j + 1, sizeof(int));
+	map_data->grid = ft_calloc(j + 1, sizeof(int *));
 	i = 0;
 	while (i < j)
 	{
-		map_data->grid[i] = ft_calloc(map_data->grid_len, sizeof(int));
+		map_data->grid[i] = ft_calloc(map_data->grid_len + 1, sizeof(int));
 		i++;
 	}
 }
@@ -111,21 +114,26 @@ t_map		*map_open(char *path)
 	t_map	*map_data;
 
 	map_data = malloc(sizeof(t_map));
-	map_data_init(map_data);
+	map_data_init(map_data, path);
 	if ((fd = open(path, O_RDONLY)) < 0)
 		error_handler(11);
 	i = 0;
 	while (ft_get_next_line(fd, 10, &line))
 	{
 		map_data->file[i] = line;
+		// printf("1%s\n", map_data->file[i]);
 		line = NULL;
 		i++;
 	}
+	map_data->file[i] = line;
+	map_data->file[i + 1] = NULL;
 	grid_init(map_data);
 	i = 0;
 	while (map_data->file[i])
 	{
 		analyne(map_data, map_data->file[i]);
+		// printf("2%s\n", map_data->file[i]);
+		free(map_data->file[i]);
 		i++;
 	}
 	if (close(fd) < 0)

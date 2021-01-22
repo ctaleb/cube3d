@@ -6,7 +6,7 @@
 #    By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 11:40:32 by ctaleb            #+#    #+#              #
-#    Updated: 2021/01/20 11:43:21 by ctaleb           ###   ########lyon.fr    #
+#    Updated: 2021/01/22 13:05:58 by ctaleb           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ LIB_PATH = libft/
 SRCS = map_extractor.c\
 		data_extractor.c\
 		colour_utils.c\
+		map_utils.c\
 		error_handler.c
 
 OBJS = $(SRCS:.c=.o)

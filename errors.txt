@@ -1,5 +1,6 @@
 00: Something went wrong
-01: 
+01: Invalid argument count
+02: Memory allocation error
 
 
 
@@ -8,8 +9,7 @@
 
 
 
-
-11: File not found
+11: Couldn't open file
 12: Couldn't close file
 
 
