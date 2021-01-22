@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 13:27:33 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/22 16:41:15 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/01/22 16:53:26 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static void	grid_init(t_map *map_data)
 	i = 0;
 	while (i < j)
 	{
-		map_data->grid[i] = ft_calloc(map_data->grid_len + 1, sizeof(int));
+		map_data->grid[i] = ft_cgpaalloc(map_data->grid_len + 1, sizeof(int));
 		i++;
 	}
 }
