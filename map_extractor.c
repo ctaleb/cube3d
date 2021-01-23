@@ -6,13 +6,34 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 13:27:33 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/23 15:31:46 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/01/23 16:07:51 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-static int	analyne(t_map *map_data, char *line)
+int		is_map(char *line)
+{
+	int i;
+
+	if (!line)
+		return (0);
+	i = 0;
+	while (line[i])
+	{
+		if ((line[i] >= '0' && line[i] <= '2') || line[i] == ' '
+			|| line[i] == 'N' || line[i] == 'S' || line[i] == 'E'
+			|| line[i] == 'W')
+			i++;
+		else
+			return (0);
+	}
+	if (i == 0)
+		return (0);
+	return (1);
+}
+
+int		analyne(t_map *map_data, char *line)
 {
 	if (!data_check(map_data))
 	{
@@ -40,28 +61,7 @@ static int	analyne(t_map *map_data, char *line)
 	return (0);
 }
 
-static int	is_map(char *line)
-{
-	int i;
-
-	if (!line)
-		return (0);
-	i = 0;
-	while (line[i])
-	{
-		if ((line[i] >= '0' && line[i] <= '2') || line[i] == ' '
-			|| line[i] == 'N' || line[i] == 'S' || line[i] == 'E'
-			|| line[i] == 'W')
-			i++;
-		else
-			return (0);
-	}
-	if (i == 0)
-		return (0);
-	return (1);
-}
-
-t_map		*map_open(char *path)
+t_map	*map_open(char *path)
 {
 	int		fd;
 	int		i;

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/23 15:32:41 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/01/23 16:05:33 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,11 @@ typedef struct	s_map {
 }				t_map;
 
 t_map			*map_open(char *path);
+
 int				file_len(char *path);
+int				is_map(char *line);
+int				analyne(t_map *map_data, char *line);
+
 int				data_check(t_map *map_data);
 void			start_check(t_map *map_data);
 void			map_check(int x, int y, t_map *map_data);
