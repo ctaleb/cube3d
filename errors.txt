@@ -21,4 +21,7 @@
 
 21: Invalid argument
 22: Invalid data
-23: Invalid .cub (multiple definitions)
+23: Invalid .cub (duplicate definitions)
+24: Invalid .cub (improper definitions)
+25: Invalid .cub (duplicate start points)
+26: Invalid .cub (play area isn't enclosed properly)

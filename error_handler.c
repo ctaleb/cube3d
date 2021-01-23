@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 11:01:02 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/18 13:11:44 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/01/23 15:19:28 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,25 @@
 
 void	error_handler(int ernum)
 {
-	if (ernum == 1)
+	int		fd;
+	int		i;
+	char	*line;
+
+	fd = open("errors.txt", O_RDONLY);
+	i = 0;
+	while (ft_get_next_line(fd, 10, &line))
 	{
-		printf("Error\nCode %i: Invalid argument count\n", ernum);
-		exit (-1 * ernum);
+		if (i == ernum)
+		{
+			printf("Error\nCode %s\n", line);
+			free(line);
+			close(fd);
+			exit(-1 * ernum);
+		}
+		free(line);
+		i++;
 	}
-	if (ernum == 0)
-	{
-		printf("Error\nCode %i: Something went wrong\n", ernum);
-		exit (-1 * ernum);
-	}
-	if (ernum == 11)
-	{
-		printf("Error\nCode %i: File not found\n", ernum);
-		exit (-1 * ernum);
-	}
-	if (ernum == 12)
-	{
-		printf("Error\nCode %i: Couldn't close file\n", ernum);
-		exit (-1 * ernum);
-	}
+	close(fd);
+	printf("Unexpected Error\n");
+	exit(-99);
 }

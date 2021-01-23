@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 13:27:33 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/22 16:53:26 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/01/23 15:31:46 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ static int	analyne(t_map *map_data, char *line)
 		if (line[0] == 'R')
 			get_resolution(map_data, &line[1]);
 		else if (line[0] == 'F' && map_data->floor_c < 0)
-			map_data->floor_c = get_colour(line);
+			map_data->floor_c = get_colour(&line[1]);
 		else if (line[0] == 'C' && map_data->ceiling_c < 0)
-			map_data->ceiling_c = get_colour(line);
+			map_data->ceiling_c = get_colour(&line[1]);
 		else if (line[0] == 'S' && line[1] == ' ' && !map_data->sprite_t)
 			map_data->sprite_t = get_path(&line[2]);
 		else if (line[0] == 'N' && line[1] == 'O' && !map_data->north_t)
-				map_data->north_t = get_path(&line[2]);
-		else if (line[0] == 'S' && line [1] == 'O' && !map_data->south_t)
+			map_data->north_t = get_path(&line[2]);
+		else if (line[0] == 'S' && line[1] == 'O' && !map_data->south_t)
 			map_data->south_t = get_path(&line[2]);
 		else if (line[0] == 'E' && line[1] == 'A' && !map_data->east_t)
 			map_data->east_t = get_path(&line[2]);
@@ -36,26 +36,8 @@ static int	analyne(t_map *map_data, char *line)
 	else if (line[0] == '\0')
 		return (0);
 	else
-		get_map(map_data->grid,line);
+		get_map(map_data->grid, map_data->grid_len, line);
 	return (0);
-}
-
-static void	map_data_init(t_map *map_data, char *path)
-{
-	map_data->grid = 0;
-	map_data->valid = 0;
-	map_data->size_x = 0;
-	map_data->size_y = 0;
-	map_data->floor_c = -1;
-	map_data->ceiling_c = -1;
-	map_data->grid_len = 0;
-
-	map_data->north_t = NULL;
-	map_data->south_t = NULL;
-	map_data->east_t = NULL;
-	map_data->west_t = NULL;
-	map_data->sprite_t = NULL;
-	map_data->file = ft_calloc(file_len(path) + 1, sizeof(char *));
 }
 
 static int	is_map(char *line)
@@ -79,33 +61,6 @@ static int	is_map(char *line)
 	return (1);
 }
 
-static void	grid_init(t_map *map_data)
-{
-	int		i;
-	int		j;
-	int		temp;
-
-	i = 0;
-	while (!is_map(map_data->file[i]))
-		i++;
-	j = 0;
-	while (map_data->file[i] != NULL && is_map(map_data->file[i]))
-	{
-		temp = ft_strlen(map_data->file[i]);
-		if (temp > map_data->grid_len)
-			map_data->grid_len = temp;
-		i++;
-		j++;
-	}
-	map_data->grid = ft_calloc(j + 1, sizeof(int *));
-	i = 0;
-	while (i < j)
-	{
-		map_data->grid[i] = ft_cgpaalloc(map_data->grid_len + 1, sizeof(int));
-		i++;
-	}
-}
-
 t_map		*map_open(char *path)
 {
 	int		fd;
@@ -120,23 +75,15 @@ t_map		*map_open(char *path)
 	i = 0;
 	while (ft_get_next_line(fd, 10, &line))
 	{
-		map_data->file[i] = line;
-		// printf("1%s\n", map_data->file[i]);
+		map_data->file[i] = ft_strdup(line);
+		free(line);
 		line = NULL;
 		i++;
 	}
-	map_data->file[i] = line;
-	map_data->file[i + 1] = NULL;
-	grid_init(map_data);
-	i = 0;
-	while (map_data->file[i])
-	{
-		analyne(map_data, map_data->file[i]);
-		// printf("2%s\n", map_data->file[i]);
-		free(map_data->file[i]);
-		i++;
-	}
+	map_data->file[i] = ft_strdup(line);
+	free(line);
 	if (close(fd) < 0)
 		error_handler(12);
+	map_init(map_data);
 	return (map_data);
 }

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 14:00:22 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/22 16:41:17 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/01/23 15:21:30 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int		data_check(t_map *map_data)
 {
 	if (map_data->size_x && map_data->size_y && map_data->north_t
 			&& map_data->south_t && map_data->east_t && map_data->west_t
-			&& map_data->sprite_t && map_data->floor_c && map_data->ceiling_c)
+			&& map_data->sprite_t && map_data->floor_c >= 0
+			&& map_data->ceiling_c >= 0)
 		return (1);
 	return (0);
 }
@@ -29,9 +30,8 @@ int		get_colour(char *line)
 	int b;
 
 	i = 0;
-	if (line[i] != 'C' || line[i] != 'F')
-		error_handler(21);
-	i++;
+	while (line[i] == ' ')
+		i++;
 	r = ft_atoi(&line[i]);
 	while (ft_isdigit(line[i]))
 		i++;
@@ -50,7 +50,7 @@ int		get_colour(char *line)
 
 char	*get_path(char *line)
 {
-	int i;
+	int		i;
 	int		j;
 	char	*dest;
 
@@ -88,34 +88,4 @@ void	get_resolution(t_map *map_data, char *line)
 	map_data->size_y = ft_atoi(&line[i]);
 	if (map_data->size_x > 5120 || map_data->size_y > 2880)
 		error_handler(22);
-}
-
-void	get_map(int **grid, char *line)
-{
-	static int	i;
-	int			j;
-
-	j = 0;
-	while(line[j])
-	{
-		if (line[j] == ' ')
-			grid[i][j] = -1;
-		else if (line[j] == '0')
-			grid[i][j] = 0;
-		else if (line[j] == '1')
-			grid[i][j] = 1;
-		else if (line[j] == '2')
-			grid[i][j] = 2;
-		else if (line[j] == 'N')
-			grid[i][j] = 8;
-		else if (line[j] == 'S')
-			grid[i][j] = 5;
-		else if (line[j] == 'E')
-			grid[i][j] = 6;
-		else if (line[j] == 'W')
-			grid[i][j] = 4;
-		j++;
-	}
-	printf("3%s\n", line);
-	i++;
 }
