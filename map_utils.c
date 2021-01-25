@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 13:05:42 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/23 15:21:59 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/01/25 16:20:21 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	start_check(t_map *map_data)
 
 void	map_check(int x, int y, t_map *map_data)
 {
-	if (x >= map_data->grid_len || y >= map_data->grid_hgt)
+	if (x >= map_data->max_x || y >= map_data->max_y)
 		return ;
 	if (x < 0 || y < 0)
 		return ;
@@ -70,10 +70,12 @@ void	map_check(int x, int y, t_map *map_data)
 		return ;
 	if (map_data->dup[y][x] == 'o')
 		return ;
-	if ((x == 0 && (y >= 0 && y < map_data->grid_hgt))
-		|| (x == map_data->grid_len && (y >= 0 && y < map_data->grid_hgt))
-			|| (y == 0 && (x >= 0 && x < map_data->grid_len))
-			|| (y == map_data->grid_hgt && (x >= 0 && x < map_data->grid_len)))
+	if (map_data->dup[y][x] == ' ')
+		error_handler(26);
+	if ((x == 0 && (y >= 0 && y < map_data->max_y))
+		|| (x == map_data->max_x && (y >= 0 && y < map_data->max_y))
+			|| (y == 0 && (x >= 0 && x < map_data->max_x))
+			|| (y == map_data->max_y && (x >= 0 && x < map_data->max_x)))
 		error_handler(26);
 	map_data->dup[y][x] = 'o';
 	map_check(x - 1, y - 1, map_data);

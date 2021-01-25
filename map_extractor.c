@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 13:27:33 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/23 16:07:51 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/01/25 16:20:24 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		analyne(t_map *map_data, char *line)
 	else if (line[0] == '\0')
 		return (0);
 	else
-		get_map(map_data->grid, map_data->grid_len, line);
+		get_map(map_data->grid, map_data->max_x, line);
 	return (0);
 }
 

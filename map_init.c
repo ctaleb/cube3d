@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 15:23:57 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/23 16:05:36 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/01/25 16:20:18 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	map_data_init(t_map *map_data, char *path)
 	map_data->size_y = -1;
 	map_data->floor_c = -1;
 	map_data->ceiling_c = -1;
-	map_data->grid_len = 0;
+	map_data->max_x = 0;
 	map_data->north_t = NULL;
 	map_data->south_t = NULL;
 	map_data->east_t = NULL;
@@ -44,18 +44,18 @@ void	grid_init(t_map *map_data)
 	while (map_data->file[i] != NULL && is_map(map_data->file[i]))
 	{
 		temp = ft_strlen(map_data->file[i++]);
-		if (temp > map_data->grid_len)
-			map_data->grid_len = temp;
+		if (temp > map_data->max_x)
+			map_data->max_x = temp;
 		j++;
 	}
-	map_data->grid_hgt = j;
-	map_data->grid = ft_calloc(map_data->grid_hgt + 1, sizeof(char *));
-	map_data->dup = ft_calloc(map_data->grid_hgt + 1, sizeof(char *));
+	map_data->max_y = j;
+	map_data->grid = ft_calloc(map_data->max_y + 1, sizeof(char *));
+	map_data->dup = ft_calloc(map_data->max_y + 1, sizeof(char *));
 	i = 0;
 	while (i < j)
 	{
-		map_data->grid[i] = ft_calloc(map_data->grid_len + 1, sizeof(char));
-		map_data->dup[i] = ft_calloc(map_data->grid_len + 1, sizeof(char));
+		map_data->grid[i] = ft_calloc(map_data->max_x + 1, sizeof(char));
+		map_data->dup[i] = ft_calloc(map_data->max_x + 1, sizeof(char));
 		i++;
 	}
 }

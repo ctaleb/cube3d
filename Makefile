@@ -6,7 +6,7 @@
 #    By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 11:40:32 by ctaleb            #+#    #+#              #
-#    Updated: 2021/01/23 16:05:56 by ctaleb           ###   ########lyon.fr    #
+#    Updated: 2021/01/25 16:40:14 by ctaleb           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,10 @@ SRCS = map_extractor.c\
 		colour_utils.c\
 		map_utils.c\
 		map_init.c\
+		mlx_init.c\
+		pl_init.c\
+		key_press.c\
+		minimap.c\
 		error_handler.c
 
 OBJS = $(SRCS:.c=.o)
