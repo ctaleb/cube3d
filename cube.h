@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/25 16:40:05 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 15:42:03 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUBE_H
 # include "libft/libft.h"
 # include "minilibx/mlx.h"
+# include <math.h>
 
 typedef struct	s_map {
 	char		**file;
@@ -37,6 +38,9 @@ typedef struct	s_map {
 typedef struct	s_player {
 	float		x;
 	float		y;
+	float		cam_x;
+	float		cam_y;
+	int			colour;
 }				t_player;
 
 
@@ -44,7 +48,7 @@ typedef struct	s_mlx_parmas {
 	void		*ptr;
 	void		*win;
 	t_map		*map;
-	t_player	*pl_data;
+	t_player	*pl;
 }				t_mlx_params;
 
 t_map			*map_open(char *path);
@@ -63,7 +67,16 @@ void			map_init(t_map *map_data);
 t_mlx_params	*mlx_data_init(char *path);
 t_player		*pl_init(t_map *map_data);
 
-void			print_minimap(t_mlx_params *mlx_prms);
+void			print_minimap(t_mlx_params *mlx);
+void			put_map(int x, int y, t_mlx_params *mlx);
+void			put_player(t_mlx_params *mlx);
+void			rem_player(t_mlx_params *mlx);
+void			put_camera(t_mlx_params *mlx);
+void			rem_camera(t_mlx_params *mlx);
+
+int				move_pl(int keycode, t_mlx_params *mlx);
+int				check_coords(float x, float y, t_map *map);
+int				rotate_pl(int keycode, t_mlx_params *mlx);
 
 int				escape_key(int keycode);
 
