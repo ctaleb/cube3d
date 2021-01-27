@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/26 15:42:03 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/01/27 15:42:41 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,10 @@ void			rem_player(t_mlx_params *mlx);
 void			put_camera(t_mlx_params *mlx);
 void			rem_camera(t_mlx_params *mlx);
 
+int				movement(int keycode, t_mlx_params *mlx);
 int				move_pl(int keycode, t_mlx_params *mlx);
-int				check_coords(float x, float y, t_map *map);
 int				rotate_pl(int keycode, t_mlx_params *mlx);
+int				check_coords(char dir, t_mlx_params *mlx);
 
 int				escape_key(int keycode);
 
