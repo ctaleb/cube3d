@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:52:50 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/27 16:23:17 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/01/28 13:20:21 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,20 @@ int		check_coords(char dir, t_mlx_params *mlx)
 	{
 		x = mlx->pl->x - mlx->pl->cam_x * 0.1;
 		y = mlx->pl->y - mlx->pl->cam_y * 0.1;
+		printf("x%f\ty%f\n", x, y);
 		if ((x - 0.1 < 0) || (y - 0.1 < 0)
 			|| (x > mlx->map->max_x) || (y > mlx->map->max_y)
 			|| (mlx->map->grid[(int)y][(int)x] == '1')
 			|| (mlx->map->grid[(int)(y - 0.1)][(int)(x - 0.1)] == '1'))
+		{
+			// mlx->pl->y = nearbyint((int)y);
+			// mlx->pl->x = nearbyint((int)x);
+			if (fabsf(y - (int)y) != 0)
+				mlx->pl->y = mlx->pl->y + (fabsf(y - (int)y));
+			// if (fabsf(x - (int)x) != 0)
+			// 	mlx->pl->x = mlx->pl->x - (fabsf(x - (int)x));
 			return (0);
+		}
 		return (1);
 	}
 	return (1);
