@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 15:57:40 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/26 11:38:09 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/01 16:01:39 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ t_mlx_params	*mlx_data_init(char *path)
 	mlx->ptr = mlx_init();
 	mlx->win = mlx_new_window(mlx->ptr, mlx->map->size_x,
 		mlx->map->size_y, "Cube 3D");
-	return(mlx);
+	return (mlx);
 }

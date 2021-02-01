@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/27 15:42:41 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/01 15:20:25 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct	s_map {
 	int			max_y;
 	int			max_x;
 	char		**dup;
+	int			ratio;
 	int			start_x;
 	int			start_y;
 	int			size_x;

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 15:23:57 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/25 16:20:18 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/01 16:21:02 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	map_data_init(t_map *map_data, char *path)
 	map_data->file = ft_calloc(file_len(path) + 1, sizeof(char *));
 	map_data->start_x = -1;
 	map_data->start_y = -1;
+	map_data->ratio = 30;
 }
 
 void	grid_init(t_map *map_data)
