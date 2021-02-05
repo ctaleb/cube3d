@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:50:46 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/01 16:05:47 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 14:27:28 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,16 @@ void	put_map(int x, int y, t_mlx_params *mlx)
 	else if (mlx->map->grid[y / mlx->map->ratio][x / mlx->map->ratio] == '2')
 		mlx_pixel_put(mlx->ptr, mlx->win, x, y, rgbtoi(0, 65, 105, 225));
 	else if (mlx->map->grid[y / mlx->map->ratio][x / mlx->map->ratio] == 'N'
-			|| mlx->map->grid[y / mlx->map->ratio][x / mlx->map->ratio] == 'S'
-			|| mlx->map->grid[y / mlx->map->ratio][x / mlx->map->ratio] == 'E'
-			|| mlx->map->grid[y / mlx->map->ratio][x / mlx->map->ratio] == 'W')
+		|| mlx->map->grid[y / mlx->map->ratio][x / mlx->map->ratio] == 'S'
+		|| mlx->map->grid[y / mlx->map->ratio][x / mlx->map->ratio] == 'E'
+		|| mlx->map->grid[y / mlx->map->ratio][x / mlx->map->ratio] == 'W')
 		mlx_pixel_put(mlx->ptr, mlx->win, x, y, rgbtoi(0, 255, 215, 0));
 }
 
 void	put_player(t_mlx_params *mlx)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = mlx->pl->x * mlx->map->ratio;
 	y = mlx->pl->y * mlx->map->ratio;
@@ -66,8 +66,8 @@ void	put_player(t_mlx_params *mlx)
 
 void	rem_player(t_mlx_params *mlx)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = mlx->pl->x * mlx->map->ratio;
 	y = mlx->pl->y * mlx->map->ratio;

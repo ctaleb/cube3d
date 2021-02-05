@@ -6,7 +6,7 @@
 #    By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 11:40:32 by ctaleb            #+#    #+#              #
-#    Updated: 2021/01/26 14:41:58 by ctaleb           ###   ########lyon.fr    #
+#    Updated: 2021/02/05 12:43:40 by ctaleb           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS = map_extractor.c\
 		key_press.c\
 		minimap.c\
 		movement.c\
+		wallcheck.c\
 		camera.c\
 		error_handler.c
 

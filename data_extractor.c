@@ -6,28 +6,28 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 14:00:22 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/23 15:21:30 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 13:07:08 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-int		data_check(t_map *map_data)
+int	data_check(t_map *map_data)
 {
 	if (map_data->size_x && map_data->size_y && map_data->north_t
-			&& map_data->south_t && map_data->east_t && map_data->west_t
-			&& map_data->sprite_t && map_data->floor_c >= 0
-			&& map_data->ceiling_c >= 0)
+		&& map_data->south_t && map_data->east_t && map_data->west_t
+		&& map_data->sprite_t && map_data->floor_c >= 0
+		&& map_data->ceiling_c >= 0)
 		return (1);
 	return (0);
 }
 
-int		get_colour(char *line)
+int	get_colour(char *line)
 {
-	int i;
-	int r;
-	int g;
-	int b;
+	int	i;
+	int	r;
+	int	g;
+	int	b;
 
 	i = 0;
 	while (line[i] == ' ')
@@ -57,7 +57,8 @@ char	*get_path(char *line)
 	i = 0;
 	while (line[i] == ' ')
 		i++;
-	if (!(dest = malloc(sizeof(char) * (ft_strlen(&line[i]) + 1))))
+	dest = malloc(sizeof(char) * (ft_strlen(&line[i]) + 1));
+	if (!dest)
 		error_handler(2);
 	j = 0;
 	while (line[i + j])
@@ -73,7 +74,7 @@ char	*get_path(char *line)
 
 void	get_resolution(t_map *map_data, char *line)
 {
-	int i;
+	int	i;
 
 	if (map_data->size_x >= 0 || map_data->size_y >= 0)
 		error_handler(23);

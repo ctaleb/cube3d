@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/01 15:20:25 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 13:25:10 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,13 @@ typedef struct	s_map {
 typedef struct	s_player {
 	float		x;
 	float		y;
+	float		nwall_x;
+	float		nwall_y;
 	float		cam_x;
 	float		cam_y;
 	int			colour;
+	float		dist_x;
+	float		dist_y;
 }				t_player;
 
 
@@ -79,6 +83,8 @@ int				movement(int keycode, t_mlx_params *mlx);
 int				move_pl(int keycode, t_mlx_params *mlx);
 int				rotate_pl(int keycode, t_mlx_params *mlx);
 int				check_coords(char dir, t_mlx_params *mlx);
+void			dist_calc(t_mlx_params *mlx);
+int				wall_check(float x, float y, t_mlx_params *mlx);
 
 int				escape_key(int keycode);
 

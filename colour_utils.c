@@ -6,13 +6,13 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 15:28:59 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/23 15:18:44 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 13:02:53 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-int		rgbtoi(int t, int r, int g, int b)
+int	rgbtoi(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }

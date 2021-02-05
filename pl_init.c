@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:56:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/01 16:01:17 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 14:30:58 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ t_player	*pl_init(t_map *map_data)
 {
 	t_player	*pl_data;
 
-	if (!(pl_data = malloc(sizeof(t_player))))
+	pl_data = malloc(sizeof(t_player));
+	if (!pl_data)
 		error_handler(2);
 	pl_data->x = map_data->start_x + 0.5;
 	pl_data->y = map_data->start_y + 0.5;

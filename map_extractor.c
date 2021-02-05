@@ -6,15 +6,15 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 13:27:33 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/25 16:20:24 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 14:22:36 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-int		is_map(char *line)
+int	is_map(char *line)
 {
-	int i;
+	int	i;
 
 	if (!line)
 		return (0);
@@ -33,7 +33,7 @@ int		is_map(char *line)
 	return (1);
 }
 
-int		analyne(t_map *map_data, char *line)
+int	analyne(t_map *map_data, char *line)
 {
 	if (!data_check(map_data))
 	{
@@ -70,7 +70,8 @@ t_map	*map_open(char *path)
 
 	map_data = malloc(sizeof(t_map));
 	map_data_init(map_data, path);
-	if ((fd = open(path, O_RDONLY)) < 0)
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
 		error_handler(11);
 	i = 0;
 	while (ft_get_next_line(fd, 10, &line))

@@ -6,19 +6,20 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 13:05:42 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/25 16:20:21 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 14:26:55 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-int		file_len(char *path)
+int	file_len(char *path)
 {
 	int		fd;
 	int		i;
 	char	*line;
 
-	if ((fd = open(path, O_RDONLY)) < 0)
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
 		error_handler(11);
 	i = 0;
 	while (ft_get_next_line(fd, 10, &line))
@@ -34,8 +35,8 @@ int		file_len(char *path)
 
 void	start_check(t_map *map_data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (map_data->grid[i])
@@ -74,8 +75,8 @@ void	map_check(int x, int y, t_map *map_data)
 		error_handler(26);
 	if ((x == 0 && (y >= 0 && y < map_data->max_y))
 		|| (x == map_data->max_x && (y >= 0 && y < map_data->max_y))
-			|| (y == 0 && (x >= 0 && x < map_data->max_x))
-			|| (y == map_data->max_y && (x >= 0 && x < map_data->max_x)))
+		|| (y == 0 && (x >= 0 && x < map_data->max_x))
+		|| (y == map_data->max_y && (x >= 0 && x < map_data->max_x)))
 		error_handler(26);
 	map_data->dup[y][x] = 'o';
 	map_check(x - 1, y - 1, map_data);
@@ -109,8 +110,8 @@ void	get_map(char **grid, int maxlen, char *line)
 
 void	dup_map(char **grid, char **dup)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (grid[i])

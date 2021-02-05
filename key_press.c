@@ -6,13 +6,13 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 14:17:53 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/01 15:53:21 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 13:12:03 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-int		escape_key(int keycode)
+int	escape_key(int keycode)
 {
 	if (keycode == 53)
 		exit(0);
