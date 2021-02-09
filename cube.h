@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/05 13:25:10 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/08 13:26:48 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,9 @@ int				movement(int keycode, t_mlx_params *mlx);
 int				move_pl(int keycode, t_mlx_params *mlx);
 int				rotate_pl(int keycode, t_mlx_params *mlx);
 int				check_coords(char dir, t_mlx_params *mlx);
-void			dist_calc(t_mlx_params *mlx);
+void			dist_calc(char dir, t_mlx_params *mlx);
 int				wall_check(float x, float y, t_mlx_params *mlx);
+void			inverse_cam(char dir, t_mlx_params *mlx);
 
 int				escape_key(int keycode);
 
