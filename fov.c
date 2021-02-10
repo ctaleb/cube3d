@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wallcheck.c                                        :+:      :+:    :+:   */
+/*   fov.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/03 14:59:41 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/10 12:19:26 by ctaleb           ###   ########lyon.fr   */
+/*   Created: 2021/02/10 12:07:24 by ctaleb            #+#    #+#             */
+/*   Updated: 2021/02/10 15:33:51 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-static void	tan_x_calc(t_mlx_params *mlx)
+static void	step_x_calc(t_mlx_params *mlx)
 {
 	float	s_x;
 	float	s_y;
@@ -22,6 +22,8 @@ static void	tan_x_calc(t_mlx_params *mlx)
 	s_x = mlx->pl->x;
 	s_y = mlx->pl->y;
 	mlx->pl->dist_x = 0;
+	if (mlx->pl->cam_x == 0)
+		return ;
 	while (s_x < mlx->map->max_x && s_y < mlx->map->max_y &&
 	s_x >= 0 && s_y >= 0 && mlx->map->grid[(int)s_y][(int)s_x] != '1')
 	{
@@ -32,7 +34,6 @@ static void	tan_x_calc(t_mlx_params *mlx)
 		else
 			x = (int)(s_x - 1);
 		y = s_y + mlx->pl->cam_y * ((x - s_x) / mlx->pl->cam_x);
-		//printf("%f\t%f\t%f\t%f\t%c\n", s_x, s_y, x, y, mlx->map->grid[(int)s_y][(int)s_x]);
 		mlx->pl->dist_x += sqrt(exp2(fabs(s_x - x)) + exp2(fabs(s_y - y)));
 		s_x = x;
 		s_y = y;
@@ -41,7 +42,7 @@ static void	tan_x_calc(t_mlx_params *mlx)
 	mlx->pl->nwall_y = s_y;
 }
 
-static void	tan_y_calc(t_mlx_params *mlx)
+static void	step_y_calc(t_mlx_params *mlx)
 {
 	float	s_x;
 	float	s_y;
@@ -51,6 +52,8 @@ static void	tan_y_calc(t_mlx_params *mlx)
 	s_x = mlx->pl->x;
 	s_y = mlx->pl->y;
 	mlx->pl->dist_y = 0;
+	if (mlx->pl->cam_y == 0)
+		return ;
 	while (s_x < mlx->map->max_x && s_y < mlx->map->max_y &&
 	s_x >= 0 && s_y >= 0 && mlx->map->grid[(int)s_y][(int)s_x] != '1')
 	{
@@ -61,7 +64,6 @@ static void	tan_y_calc(t_mlx_params *mlx)
 		else
 			y = (int)(s_y - 1);
 		x = s_x + mlx->pl->cam_x * ((y - s_y) / mlx->pl->cam_y);
-		//printf("%f\t%f\t%f\t%f\n", s_x, s_y, x, y);
 		mlx->pl->dist_y += sqrt(exp2(fabs(s_y - y)) + exp2(fabs(s_x - x)));
 		s_x = x;
 		s_y = y;
@@ -72,45 +74,32 @@ static void	tan_y_calc(t_mlx_params *mlx)
 		mlx->pl->nwall_y = s_y;
 }
 
-void	inverse_cam(char dir, t_mlx_params *mlx)
+void	put_fov(t_mlx_params *mlx)
 {
-	if (dir == 'B')
+	float	x;
+	float	y;
+	float	dx;
+	float	dy;
+	float	len;
+	float	i;
+
+	step_x_calc(mlx);
+	step_y_calc(mlx);
+	if (mlx->pl->dist_x >= mlx->pl->dist_y)
+		len = mlx->pl->dist_x;
+	else
+		len = mlx->pl->dist_y;
+	dx = (mlx->pl->nwall_x - mlx->pl->x) / len;
+	dy = (mlx->pl->nwall_y - mlx->pl->y) / len;
+	x = mlx->pl->x + 0.0033;
+	y = mlx->pl->y + 0.0033;
+	i = 1;
+	printf("len%f\tdistx%f\tdisty%f\n", len, mlx->pl->dist_x, mlx->pl->dist_y);
+	while (i <= len)
 	{
-		mlx->pl->cam_x *= -1;
-		mlx->pl->cam_y *= -1;
+		mlx_pixel_put(mlx->ptr, mlx->win, x * mlx->map->ratio, y * mlx->map->ratio, rgbtoi(0, 255, 0, 255));
+		x += dx;
+		y += dy;
+		i += 1;
 	}
-}
-
-void	dist_calc(char dir, t_mlx_params *mlx)
-{
-	inverse_cam(dir, mlx);
-	tan_x_calc(mlx);
-	tan_y_calc(mlx);
-	inverse_cam(dir, mlx);
-}
-
-int		wall_check(float x, float y, t_mlx_params *mlx)
-{
-	int c_x;
-	int c_y;
-
-	c_x = (int)x;
-	c_y = (int)y;
-	if ((mlx->pl->cam_x >= 0 && mlx->pl->cam_y <= 0)
-	&& ((x >= mlx->pl->nwall_x && y <= mlx->pl->nwall_y)
-	|| (mlx->map->grid[c_y][c_x] == '1')))
-		return (0);
-	else if ((mlx->pl->cam_x >= 0 && mlx->pl->cam_y >= 0)
-	&& ((x >= mlx->pl->nwall_x && y >= mlx->pl->nwall_y)
-	|| (mlx->map->grid[c_y][c_x] == '1')))
-		return (0);
-	else if ((mlx->pl->cam_x <= 0 && mlx->pl->cam_y >= 0)
-	&& ((x <= mlx->pl->nwall_x && y >= mlx->pl->nwall_y)
-	|| (mlx->map->grid[c_y][c_x] == '1')))
-		return (0);
-	else if ((mlx->pl->cam_x <= 0 && mlx->pl->cam_y <= 0)
-	&& ((x <= mlx->pl->nwall_x && y <= mlx->pl->nwall_y)
-	|| (mlx->map->grid[c_y][c_x] == '1')))
-		return (0);
-	return (1);
 }
