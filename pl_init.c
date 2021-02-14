@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:56:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/02 14:30:58 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/13 16:20:22 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ t_player	*pl_init(t_map *map_data)
 		pl_data->cam_y = 0;
 	}
 	pl_data->colour = rgbtoi(0, 255, 0, 0);
+	pl_data->fov = 30;
 	return (pl_data);
 }
