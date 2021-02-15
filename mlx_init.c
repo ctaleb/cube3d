@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 15:57:40 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/02 14:29:32 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 11:45:03 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_mlx_params	*mlx_data_init(char *path)
 	t_mlx_params	*mlx;
 	t_map			*map_data;
 	t_player		*pl_data;
+	t_image			*img;
 
 	map_data = map_open(path);
 	if (!map_data)
@@ -30,5 +31,7 @@ t_mlx_params	*mlx_data_init(char *path)
 	mlx->ptr = mlx_init();
 	mlx->win = mlx_new_window(mlx->ptr, mlx->map->size_x,
 			mlx->map->size_y, "Cube 3D");
+	img = img_init(mlx);
+	mlx->img = img;
 	return (mlx);
 }

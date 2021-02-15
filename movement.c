@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:52:50 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/08 14:28:50 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 11:27:48 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	movement(int keycode, t_mlx_params *mlx)
 {
-	rem_camera(mlx);
-	rem_player(mlx);
+	// rem_camera(mlx);
+	// rem_player(mlx);
 	if (keycode == 126 || keycode == 13 || keycode == 125 || keycode == 1)
 		move_pl(keycode, mlx);
 	else if (keycode == 0 || keycode == 2)
@@ -49,8 +49,8 @@ int	rotate_pl(int keycode, t_mlx_params *mlx)
 	float	vec_x;
 	float	vec_y;
 
-	rem_camera(mlx);
-	rem_player(mlx);
+	// rem_camera(mlx);
+	// rem_player(mlx);
 	vec_x = mlx->pl->cam_x;
 	vec_y = mlx->pl->cam_y;
 	if (keycode == 0)

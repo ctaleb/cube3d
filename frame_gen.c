@@ -1,0 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   frame_gen.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/14 11:38:27 by ctaleb            #+#    #+#             */
+/*   Updated: 2021/02/15 12:23:22 by ctaleb           ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cube.h"
+
+t_image	*img_init(t_mlx_params *mlx)
+{
+	t_image		*image;
+
+	image = malloc(sizeof(t_image));
+	if (!image)
+		error_handler(2);
+	image->ptr = mlx_new_image(mlx->ptr, mlx->map->size_x, mlx->map->size_y);
+	image->addr = mlx_get_data_addr(image->ptr, &image->bpp, &image->len, &image->endian);
+	return (image);
+}
+
+void	my_mlx_pixel_put(t_mlx_params *mlx, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = mlx->img->addr + (y * mlx->img->len + x * (mlx->img->bpp / 8));
+	*(unsigned int *)dst = color;
+}
+
+int	frame_gen(t_mlx_params *mlx)
+{
+	//mlx_clear_window(mlx->ptr, mlx->win);
+	print_minimap(mlx);
+	put_camera(mlx);
+	put_player(mlx);
+	put_fov(mlx);
+	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img->ptr, 0, 0);
+	return (0);
+}

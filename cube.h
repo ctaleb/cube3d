@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/10 12:33:29 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 11:28:24 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,19 @@ typedef struct	s_player {
 	float		dist_y;
 }				t_player;
 
+typedef struct	s_image {
+	void		*ptr;
+	char		*addr;
+	int			bpp;
+	int			len;
+	int			endian;
+}				t_image;
+
 
 typedef struct	s_mlx_parmas {
 	void		*ptr;
 	void		*win;
+	t_image		*img;
 	t_map		*map;
 	t_player	*pl;
 }				t_mlx_params;
@@ -71,9 +80,12 @@ void			map_check(int x, int y, t_map *map_data);
 void			map_data_init(t_map *map_data, char *path);
 void			grid_init(t_map *map_data);
 void			map_init(t_map *map_data);
+t_image			*img_init(t_mlx_params *mlx);
 t_mlx_params	*mlx_data_init(char *path);
 t_player		*pl_init(t_map *map_data);
 
+int				frame_gen(t_mlx_params *mlx);
+void			my_mlx_pixel_put(t_mlx_params *mlx, int x, int y, int color);
 void			print_minimap(t_mlx_params *mlx);
 void			put_map(int x, int y, t_mlx_params *mlx);
 void			put_player(t_mlx_params *mlx);

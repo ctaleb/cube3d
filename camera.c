@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 14:41:46 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/02 12:55:05 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 11:29:57 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	put_camera(t_mlx_params *mlx)
 	colour = rgbtoi(0, 0, 153, 73);
 	x = (mlx->pl->cam_x + mlx->pl->x) * mlx->map->ratio;
 	y = (mlx->pl->cam_y + mlx->pl->y) * mlx->map->ratio;
-	mlx_pixel_put(mlx->ptr, mlx->win, x, y, colour);
-	mlx_pixel_put(mlx->ptr, mlx->win, x - 1, y, colour);
-	mlx_pixel_put(mlx->ptr, mlx->win, x, y - 1, colour);
-	mlx_pixel_put(mlx->ptr, mlx->win, x - 1, y - 1, colour);
+	my_mlx_pixel_put(mlx, x, y, colour);
+	my_mlx_pixel_put(mlx, x - 1, y, colour);
+	my_mlx_pixel_put(mlx, x, y - 1, colour);
+	my_mlx_pixel_put(mlx, x - 1, y - 1, colour);
 }
 
 void	rem_camera(t_mlx_params *mlx)

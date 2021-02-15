@@ -6,7 +6,7 @@
 #    By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 11:40:32 by ctaleb            #+#    #+#              #
-#    Updated: 2021/02/10 12:33:04 by ctaleb           ###   ########lyon.fr    #
+#    Updated: 2021/02/15 10:51:10 by ctaleb           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS = map_extractor.c\
 		map_utils.c\
 		map_init.c\
 		mlx_init.c\
+		frame_gen.c\
 		pl_init.c\
 		key_press.c\
 		minimap.c\

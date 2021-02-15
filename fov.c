@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 12:07:24 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/13 16:56:34 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 11:29:43 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	put_rov(t_mlx_params *mlx)
 	printf("len%f\tdistx%f\tdisty%f\ndx%f\tdy%f\n", len, mlx->pl->dist_x, mlx->pl->dist_y, dx, dy);
 	while (i <= len && x < mlx->map->max_x && y < mlx->map->max_y && mlx->map->grid[(int)y][(int)x] != '1')
 	{
-		mlx_pixel_put(mlx->ptr, mlx->win, x * mlx->map->ratio, y * mlx->map->ratio, rgbtoi(0, 255, 0, 255));
+		my_mlx_pixel_put(mlx, x * mlx->map->ratio, y * mlx->map->ratio, rgbtoi(0, 255, 0, 255));
 		x = x + (dx / mlx->map->ratio);
 		y = y + (dy / mlx->map->ratio);
 		i = i + (1 / mlx->map->ratio);
