@@ -6,7 +6,7 @@
 #    By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 11:40:32 by ctaleb            #+#    #+#              #
-#    Updated: 2021/02/15 10:51:10 by ctaleb           ###   ########lyon.fr    #
+#    Updated: 2021/02/15 14:48:37 by ctaleb           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS = map_extractor.c\
 		fov.c\
 		wallcheck.c\
 		camera.c\
+		raycaster.c\
 		error_handler.c
 
 OBJS = $(SRCS:.c=.o)

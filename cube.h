@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/15 11:28:24 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/18 13:27:13 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ typedef struct	s_player {
 	int			colour;
 	float		dist_x;
 	float		dist_y;
+	float		cam_len;
+	float		len_per_ray;
+	int			shift_x;
+	int			shift_y;
 }				t_player;
 
 typedef struct	s_image {
@@ -93,6 +97,8 @@ void			rem_player(t_mlx_params *mlx);
 void			put_camera(t_mlx_params *mlx);
 void			rem_camera(t_mlx_params *mlx);
 void			put_fov(t_mlx_params *mlx);
+
+void			ray_cannon(float fish, int index, t_mlx_params *mlx);
 
 int				movement(int keycode, t_mlx_params *mlx);
 int				move_pl(int keycode, t_mlx_params *mlx);
