@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:10:38 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/22 11:06:49 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 13:01:16 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ void	ray_cannon(float fish, int index, t_mlx_params *mlx)
 	int		start_ray;
 	int		end_ray;
 
-	//printf("x%f\ty%f\ndistx%f\tdisty%f\n", x, y, mlx->pl->dist_x, mlx->pl->dist_y);
+	//printf("distx%f\tdisty%f\n", mlx->pl->dist_x, mlx->pl->dist_y);
 	//exit(1);
 	
 	if (mlx->pl->dist_x < mlx->pl->dist_y && mlx->pl->dist_x != 0)
-		ray_len = mlx->pl->dist_x;
+		ray_len = mlx->pl->dist_x * fish;
 	else
-		ray_len = mlx->pl->dist_y;
+		ray_len = mlx->pl->dist_y * fish;
 	//printf("raynum %i\traylen %f\n", index, ray_len);
 	// getchar(); 
 	

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:59:41 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/21 10:47:49 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 12:23:33 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	tan_x_calc(t_mlx_params *mlx)
 			x = (int)(s_x - 1);
 		y = s_y + mlx->pl->cam_y * ((x - s_x) / mlx->pl->cam_x);
 		//printf("%f\t%f\t%f\t%f\t%c\n", s_x, s_y, x, y, mlx->map->grid[(int)s_y][(int)s_x]);
-		mlx->pl->dist_x += sqrtf(exp2f(fabs(s_x - x)) + exp2f(fabs(s_y - y)));
+		mlx->pl->dist_x += sqrtf(powf(s_x - x, 2) + powf(s_y - y, 2));
 		s_x = x;
 		s_y = y;
 	}
@@ -62,7 +62,7 @@ static void	tan_y_calc(t_mlx_params *mlx)
 			y = (int)(s_y - 1);
 		x = s_x + mlx->pl->cam_x * ((y - s_y) / mlx->pl->cam_y);
 		//printf("%f\t%f\t%f\t%f\n", s_x, s_y, x, y);
-		mlx->pl->dist_y += sqrtf(exp2f(fabs(s_y - y)) + exp2f(fabs(s_x - x)));
+		mlx->pl->dist_y += sqrtf(powf(s_y - y, 2) + powf(s_x - x, 2));
 		s_x = x;
 		s_y = y;
 	}

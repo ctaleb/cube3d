@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 12:07:24 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/22 11:32:24 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 13:38:13 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ static void	step_x_calc(t_mlx_params *mlx)
 	mlx->pl->dist_x = 0;
 	if (mlx->pl->cam_x == 0)
 		return ;
-	while (s_x < mlx->map->max_x && s_y < mlx->map->max_y &&
-		s_x >= 0 && s_y >= 0 && mlx->map->grid[(int)s_y][(int)s_x] != '1')
+	while (1)
 	{
 		if (mlx->pl->cam_x >= 0)
 			x = (int)(s_x + 1);
@@ -46,10 +45,14 @@ static void	step_x_calc(t_mlx_params *mlx)
 		else
 			x = (int)(s_x - 1);
 		y = s_y + mlx->pl->cam_y * ((x - s_x) / mlx->pl->cam_x);
-		mlx->pl->dist_x += sqrtf(powf(s_x - x, 2) + powf(s_y - y, 2));
 		s_x = x;
 		s_y = y;
+		if (s_x >= mlx->map->max_x || s_y >= mlx->map->max_y ||
+		s_x - mlx->pl->shift_x < 0 || s_y < 0 || mlx->map->grid[(int)s_y][(int)s_x - mlx->pl->shift_x] == '1')
+			break ;
 	}
+	mlx->pl->dist_x = sqrtf(powf(mlx->pl->x - s_x, 2) + powf(mlx->pl->y - s_y, 2));
+	// printf("distx%f\n", mlx->pl->dist_x);
 	mlx->pl->nwall_x = s_x;
 	mlx->pl->nwall_y = s_y;
 }
@@ -66,8 +69,7 @@ static void	step_y_calc(t_mlx_params *mlx)
 	mlx->pl->dist_y = 0;
 	if (mlx->pl->cam_y == 0)
 		return ;
-	while (s_x < mlx->map->max_x && s_y < mlx->map->max_y &&
-		s_x >= 0 && s_y >= 0 && mlx->map->grid[(int)s_y][(int)s_x] != '1')
+	while (1)
 	{
 		if (mlx->pl->cam_y >= 0)
 			y = (int)(s_y + 1);
@@ -76,10 +78,13 @@ static void	step_y_calc(t_mlx_params *mlx)
 		else
 			y = (int)(s_y - 1);
 		x = s_x + mlx->pl->cam_x * ((y - s_y) / mlx->pl->cam_y);
-		mlx->pl->dist_y += sqrtf(powf(s_y - y, 2) + powf(s_x - x, 2));
 		s_x = x;
 		s_y = y;
+		if (s_x >= mlx->map->max_x || s_y >= mlx->map->max_y ||
+		s_x < 0 || s_y - mlx->pl->shift_y < 0 || mlx->map->grid[(int)s_y - mlx->pl->shift_y][(int)s_x] == '1')
+			break ;
 	}
+	mlx->pl->dist_y = sqrtf(powf(mlx->pl->x - s_x, 2) + powf(mlx->pl->y - s_y, 2));
 	if (mlx->pl->dist_y < mlx->pl->dist_x)
 		mlx->pl->nwall_x = s_x;
 	if (mlx->pl->dist_y < mlx->pl->dist_x)
