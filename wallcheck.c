@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:59:41 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/18 13:52:29 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/21 10:47:49 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	tan_x_calc(t_mlx_params *mlx)
 	s_y = mlx->pl->y;
 	mlx->pl->dist_x = 0;
 	while (s_x < mlx->map->max_x && s_y < mlx->map->max_y &&
-	s_x >= 0 && s_y >= 0 && mlx->map->grid[(int)s_y][(int)s_x] != '1')
+		s_x >= 0 && s_y >= 0 && mlx->map->grid[(int)s_y][(int)s_x] != '1')
 	{
 		if (mlx->pl->cam_x >= 0)
 			x = (int)(s_x + 1);
@@ -52,7 +52,7 @@ static void	tan_y_calc(t_mlx_params *mlx)
 	s_y = mlx->pl->y;
 	mlx->pl->dist_y = 0;
 	while (s_x < mlx->map->max_x && s_y < mlx->map->max_y &&
-	s_x >= 0 && s_y >= 0 && mlx->map->grid[(int)s_y][(int)s_x] != '1')
+		s_x >= 0 && s_y >= 0 && mlx->map->grid[(int)s_y][(int)s_x] != '1')
 	{
 		if (mlx->pl->cam_y >= 0)
 			y = (int)(s_y + 1);

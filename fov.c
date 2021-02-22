@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 12:07:24 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/18 13:46:25 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 11:32:24 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static void	shift_init(t_mlx_params *mlx)
 	if (mlx->pl->cam_x >= 0)
 		mlx->pl->shift_x = 0;
 	else
-		mlx->pl->shift_x = -1;
+		mlx->pl->shift_x = 1;
 	if (mlx->pl->cam_y >= 0)
 		mlx->pl->shift_y = 0;
 	else
-		mlx->pl->shift_y = -1;
+		mlx->pl->shift_y = 1;
 }
 
 static void	step_x_calc(t_mlx_params *mlx)
@@ -46,7 +46,7 @@ static void	step_x_calc(t_mlx_params *mlx)
 		else
 			x = (int)(s_x - 1);
 		y = s_y + mlx->pl->cam_y * ((x - s_x) / mlx->pl->cam_x);
-		mlx->pl->dist_x += sqrtf(exp2f(fabs(s_x - x)) + exp2f(fabs(s_y - y)));
+		mlx->pl->dist_x += sqrtf(powf(s_x - x, 2) + powf(s_y - y, 2));
 		s_x = x;
 		s_y = y;
 	}
@@ -76,7 +76,7 @@ static void	step_y_calc(t_mlx_params *mlx)
 		else
 			y = (int)(s_y - 1);
 		x = s_x + mlx->pl->cam_x * ((y - s_y) / mlx->pl->cam_y);
-		mlx->pl->dist_y += sqrtf(exp2f(fabs(s_y - y)) + exp2f(fabs(s_x - x)));
+		mlx->pl->dist_y += sqrtf(powf(s_y - y, 2) + powf(s_x - x, 2));
 		s_x = x;
 		s_y = y;
 	}
@@ -115,6 +115,9 @@ void	put_rov(float fish, int index, t_mlx_params *mlx)
 		y = y + (dy / mlx->map->ratio);
 		i = i + (1 / mlx->map->ratio);
 	}
+	// printf("i%i\traylen%f\n", index, sqrtf(exp2f(x - mlx->pl->x) + exp2f(y - mlx->pl->y)));
+	// getchar();
+	//printf("x%f\ty%f\n", x, y);
 	ray_cannon(fish, index, mlx);
 }
 
