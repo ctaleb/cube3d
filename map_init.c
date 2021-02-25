@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 15:23:57 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/17 10:57:37 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 10:51:05 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	map_data_init(t_map *map_data, char *path)
 {
 	map_data->grid = NULL;
 	map_data->dup = NULL;
-	map_data->size_x = -1;
-	map_data->size_y = -1;
+	map_data->res_x = -1;
+	map_data->res_y = -1;
 	map_data->floor_c = -1;
 	map_data->ceiling_c = -1;
 	map_data->max_x = 0;

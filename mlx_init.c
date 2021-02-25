@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 15:57:40 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/15 11:45:03 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 11:26:59 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,13 @@ t_mlx_params	*mlx_data_init(char *path)
 	mlx->map = map_data;
 	pl_data = pl_init(map_data);
 	mlx->pl = pl_data;
+	fov_init(mlx);
+	ray_init(mlx);
 	mlx->ptr = mlx_init();
-	mlx->win = mlx_new_window(mlx->ptr, mlx->map->size_x,
-			mlx->map->size_y, "Cube 3D");
+	mlx->win = mlx_new_window(mlx->ptr, mlx->map->res_x,
+			mlx->map->res_y, "Cube 3D");
 	img = img_init(mlx);
 	mlx->img = img;
+	texture_init(mlx);
 	return (mlx);
 }

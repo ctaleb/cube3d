@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/21 11:22:24 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 13:11:05 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "minilibx/mlx.h"
 # include <math.h>
 
-typedef struct	s_map {
+typedef struct	 s_map {
 	char		**file;
 	char		**grid;
 	int			max_y;
@@ -25,8 +25,8 @@ typedef struct	s_map {
 	int			ratio;
 	int			start_x;
 	int			start_y;
-	int			size_x;
-	int			size_y;
+	int			res_x;
+	int			res_y;
 	char		*north_t;
 	char		*south_t;
 	char		*east_t;
@@ -36,22 +36,10 @@ typedef struct	s_map {
 	int			ceiling_c;
 }				t_map;
 
-typedef struct	s_player {
+typedef struct s_player {
 	float		x;
 	float		y;
-	float		nwall_x;
-	float		nwall_y;
-	float		cam_x;
-	float		cam_y;
-	int			fov;
-	int			cam_size;
 	int			colour;
-	float		dist_x;
-	float		dist_y;
-	float		cam_len;
-	float		len_per_ray;
-	int			shift_x;
-	int			shift_y;
 }				t_player;
 
 typedef struct	s_image {
@@ -62,13 +50,46 @@ typedef struct	s_image {
 	int			endian;
 }				t_image;
 
+typedef struct	s_ray {
+	int			id;
+	int			pos;
+	float		nwall_x;
+	float		nwall_y;
+	int			shift_x;
+	int			shift_y;
+	float		dist_x;
+	float		dist_y;
+}				t_ray;
+
+typedef struct	s_fov {
+	int			fov;
+	float		cam_x;
+	float		cam_y;
+}				t_fov;
+
+typedef struct	s_texture {
+	void		*ptr;
+	int			*addr;
+	char		*path;
+	int			width;
+	int			height;
+	int			bpp;
+	int			len;
+	int			endian;
+}				t_texture;
 
 typedef struct	s_mlx_parmas {
 	void		*ptr;
 	void		*win;
 	t_image		*img;
 	t_map		*map;
+	t_texture	*n_txt;
+	t_texture	*s_txt;
+	t_texture	*e_txt;
+	t_texture	*w_txt;
 	t_player	*pl;
+	t_ray		*r;
+	t_fov		*f;
 }				t_mlx_params;
 
 t_map			*map_open(char *path);
@@ -87,6 +108,9 @@ void			map_init(t_map *map_data);
 t_image			*img_init(t_mlx_params *mlx);
 t_mlx_params	*mlx_data_init(char *path);
 t_player		*pl_init(t_map *map_data);
+void			fov_init(t_mlx_params *mlx);
+void			ray_init(t_mlx_params *mlx);
+void			texture_init(t_mlx_params *mlx);
 
 int				frame_gen(t_mlx_params *mlx);
 void			my_mlx_pixel_put(t_mlx_params *mlx, int x, int y, int color);
@@ -98,7 +122,7 @@ void			put_camera(t_mlx_params *mlx);
 void			rem_camera(t_mlx_params *mlx);
 void			put_fov(t_mlx_params *mlx);
 
-void			ray_cannon(float fish, int index, t_mlx_params *mlx);
+void			ray_cannon(float fish, t_mlx_params *mlx);
 
 int				movement(int keycode, t_mlx_params *mlx);
 int				move_pl(int keycode, t_mlx_params *mlx);

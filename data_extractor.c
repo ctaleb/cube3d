@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 14:00:22 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/02 13:07:08 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 10:50:58 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	data_check(t_map *map_data)
 {
-	if (map_data->size_x && map_data->size_y && map_data->north_t
+	if (map_data->res_x && map_data->res_y && map_data->north_t
 		&& map_data->south_t && map_data->east_t && map_data->west_t
 		&& map_data->sprite_t && map_data->floor_c >= 0
 		&& map_data->ceiling_c >= 0)
@@ -76,17 +76,17 @@ void	get_resolution(t_map *map_data, char *line)
 {
 	int	i;
 
-	if (map_data->size_x >= 0 || map_data->size_y >= 0)
+	if (map_data->res_x >= 0 || map_data->res_y >= 0)
 		error_handler(23);
 	i = 0;
 	while (line[i] == ' ')
 		i++;
-	map_data->size_x = ft_atoi(&line[i]);
+	map_data->res_x = ft_atoi(&line[i]);
 	while (ft_isdigit(line[i]))
 		i++;
 	while (line[i] == ' ')
 		i++;
-	map_data->size_y = ft_atoi(&line[i]);
-	if (map_data->size_x > 5120 || map_data->size_y > 2880)
+	map_data->res_y = ft_atoi(&line[i]);
+	if (map_data->res_x > 5120 || map_data->res_y > 2880)
 		error_handler(22);
 }
