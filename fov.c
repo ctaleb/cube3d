@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 12:07:24 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/25 13:05:01 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 15:51:01 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,69 +26,66 @@ static void	shift_init(t_mlx_params *mlx)
 
 static void	step_x_calc(t_mlx_params *mlx)
 {
-	float	s_x;
-	float	s_y;
-	float	x;
-	float	y;
-
-	s_x = mlx->pl->x;
-	s_y = mlx->pl->y;
+	mlx->r->s_x = mlx->pl->x;
+	mlx->r->s_y = mlx->pl->y;
 	mlx->r->dist_x = 0;
 	if (mlx->f->cam_x == 0)
 		return ;
 	while (1)
 	{
 		if (mlx->f->cam_x >= 0)
-			x = (int)(s_x + 1);
-		else if (s_x == mlx->pl->x)
-			x = (int)(s_x);
+			mlx->r->e_x = (int)(mlx->r->s_x + 1);
+		else if (mlx->r->s_x == mlx->pl->x)
+			mlx->r->e_x = (int)(mlx->r->s_x);
 		else
-			x = (int)(s_x - 1);
-		y = s_y + mlx->f->cam_y * ((x - s_x) / mlx->f->cam_x);
-		s_x = x;
-		s_y = y;
-		if (s_x >= mlx->map->max_x || s_y >= mlx->map->max_y ||
-		s_x - mlx->r->shift_x < 0 || s_y < 0 || mlx->map->grid[(int)s_y][(int)s_x - mlx->r->shift_x] == '1')
+			mlx->r->e_x = (int)(mlx->r->s_x - 1);
+		mlx->r->e_y = mlx->r->s_y + mlx->f->cam_y
+			* ((mlx->r->e_x - mlx->r->s_x) / mlx->f->cam_x);
+		mlx->r->s_x = mlx->r->e_x;
+		mlx->r->s_y = mlx->r->e_y;
+		if (mlx->r->s_x >= mlx->map->max_x || mlx->r->s_y >= mlx->map->max_y
+			|| mlx->r->s_x - mlx->r->shift_x < 0 || mlx->r->s_y < 0
+			|| mlx->map->grid[(int)mlx->r->s_y]
+			[(int)mlx->r->s_x - mlx->r->shift_x] == '1')
 			break ;
 	}
-	mlx->r->dist_x = sqrtf(powf(mlx->pl->x - s_x, 2) + powf(mlx->pl->y - s_y, 2));
-	// printf("distx%f\n", mlx->r->dist_x);
-	mlx->r->nwall_x = s_x;
-	mlx->r->nwall_y = s_y;
+	mlx->r->dist_x = sqrtf(powf(mlx->pl->x - mlx->r->s_x, 2)
+			+ powf(mlx->pl->y - mlx->r->s_y, 2));
+	mlx->r->nwall_x = mlx->r->s_x;
+	mlx->r->nwall_y = mlx->r->s_y;
 }
 
 static void	step_y_calc(t_mlx_params *mlx)
 {
-	float	s_x;
-	float	s_y;
-	float	x;
-	float	y;
-
-	s_x = mlx->pl->x;
-	s_y = mlx->pl->y;
+	mlx->r->s_x = mlx->pl->x;
+	mlx->r->s_y = mlx->pl->y;
 	mlx->r->dist_y = 0;
 	if (mlx->f->cam_y == 0)
 		return ;
 	while (1)
 	{
 		if (mlx->f->cam_y >= 0)
-			y = (int)(s_y + 1);
-		else if (s_y == mlx->pl->y)
-			y = (int)(s_y);
+			mlx->r->e_y = (int)(mlx->r->s_y + 1);
+		else if (mlx->r->s_y == mlx->pl->y)
+			mlx->r->e_y = (int)(mlx->r->s_y);
 		else
-			y = (int)(s_y - 1);
-		x = s_x + mlx->f->cam_x * ((y - s_y) / mlx->f->cam_y);
-		s_x = x;
-		s_y = y;
-		if (s_x >= mlx->map->max_x || s_y >= mlx->map->max_y ||
-		s_x < 0 || s_y - mlx->r->shift_y < 0 || mlx->map->grid[(int)s_y - mlx->r->shift_y][(int)s_x] == '1')
+			mlx->r->e_y = (int)(mlx->r->s_y - 1);
+		mlx->r->e_x = mlx->r->s_x + mlx->f->cam_x
+			* ((mlx->r->e_y - mlx->r->s_y) / mlx->f->cam_y);
+		mlx->r->s_x = mlx->r->e_x;
+		mlx->r->s_y = mlx->r->e_y;
+		if (mlx->r->s_x >= mlx->map->max_x || mlx->r->s_y >= mlx->map->max_y
+			|| mlx->r->s_x < 0 || mlx->r->s_y - mlx->r->shift_y < 0
+			|| mlx->map->grid[(int)mlx->r->s_y - mlx->r->shift_y]
+			[(int)mlx->r->s_x] == '1')
 			break ;
 	}
-	mlx->r->dist_y = sqrtf(powf(mlx->pl->x - s_x, 2) + powf(mlx->pl->y - s_y, 2));
+	mlx->r->dist_y = sqrtf(powf(mlx->pl->x - mlx->r->s_x, 2)
+			+ powf(mlx->pl->y - mlx->r->s_y, 2));
 	if (mlx->r->dist_y < mlx->r->dist_x)
-		mlx->r->nwall_x = s_x;
+		mlx->r->nwall_x = mlx->r->s_x;
 	if (mlx->r->dist_y < mlx->r->dist_x)
-		mlx->r->nwall_y = s_y;
+		mlx->r->nwall_y = mlx->r->s_y;
 }
 
 void	put_rov(float fish, t_mlx_params *mlx)
@@ -99,7 +96,6 @@ void	put_rov(float fish, t_mlx_params *mlx)
 	// float	dy;
 	// float	len;
 	// float	i;
-
 	shift_init(mlx);
 	step_x_calc(mlx);
 	step_y_calc(mlx);
@@ -112,9 +108,6 @@ void	put_rov(float fish, t_mlx_params *mlx)
 	// x = mlx->pl->x + 0.0033;
 	// y = mlx->pl->y + 0.0033;
 	// i = 1;
-
-	// printf("len%f\tdistx%f\tdisty%f\ndx%f\tdy%f\n", len, mlx->r->dist_x, mlx->r->dist_y, dx, dy);
-	
 	//prints one FoV ray on minimap
 	// while (i <= len && x < mlx->map->max_x && y < mlx->map->max_y && mlx->map->grid[(int)y][(int)x] != '1')
 	// {
@@ -123,10 +116,6 @@ void	put_rov(float fish, t_mlx_params *mlx)
 	// 	y = y + (dy / mlx->map->ratio);
 	// 	i = i + (1 / mlx->map->ratio);
 	// }
-
-	// printf("i%i\traylen%f\n", index, sqrtf(exp2f(x - mlx->pl->x) + exp2f(y - mlx->pl->y)));
-	// getchar();
-	//printf("x%f\ty%f\n", x, y);
 	ray_cannon(fish, mlx);
 }
 
@@ -146,12 +135,10 @@ void	put_fov(t_mlx_params *mlx)
 	{	
 		mlx->f->cam_x = cam_x * cos(0.01745 * ray) - cam_y * sin(0.01745 * ray);
 		mlx->f->cam_y = cam_x * sin(0.01745 * ray) + cam_y * cos(0.01745 * ray);
-		put_rov(cos(0.01745*ray), mlx);
-		//printf("%f\n", ray);
+		put_rov(cos(0.01745 * ray), mlx);
 		ray += nb_ray;
 		mlx->r->id++;
 	}
-	// printf("%i\t%i\t%i\tnbray%f\n", i, mlx->f->fov, mlx->map->res_x, nb_ray);
 	mlx->f->cam_x = cam_x;
 	mlx->f->cam_y = cam_y;
 }

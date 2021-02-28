@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 13:27:33 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/02 14:22:36 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/28 12:19:09 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	analyne(t_map *map_data, char *line)
 	else if (line[0] == '\0')
 		return (0);
 	else
-		get_map(map_data->grid, map_data->max_x, line);
+		map_data->sprite_nb += get_map(map_data->grid, map_data->max_x, line);
 	return (0);
 }
 
@@ -85,6 +85,7 @@ t_map	*map_open(char *path)
 	free(line);
 	if (close(fd) < 0)
 		error_handler(12);
+	map_data->sprite_nb = 0;
 	map_init(map_data);
 	return (map_data);
 }

@@ -6,12 +6,12 @@
 #    By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 11:40:32 by ctaleb            #+#    #+#              #
-#    Updated: 2021/02/25 11:17:07 by ctaleb           ###   ########lyon.fr    #
+#    Updated: 2021/02/28 15:23:12 by ctaleb           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -Wall -Wextra #-Werror
+CFLAGS = -O3 -Wall -Wextra #-Werror
 RM = rm -f
 
 AR = ar
@@ -27,6 +27,7 @@ SRCS = map_extractor.c\
 		map_init.c\
 		mlx_init.c\
 		texture_init.c\
+		sprite_init.c\
 		frame_gen.c\
 		data_init.c\
 		key_press.c\
@@ -36,6 +37,7 @@ SRCS = map_extractor.c\
 		wallcheck.c\
 		camera.c\
 		raycaster.c\
+		spriter.c\
 		error_handler.c
 
 OBJS = $(SRCS:.c=.o)

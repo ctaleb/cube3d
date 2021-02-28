@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:56:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/25 13:08:08 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 15:37:14 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ void		ray_init(t_mlx_params *mlx)
 	ray->dist_y = 0;
 	ray->shift_x = 0;
 	ray->shift_y = 0;
+	ray->s_x = 0;
+	ray->s_y = 0;
+	ray->e_x = 0;
+	ray->e_y = 0;
+	ray->side = 0;
+	ray->u_wall = 0;
+	ray->l_wall = 0;
 	mlx->r = ray;
 }
 
@@ -60,6 +67,8 @@ t_player	*pl_init(t_map *map_data)
 		error_handler(2);
 	pl_data->x = map_data->start_x + 0.5;
 	pl_data->y = map_data->start_y + 0.5;
+	pl_data->f_x = 0;
+	pl_data->f_y = 0;
 	pl_data->colour = rgbtoi(0, 255, 0, 0);
 	return (pl_data);
 }

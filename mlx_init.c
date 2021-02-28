@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 15:57:40 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/25 11:26:59 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/27 16:34:14 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ t_mlx_params	*mlx_data_init(char *path)
 	img = img_init(mlx);
 	mlx->img = img;
 	texture_init(mlx);
+	sprite_init(mlx);
 	return (mlx);
 }

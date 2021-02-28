@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:38:27 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/25 12:40:36 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/28 15:22:57 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ t_image	*img_init(t_mlx_params *mlx)
 	if (!image)
 		error_handler(2);
 	image->ptr = mlx_new_image(mlx->ptr, mlx->map->res_x, mlx->map->res_y);
-	image->addr = mlx_get_data_addr(image->ptr, &image->bpp, &image->len, &image->endian);
+	image->addr = mlx_get_data_addr(image->ptr, &image->bpp, &image->len,
+			&image->endian);
 	return (image);
 }
 
@@ -57,6 +58,7 @@ int	frame_gen(t_mlx_params *mlx)
 	print_minimap(mlx);
 	put_camera(mlx);
 	put_player(mlx);
+	sprite_check(mlx);
 	//ray_cannon(mlx);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img->ptr, 0, 0);
 	return (0);

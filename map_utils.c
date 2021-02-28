@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 13:05:42 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/22 09:56:16 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/02/28 12:13:03 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,15 +89,19 @@ void	map_check(int x, int y, t_map *map_data)
 	map_check(x + 1, y + 1, map_data);
 }
 
-void	get_map(char **grid, int maxlen, char *line)
+int	get_map(char **grid, int maxlen, char *line)
 {
 	static int	i;
 	int			j;
+	int			sprite_nb;
 
 	j = 0;
+	sprite_nb = 0;
 	while (line[j])
 	{
 		grid[i][j] = line[j];
+		if (line[j] == '2')
+			sprite_nb++;
 		j++;
 	}
 	while (j < maxlen)
@@ -106,6 +110,7 @@ void	get_map(char **grid, int maxlen, char *line)
 		j++;
 	}
 	i++;
+	return (sprite_nb);
 }
 
 void	dup_map(char **grid, char **dup)
