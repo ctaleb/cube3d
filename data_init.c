@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:56:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/25 15:37:14 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/03 13:23:20 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ void		fov_init(t_mlx_params *mlx)
 		fov->cam_x = 2;
 	else if (mlx->map->grid[mlx->map->start_y][mlx->map->start_x] == 'W')
 		fov->cam_x = -2;
+	fov->dist = malloc(sizeof(float) * mlx->map->res_x);
+	if (!fov->dist)
+		error_handler(2);
 	mlx->f = fov;
 }
 

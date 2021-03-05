@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 14:20:18 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/28 15:50:27 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/05 15:45:23 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,11 @@ void	sprite_creator(int count, int x, int y, t_mlx_params *mlx)
 	mlx->sp[count]->id = count;
 	mlx->sp[count]->type = 0;
 	mlx->sp[count]->active = 1;
+	// mlx->sp[count]->visible = 0;
 	mlx->sp[count]->x = x + 0.5;
 	mlx->sp[count]->y = y + 0.5;
-	mlx->sp[count]->dist_x = sqrtf(powf(mlx->pl->x - x, 2)
-			+ powf(mlx->pl->y - y, 2));
-	mlx->sp[count]->dist_y = sqrtf(powf(mlx->pl->x - x, 2)
-			+ powf(mlx->pl->y - y, 2));
-	mlx->sp[count]->angle = atanf((y - mlx->pl->y) / (x - mlx->pl->x));
+	mlx->sp[count]->dist = sqrtf(powf(mlx->sp[count]->x - mlx->pl->x, 2)
+			+ powf(mlx->sp[count]->y - mlx->pl->y, 2));
 }
 
 void	sprite_finder(t_mlx_params *mlx)

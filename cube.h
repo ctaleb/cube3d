@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/28 15:48:40 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 11:06:57 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct	s_fov {
 	int			fov;
 	float		cam_x;
 	float		cam_y;
+	float		*dist;
 }				t_fov;
 
 typedef struct	s_texture {
@@ -94,9 +95,9 @@ typedef struct	s_sprites {
 	int			active;
 	float		x;
 	float		y;
-	float		dist_x;
-	float		dist_y;
-	float		angle;
+	float		dist;
+	float		r_x;
+	float		r_y;
 }				t_sprites;
 
 typedef struct	s_mlx_parmas {
@@ -148,12 +149,14 @@ void			put_fov(t_mlx_params *mlx);
 
 void			ray_cannon(float fish, t_mlx_params *mlx);
 void			sprite_check(t_mlx_params *mlx);
+void			sprite_dist(t_mlx_params *mlx);
+void			sprites_sort(t_mlx_params *mlx);
 
 int				movement(int keycode, t_mlx_params *mlx);
 int				move_pl(int keycode, t_mlx_params *mlx);
 int				rotate_pl(int keycode, t_mlx_params *mlx);
 int				check_coords(char dir, t_mlx_params *mlx);
-void			dist_calc(char dir, t_mlx_params *mlx);
+void			wall_dist_calc(char dir, t_mlx_params *mlx);
 int				wall_check(float x, float y, t_mlx_params *mlx);
 void			inverse_cam(char dir, t_mlx_params *mlx);
 

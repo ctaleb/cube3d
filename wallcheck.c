@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:59:41 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/26 10:52:38 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 11:03:45 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	inverse_cam(char dir, t_mlx_params *mlx)
 	}
 }
 
-void	dist_calc(char dir, t_mlx_params *mlx)
+void	wall_dist_calc(char dir, t_mlx_params *mlx)
 {
 	inverse_cam(dir, mlx);
 	dist_x_calc(mlx);
