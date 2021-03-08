@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 12:07:24 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/03 15:34:31 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 11:38:36 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ static void	step_x_calc(t_mlx_params *mlx)
 			|| mlx->map->grid[(int)mlx->r->s_y]
 			[(int)mlx->r->s_x - mlx->r->shift_x] == '1')
 			break ;
+		if (mlx->map->grid[(int)mlx->r->s_y]
+			[(int)mlx->r->s_x - mlx->r->shift_x] == '2')
+			sprite_enable(mlx);
 	}
 	mlx->r->dist_x = sqrtf(powf(mlx->pl->x - mlx->r->s_x, 2)
 			+ powf(mlx->pl->y - mlx->r->s_y, 2));
@@ -79,6 +82,9 @@ static void	step_y_calc(t_mlx_params *mlx)
 			|| mlx->map->grid[(int)mlx->r->s_y - mlx->r->shift_y]
 			[(int)mlx->r->s_x] == '1')
 			break ;
+		if (mlx->map->grid[(int)mlx->r->s_y]
+			[(int)mlx->r->s_x - mlx->r->shift_x] == '2')
+			sprite_enable(mlx);
 	}
 	mlx->r->dist_y = sqrtf(powf(mlx->pl->x - mlx->r->s_x, 2)
 			+ powf(mlx->pl->y - mlx->r->s_y, 2));

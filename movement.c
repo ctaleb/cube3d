@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:52:50 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/04 11:04:05 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 11:34:24 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	movement(int keycode, t_mlx_params *mlx)
 {
+	sprite_reset(mlx);
 	if (keycode == 126 || keycode == 13 || keycode == 125 || keycode == 1)
 		move_pl(keycode, mlx);
 	else if (keycode == 0 || keycode == 2)

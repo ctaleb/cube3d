@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/04 11:06:57 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 12:37:49 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,14 @@ typedef struct	s_sprites {
 	int			id;
 	int			type;
 	int			active;
+	int			visible;
 	float		x;
 	float		y;
 	float		dist;
 	float		r_x;
 	float		r_y;
+	float		size_x;
+	float		size_y;
 }				t_sprites;
 
 typedef struct	s_mlx_parmas {
@@ -150,7 +153,13 @@ void			put_fov(t_mlx_params *mlx);
 void			ray_cannon(float fish, t_mlx_params *mlx);
 void			sprite_check(t_mlx_params *mlx);
 void			sprite_dist(t_mlx_params *mlx);
-void			sprites_sort(t_mlx_params *mlx);
+void			sprite_sort(t_mlx_params *mlx);
+void			sprite_enable(t_mlx_params *mlx);
+void			sprite_reset(t_mlx_params *mlx);
+void			sprite_sizer(int i, t_mlx_params *mlx);
+
+int				anglizer(float vx1, float vy1, float vx2, float vy2);
+int				angler(float alpha, float beta);
 
 int				movement(int keycode, t_mlx_params *mlx);
 int				move_pl(int keycode, t_mlx_params *mlx);

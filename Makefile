@@ -6,7 +6,7 @@
 #    By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 11:40:32 by ctaleb            #+#    #+#              #
-#    Updated: 2021/03/03 15:12:03 by ctaleb           ###   ########lyon.fr    #
+#    Updated: 2021/03/08 12:37:23 by ctaleb           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS = map_extractor.c\
 		data_extractor.c\
 		colour_utils.c\
 		map_utils.c\
+		math_utils.c\
 		map_init.c\
 		mlx_init.c\
 		texture_init.c\
@@ -39,6 +40,7 @@ SRCS = map_extractor.c\
 		raycaster.c\
 		spriter.c\
 		sprite_utils.c\
+		sprite_calcs.c\
 		error_handler.c
 
 OBJS = $(SRCS:.c=.o)

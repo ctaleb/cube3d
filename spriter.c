@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 15:14:24 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/04 11:10:13 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 12:40:29 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,12 @@ void	sprite_check(t_mlx_params *mlx)
 	int	t_x;
 	int	t_y;
 
-	sprites_sort(mlx);
+	sprite_sort(mlx);
 	i = 0;
 	while (i < mlx->map->sprite_nb)
 	{
 		sprite_xpos(i, mlx);
-		// t_x = mlx->f->cam_y * mlx->sp[i]->r_x - mlx->pl->x - mlx->f->cam_x * mlx->sp[i]->r_y - mlx->pl->y;
-		// t_y = mlx->sp[i]->r_y - mlx->pl->y;
+		sprite_sizer(i, mlx);
 		i++;
 	}
 // 	// printf("r_angle%f\n", r_angle);
