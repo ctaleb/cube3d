@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 11:51:23 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/08 16:13:17 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 14:27:10 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	sprite_xpos(int i, t_mlx_params *mlx)
 	mlx->sp[i]->r_x = roundf((acos(mlx->sp[i]->r_x) / 0.0174533
 		* ((float)mlx->map->res_x / 2)) / 30);
 	mlx->sp[i]->r_x *= anglizer(mlx->f->cam_x, mlx->f->cam_y, mlx->sp[i]->x - mlx->pl->x, mlx->sp[i]->y - mlx->pl->y);
-	// printf("%i\t%f\n", mlx->sp[i]->id, mlx->sp[i]->r_x);
 }
 
 void	sprite_enable(t_mlx_params *mlx)

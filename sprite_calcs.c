@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 11:41:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/08 16:42:10 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 13:24:38 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,22 @@ void	sprite_dist(t_mlx_params *mlx)
 
 void	sprite_sizer(int i, t_mlx_params *mlx)
 {
-	int	d_wall;
-	int	u_sp;
-	int	l_sp;
 	int	ray_height;
+	int	size;
 	
 	// mlx->sp[i]->size_x = mlx->sp_txt->width * mlx->sp[i]->dist;
 	// mlx->sp[i]->size_y = mlx->sp_txt->height * mlx->sp[i]->dist;
 	ray_height = (int)(mlx->map->res_y / mlx->sp[i]->dist);
-	u_sp = - ((float)ray_height) / 2 + (float)mlx->map->res_y / 2;
-	l_sp = (float)ray_height / 2 + (float)mlx->map->res_y / 2;
+	mlx->sp[i]->u_coord = - ((float)ray_height) / 2 + (float)mlx->map->res_y / 2;
+	mlx->sp[i]->b_coord = (float)ray_height / 2 + (float)mlx->map->res_y / 2;
+	size = mlx->sp[i]->b_coord - mlx->sp[i]->u_coord;
 	// mlx->sp[i]->size_x = mlx->sp_txt->width * ((d_wall - mlx->sp[i]->dist) / d_wall);
 	// mlx->sp[i]->size_y = mlx->sp_txt->height * ((d_wall - mlx->sp[i]->dist) / d_wall);
-	if (mlx->sp[i]->id == 0)
-		printf("%i\t%i\t%i\n", i, u_sp, l_sp);
+	// if (mlx->sp[i]->id == 0)
+	// 	printf("%iy\t%i\n", i, abs(mlx->sp[i]->u_coord - mlx->sp[i]->b_coord));
+	
+	mlx->sp[i]->l_coord = (float)mlx->map->res_x / 2 + mlx->sp[i]->r_x - size / 2;
+	mlx->sp[i]->r_coord = (float)mlx->map->res_x / 2 + mlx->sp[i]->r_x + size / 2;
+	// if (mlx->sp[i]->id == 0)
+	// 	printf("x\t%i\n", abs(mlx->sp[i]->l_coord - mlx->sp[i]->r_coord));
 }

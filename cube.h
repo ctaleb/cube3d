@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/08 12:37:49 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 11:25:42 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,10 @@ typedef struct	s_sprites {
 	float		r_y;
 	float		size_x;
 	float		size_y;
+	int			u_coord;
+	int			b_coord;
+	int			l_coord;
+	int			r_coord;
 }				t_sprites;
 
 typedef struct	s_mlx_parmas {
@@ -156,6 +160,7 @@ void			sprite_dist(t_mlx_params *mlx);
 void			sprite_sort(t_mlx_params *mlx);
 void			sprite_enable(t_mlx_params *mlx);
 void			sprite_reset(t_mlx_params *mlx);
+void			sprite_xpos(int i, t_mlx_params *mlx);
 void			sprite_sizer(int i, t_mlx_params *mlx);
 
 int				anglizer(float vx1, float vy1, float vx2, float vy2);
