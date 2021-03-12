@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/09 11:25:42 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 12:55:11 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ typedef struct	 s_map {
 	int			floor_c;
 	int			ceiling_c;
 }				t_map;
+
+typedef struct	s_input {
+	int			forward;
+	int			backward;
+	int			strafe_l;
+	int			strafe_r;
+	int			rotate_l;
+	int			rotate_r;
+}				t_input;
 
 typedef struct s_player {
 	float		x;
@@ -121,6 +130,7 @@ typedef struct	s_mlx_parmas {
 	t_ray		*r;
 	t_fov		*f;
 	t_sprites	**sp;
+	t_input		*input;
 }				t_mlx_params;
 
 t_map			*map_open(char *path);
@@ -143,6 +153,7 @@ void			sprite_init(t_mlx_params *mlx);
 void			fov_init(t_mlx_params *mlx);
 void			ray_init(t_mlx_params *mlx);
 void			texture_init(t_mlx_params *mlx);
+void			input_init(t_mlx_params *mlx);
 
 int				frame_gen(t_mlx_params *mlx);
 void			my_mlx_pixel_put(t_mlx_params *mlx, int x, int y, int color);
@@ -158,21 +169,25 @@ void			ray_cannon(float fish, t_mlx_params *mlx);
 void			sprite_check(t_mlx_params *mlx);
 void			sprite_dist(t_mlx_params *mlx);
 void			sprite_sort(t_mlx_params *mlx);
-void			sprite_enable(t_mlx_params *mlx);
-void			sprite_reset(t_mlx_params *mlx);
+// void			sprite_enable(t_mlx_params *mlx);
+// void			sprite_reset(t_mlx_params *mlx);
 void			sprite_xpos(int i, t_mlx_params *mlx);
 void			sprite_sizer(int i, t_mlx_params *mlx);
 
 int				anglizer(float vx1, float vy1, float vx2, float vy2);
 int				angler(float alpha, float beta);
 
-int				movement(int keycode, t_mlx_params *mlx);
-int				move_pl(int keycode, t_mlx_params *mlx);
-int				rotate_pl(int keycode, t_mlx_params *mlx);
-int				check_coords(char dir, t_mlx_params *mlx);
+int				movement(t_mlx_params *mlx);
+int				move_pl(int keycode, t_mlx_params *mlx, float speed);
+int				rotate_pl(int keycode, t_mlx_params *mlx, float speed);
+int				strafe_pl(int keycode, t_mlx_params *mlx, float speed);
+int				check_coords(char dir, t_mlx_params *mlx, float speed);
 void			wall_dist_calc(char dir, t_mlx_params *mlx);
 int				wall_check(float x, float y, t_mlx_params *mlx);
 void			inverse_cam(char dir, t_mlx_params *mlx);
+
+int				key_press(int keycode, t_mlx_params *mlx);
+int				key_release(int keycode, t_mlx_params *mlx);
 
 int				escape_key(int keycode);
 

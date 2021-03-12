@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 11:41:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/09 13:24:38 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 12:47:40 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,15 @@ void	sprite_dist(t_mlx_params *mlx)
 
 void	sprite_sizer(int i, t_mlx_params *mlx)
 {
-	int	ray_height;
-	int	size;
+	int		ray_height;
+	int		size;
+	float	ray;
 	
 	// mlx->sp[i]->size_x = mlx->sp_txt->width * mlx->sp[i]->dist;
 	// mlx->sp[i]->size_y = mlx->sp_txt->height * mlx->sp[i]->dist;
+	// ray = -mlx->f->fov + (((float)mlx->f->fov * 2) / ((float)mlx->map->res_x)) * mlx->sp[i]->r_x;
+	// mlx->sp[i]->dist *= cos(0.01745 * ray);
+	printf("%f\n", mlx->sp[i]->dist);
 	ray_height = (int)(mlx->map->res_y / mlx->sp[i]->dist);
 	mlx->sp[i]->u_coord = - ((float)ray_height) / 2 + (float)mlx->map->res_y / 2;
 	mlx->sp[i]->b_coord = (float)ray_height / 2 + (float)mlx->map->res_y / 2;

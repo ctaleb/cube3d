@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:10:38 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/08 16:37:34 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 14:36:26 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,9 @@ void	ray_cannon(float fish, t_mlx_params *mlx)
 		ray_len = mlx->r->dist_y * fish;
 	mlx->f->dist[mlx->r->id] = ray_len;
 	ray_height = (int)((mlx->map->res_y / ray_len)) + 1;
-	mlx->r->u_wall = - ((float)ray_height) / 2 + (float)mlx->map->res_y / 2;
+	mlx->r->u_wall = roundf( - ((float)ray_height) / 2 + (float)mlx->map->res_y / 2);
 	mlx->r->l_wall = (float)ray_height / 2 + (float)mlx->map->res_y / 2;
+	// printf("%i\t%f\n", mlx->r->u_wall, - ((float)ray_height) / 2 + (float)mlx->map->res_y / 2);
+	// getchar();
 	put_ray(mlx);
 }

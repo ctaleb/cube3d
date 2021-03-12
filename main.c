@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 13:36:57 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/15 11:20:43 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 12:53:01 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ int	main(int ac, char *av[])
 	if (ac != 2)
 		error_handler(1);
 	mlx = mlx_data_init(av[1]);
-	mlx_key_hook(mlx->win, escape_key, mlx);
-	mlx_hook(mlx->win, 2, 1L << 0, movement, mlx);
+	// mlx_key_hook(mlx->win, escape_key, mlx);
+	mlx_hook(mlx->win, 2, 1L << 0, key_press, mlx);
+	mlx_hook(mlx->win, 3, 1L << 1, key_release, mlx);
 	mlx_loop_hook(mlx->ptr, frame_gen, mlx);
 	mlx_loop(mlx->ptr);
 	return (0);

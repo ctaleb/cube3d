@@ -1,0 +1,24 @@
+R 1920 1080
+NO ./srcs/textures/colorstone.xpm
+SO ./srcs/textures/wood.xpm
+WE ./srcs/textures/redbrick.xpm
+
+EA ./srcs/textures/texture15.xpm
+S ./srcs/textures/chest.xpm
+
+F 220,100,0
+
+C 225,30,0
+
+
+11111111111
+10000000001
+10000000001
+10020S02001
+10000000001
+10020202001
+10000000001
+10020202001
+10000000001
+10000000001
+11111111111

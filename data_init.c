@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:56:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/03 13:23:20 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 11:46:52 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void		fov_init(t_mlx_params *mlx)
 	if (!fov->dist)
 		error_handler(2);
 	mlx->f = fov;
+	rotate_pl(123, mlx, 0.05);
+	rotate_pl(124, mlx, 0.05);
 }
 
 t_player	*pl_init(t_map *map_data)
