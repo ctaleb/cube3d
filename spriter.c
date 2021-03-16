@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 15:14:24 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/09 14:30:54 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 11:15:49 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	put_sprite(int i, t_texture *texture, t_mlx_params *mlx)
 	int	tex_x;
 	int	tex_y;
 	
+	if (!mlx->sp[i]->visible)
+		return ;
 	x = mlx->sp[i]->l_coord;
 	while (x < mlx->sp[i]->r_coord)
 	{
@@ -57,6 +59,7 @@ void	sprite_check(t_mlx_params *mlx)
 		{
 			sprite_xpos(i, mlx);
 			sprite_sizer(i, mlx);
+			// sprite_enable(i, mlx);
 			put_sprite(i, mlx->sp_txt, mlx);
 		}
 		i++;

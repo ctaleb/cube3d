@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:56:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/11 11:46:52 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 12:52:24 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void		ray_init(t_mlx_params *mlx)
 	ray->shift_y = 0;
 	ray->s_x = 0;
 	ray->s_y = 0;
-	ray->e_x = 0;
-	ray->e_y = 0;
+	ray->n_x = 0;
+	ray->n_y = 0;
 	ray->side = 0;
 	ray->u_wall = 0;
 	ray->l_wall = 0;

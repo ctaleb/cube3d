@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:59:41 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/12 12:28:50 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 16:02:28 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,45 +100,48 @@ int	wall_check(float x, float y, t_mlx_params *mlx)
 
 	c_x = (int)x;
 	c_y = (int)y;
-	// if ((mlx->f->cam_x >= 0 && mlx->f->cam_y <= 0)
-	// 	&& ((x >= mlx->r->nwall_x && y <= mlx->r->nwall_y)
-	// 			|| (mlx->map->grid[c_y][c_x] == '1')))
-	// 	return (0);
-	// else if ((mlx->f->cam_x >= 0 && mlx->f->cam_y >= 0)
-	// 	&& ((x >= mlx->r->nwall_x && y >= mlx->r->nwall_y)
-	// 			|| (mlx->map->grid[c_y][c_x] == '1')))
-	// 	return (0);
-	// else if ((mlx->f->cam_x <= 0 && mlx->f->cam_y >= 0)
-	// 	&& ((x <= mlx->r->nwall_x && y >= mlx->r->nwall_y)
-	// 			|| (mlx->map->grid[c_y][c_x] == '1')))
-	// 	return (0);
-	// else if ((mlx->f->cam_x <= 0 && mlx->f->cam_y <= 0)
-	// 	&& ((x <= mlx->r->nwall_x && y <= mlx->r->nwall_y)
-	// 			|| (mlx->map->grid[c_y][c_x] == '1')))
-	// 	return (0);
-	// return (1);
+	if ((mlx->f->cam_x >= 0 && mlx->f->cam_y <= 0)
+		&& ((x >= mlx->r->nwall_x && y <= mlx->r->nwall_y)
+				|| (mlx->map->grid[c_y][c_x] == '1')))
+		return (0);
+	else if ((mlx->f->cam_x >= 0 && mlx->f->cam_y >= 0)
+		&& ((x >= mlx->r->nwall_x && y >= mlx->r->nwall_y)
+				|| (mlx->map->grid[c_y][c_x] == '1')))
+		return (0);
+	else if ((mlx->f->cam_x <= 0 && mlx->f->cam_y >= 0)
+		&& ((x <= mlx->r->nwall_x && y >= mlx->r->nwall_y)
+				|| (mlx->map->grid[c_y][c_x] == '1')))
+		return (0);
+	else if ((mlx->f->cam_x <= 0 && mlx->f->cam_y <= 0)
+		&& ((x <= mlx->r->nwall_x && y <= mlx->r->nwall_y)
+				|| (mlx->map->grid[c_y][c_x] == '1')))
+		return (0);
+	return (1);
+
+
 
 	// printf("cx:%f\tcy:%f\nx:%f\ty:%f\nnx:%f\tny:%f\n", mlx->f->cam_x, mlx->f->cam_y, x, y, mlx->r->nwall_x, mlx->r->nwall_y);
 	// printf("dist%f\tdx%f\tdy%f\n\n", sqrtf(powf(x - mlx->pl->x, 2) + powf(y - mlx->pl->y, 2)), mlx->r->dist_x, mlx->r->dist_y);
-	if (mlx->r->dist_x < mlx->r->dist_y)
-	{
-		if (mlx->f->cam_x > 0 && x >= mlx->r->nwall_x - 0.2)
-			return (0);
-		if (mlx->f->cam_x < 0 && x <= mlx->r->nwall_x + 1.2)
-			return (0);
-		if (mlx->r->dist_x < sqrtf(powf(x - mlx->pl->x, 2) + powf(y - mlx->pl->y, 2)))
-			return (0);
-	}
-	else
-	{
-		if (mlx->f->cam_y > 0 && y >= mlx->r->nwall_y - 0.2)
-			return (0);
-		if (mlx->f->cam_y < 0 && y <= mlx->r->nwall_y + 1.2)
-			return (0);
-		if (mlx->r->dist_y < sqrtf(powf(x - mlx->pl->x, 2) + powf(y - mlx->pl->y, 2)))
-			return (0);
-	}
-	if (mlx->map->grid[c_y][c_x] == '1')
-		return (0);
-	return (1);
+	
+	// if (mlx->r->dist_x < mlx->r->dist_y)
+	// {
+	// 	if (mlx->f->cam_x > 0 && x >= mlx->r->nwall_x - 0.2)
+	// 		return (0);
+	// 	if (mlx->f->cam_x < 0 && x <= mlx->r->nwall_x + 1.2)
+	// 		return (0);
+	// 	if (mlx->r->dist_x < sqrtf(powf(x - mlx->pl->x, 2) + powf(y - mlx->pl->y, 2)))
+	// 		return (0);
+	// }
+	// else
+	// {
+	// 	if (mlx->f->cam_y > 0 && y >= mlx->r->nwall_y - 0.2)
+	// 		return (0);
+	// 	if (mlx->f->cam_y < 0 && y <= mlx->r->nwall_y + 1.2)
+	// 		return (0);
+	// 	if (mlx->r->dist_y < sqrtf(powf(x - mlx->pl->x, 2) + powf(y - mlx->pl->y, 2)))
+	// 		return (0);
+	// }
+	// if (mlx->map->grid[c_y][c_x] == '1')
+	// 	return (0);
+	// return (1);
 }

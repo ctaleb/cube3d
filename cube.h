@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/10 12:55:11 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 12:54:30 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ typedef struct	s_ray {
 	int			shift_y;
 	float		s_x;
 	float		s_y;
-	float		e_x;
-	float		e_y;
+	float		n_x;
+	float		n_y;
 	float		dist_x;
 	float		dist_y;
 	int			side;
@@ -106,6 +106,8 @@ typedef struct	s_sprites {
 	float		x;
 	float		y;
 	float		dist;
+	float		d_x;
+	float		d_y;
 	float		r_x;
 	float		r_y;
 	float		size_x;
@@ -164,13 +166,16 @@ void			rem_player(t_mlx_params *mlx);
 void			put_camera(t_mlx_params *mlx);
 void			rem_camera(t_mlx_params *mlx);
 void			put_fov(t_mlx_params *mlx);
+int				step_init(float cam, float start, float pl);
 
 void			ray_cannon(float fish, t_mlx_params *mlx);
 void			sprite_check(t_mlx_params *mlx);
 void			sprite_dist(t_mlx_params *mlx);
 void			sprite_sort(t_mlx_params *mlx);
 // void			sprite_enable(t_mlx_params *mlx);
-// void			sprite_reset(t_mlx_params *mlx);
+void			sprite_enable(int i, t_mlx_params *mlx);
+
+void			sprite_reset(t_mlx_params *mlx);
 void			sprite_xpos(int i, t_mlx_params *mlx);
 void			sprite_sizer(int i, t_mlx_params *mlx);
 
@@ -200,5 +205,10 @@ void			get_resolution(t_map *map_data, char *line);
 void			error_handler(int ernum);
 
 int				rgbtoi(int t, int r, int g, int b);
+float			dist_calc(float x, float y);
+float			ft_dist(float x1, float y1, float x2, float y2);
+int				anglizer(float vx1, float vy1, float vx2, float vy2);
+float			rad_deg(float rad);
+float			deg_rad(float deg);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:38:27 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/10 11:08:04 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 09:49:39 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,12 @@ void	my_mlx_pixel_put(t_mlx_params *mlx, int x, int y, int color)
 int	frame_gen(t_mlx_params *mlx)
 {
 	//mlx_clear_window(mlx->ptr, mlx->win);
+	sprite_reset(mlx);
 	movement(mlx);
 	put_fov(mlx);
-	print_minimap(mlx);
-	put_camera(mlx);
-	put_player(mlx);
+	// print_minimap(mlx);
+	// put_camera(mlx);
+	// put_player(mlx);
 	sprite_check(mlx);
 	//ray_cannon(mlx);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img->ptr, 0, 0);

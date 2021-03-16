@@ -6,16 +6,21 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:55:21 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/09 14:30:15 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 10:57:21 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-// float	dist_calc(float x, float y)
-// {
-// 	return (sqrtf(powf(x, 2) + powf(y, 2)));
-// }
+float	dist_calc(float x, float y)
+{
+	return (sqrtf(powf(x, 2) + powf(y, 2)));
+}
+
+float	ft_dist(float x1, float y1, float x2, float y2)
+{
+	return (sqrtf(powf(x2 - x1, 2) + powf(y2 - y1, 2)));
+}
 
 int	anglizer(float vx1, float vy1, float vx2, float vy2)
 {
@@ -26,4 +31,14 @@ int	anglizer(float vx1, float vy1, float vx2, float vy2)
 		return (1);
 	else
 		return (-1);
+}
+
+float	rad_deg(float rad)
+{
+	return (rad * 180 / M_PI);
+}
+
+float	deg_rad(float deg)
+{
+	return (deg * M_PI / 180);
 }
