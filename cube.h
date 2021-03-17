@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/16 12:54:30 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 12:23:51 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,10 @@ void			rem_player(t_mlx_params *mlx);
 void			put_camera(t_mlx_params *mlx);
 void			rem_camera(t_mlx_params *mlx);
 void			put_fov(t_mlx_params *mlx);
-int				step_init(float cam, float start, float pl);
+
+void			find_y(t_mlx_params *mlx);
+void			find_x(t_mlx_params *mlx);
+int				is_valid_coord(float x, float y, int shft_x, int shft_y, t_mlx_params *mlx);
 
 void			ray_cannon(float fish, t_mlx_params *mlx);
 void			sprite_check(t_mlx_params *mlx);

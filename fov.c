@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 12:07:24 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/16 13:12:45 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 12:20:53 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,30 +31,13 @@ static void	step_x_calc(t_mlx_params *mlx)
 	mlx->r->dist_x = 0;
 	if (mlx->f->cam_x == 0)
 		return ;
-	while (1)
+	find_y(mlx);
+	while (is_valid_coord(mlx->r->s_x, mlx->r->s_y, mlx->r->shift_x, 0, mlx))
 	{
-		if (mlx->f->cam_x >= 0)
-			mlx->r->n_x = (int)(mlx->r->s_x + 1);
-		else if (mlx->r->s_x == mlx->pl->x)
-			mlx->r->n_x = (int)(mlx->r->s_x);
-		else
-			mlx->r->n_x = (int)(mlx->r->s_x - 1);
-		mlx->r->n_y = mlx->r->s_y + mlx->f->cam_y
-			* ((mlx->r->n_x - mlx->r->s_x) / mlx->f->cam_x);
-		mlx->r->s_x = mlx->r->n_x;
-		mlx->r->s_y = mlx->r->n_y;
-		if (mlx->r->s_x >= mlx->map->max_x || mlx->r->s_y >= mlx->map->max_y
-			|| mlx->r->s_x - mlx->r->shift_x < 0 || mlx->r->s_y < 0
-			|| mlx->map->grid[(int)mlx->r->s_y]
-			[(int)mlx->r->s_x - mlx->r->shift_x] == '1')
-			break ;
-		// if (mlx->map->grid[(int)mlx->r->s_y]
-		// 	[(int)mlx->r->s_x - mlx->r->shift_x] == '2')
-		// 	sprite_enable(mlx);
+		mlx->r->s_x += mlx->r->n_x;
+		mlx->r->s_y += mlx->r->n_y;
 	}
 	mlx->r->dist_x = ft_dist(mlx->r->s_x, mlx->r->s_y, mlx->pl->x, mlx->pl->y);
-	// sqrtf(powf(mlx->pl->x - mlx->r->s_x, 2)
-	// 		+ powf(mlx->pl->y - mlx->r->s_y, 2));
 	mlx->r->nwall_x = mlx->r->s_x;
 	mlx->r->nwall_y = mlx->r->s_y;
 }
@@ -66,30 +49,13 @@ static void	step_y_calc(t_mlx_params *mlx)
 	mlx->r->dist_y = 0;
 	if (mlx->f->cam_y == 0)
 		return ;
-	while (1)
+	find_x(mlx);
+	while (is_valid_coord(mlx->r->s_x, mlx->r->s_y, 0, mlx->r->shift_y, mlx))
 	{
-		if (mlx->f->cam_y >= 0)
-			mlx->r->n_y = (int)(mlx->r->s_y + 1);
-		else if (mlx->r->s_y == mlx->pl->y)
-			mlx->r->n_y = (int)(mlx->r->s_y);
-		else
-			mlx->r->n_y = (int)(mlx->r->s_y - 1);
-		mlx->r->n_x = mlx->r->s_x + mlx->f->cam_x
-			* ((mlx->r->n_y - mlx->r->s_y) / mlx->f->cam_y);
-		mlx->r->s_x = mlx->r->n_x;
-		mlx->r->s_y = mlx->r->n_y;
-		if (mlx->r->s_x >= mlx->map->max_x || mlx->r->s_y >= mlx->map->max_y
-			|| mlx->r->s_x < 0 || mlx->r->s_y - mlx->r->shift_y < 0
-			|| mlx->map->grid[(int)mlx->r->s_y - mlx->r->shift_y]
-			[(int)mlx->r->s_x] == '1')
-			break ;
-		// if (mlx->map->grid[(int)mlx->r->s_y]
-		// 	[(int)mlx->r->s_x - mlx->r->shift_x] == '2')
-		// 	sprite_enable(mlx);
+		mlx->r->s_x += mlx->r->n_x;
+		mlx->r->s_y += mlx->r->n_y;
 	}
 	mlx->r->dist_y = ft_dist(mlx->r->s_x, mlx->r->s_y, mlx->pl->x, mlx->pl->y);
-	// sqrtf(powf(mlx->pl->x - mlx->r->s_x, 2)
-	// 		+ powf(mlx->pl->y - mlx->r->s_y, 2));
 	if (mlx->r->dist_y < mlx->r->dist_x)
 		mlx->r->nwall_x = mlx->r->s_x;
 	if (mlx->r->dist_y < mlx->r->dist_x)

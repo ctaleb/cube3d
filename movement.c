@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:52:50 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/15 16:04:50 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 12:27:29 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	movement(t_mlx_params *mlx)
 		&& (mlx->input->strafe_l || mlx->input->strafe_r))
 		speed = 0.025;
 	else
-		speed = 0.025;
+		speed = 0.050;
 	if (mlx->input->forward && !mlx->input->backward)
 		move_pl(13, mlx, speed);
 	else if (mlx->input->backward && !mlx->input->forward)

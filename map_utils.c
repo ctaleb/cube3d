@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 13:05:42 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/28 12:13:03 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 13:04:21 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	file_len(char *path)
 		free(line);
 		i++;
 	}
+	free(line);
 	i++;
 	if (close(fd) < 0)
 		error_handler(12);

@@ -6,7 +6,7 @@
 #    By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 11:40:32 by ctaleb            #+#    #+#              #
-#    Updated: 2021/03/16 12:53:52 by ctaleb           ###   ########lyon.fr    #
+#    Updated: 2021/03/17 09:27:32 by ctaleb           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS = map_extractor.c\
 		fov.c\
 		fov_utils.c\
 		wallcheck.c\
+		wallcheck_utils.c\
 		camera.c\
 		raycaster.c\
 		spriter.c\
