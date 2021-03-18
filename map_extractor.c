@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 13:27:33 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/28 12:19:09 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/18 14:13:48 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,26 @@ int	is_map(char *line)
 	return (1);
 }
 
-int	analyne(t_map *map_data, char *line)
+int	analyne(t_map *map_data, char *line, t_mlx_params *mlx)
 {
 	if (!data_check(map_data))
 	{
 		if (line[0] == 'R')
-			get_resolution(map_data, &line[1]);
+			get_resolution(map_data, &line[1], mlx);
 		else if (line[0] == 'F' && map_data->floor_c < 0)
-			map_data->floor_c = get_colour(&line[1]);
+			map_data->floor_c = get_colour(&line[1], mlx);
 		else if (line[0] == 'C' && map_data->ceiling_c < 0)
-			map_data->ceiling_c = get_colour(&line[1]);
+			map_data->ceiling_c = get_colour(&line[1], mlx);
 		else if (line[0] == 'S' && line[1] == ' ' && !map_data->sprite_t)
-			map_data->sprite_t = get_path(&line[2]);
+			map_data->sprite_t = get_path(&line[2], mlx);
 		else if (line[0] == 'N' && line[1] == 'O' && !map_data->north_t)
-			map_data->north_t = get_path(&line[2]);
+			map_data->north_t = get_path(&line[2], mlx);
 		else if (line[0] == 'S' && line[1] == 'O' && !map_data->south_t)
-			map_data->south_t = get_path(&line[2]);
+			map_data->south_t = get_path(&line[2], mlx);
 		else if (line[0] == 'E' && line[1] == 'A' && !map_data->east_t)
-			map_data->east_t = get_path(&line[2]);
+			map_data->east_t = get_path(&line[2], mlx);
 		else if (line[0] == 'W' && line[1] == 'E' && !map_data->west_t)
-			map_data->west_t = get_path(&line[2]);
+			map_data->west_t = get_path(&line[2], mlx);
 	}
 	else if (line[0] == '\0')
 		return (0);
@@ -61,31 +61,31 @@ int	analyne(t_map *map_data, char *line)
 	return (0);
 }
 
-t_map	*map_open(char *path)
+void	map_open(char *path, t_mlx_params *mlx)
 {
 	int		fd;
 	int		i;
 	char	*line;
-	t_map	*map_data;
 
-	map_data = malloc(sizeof(t_map));
-	map_data_init(map_data, path);
+	mlx->map = malloc(sizeof(t_map));
+	mem_check(mlx->map, mlx, 2);
+	map_data_init(mlx, path);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		error_handler(11);
 	i = 0;
 	while (ft_get_next_line(fd, 10, &line))
 	{
-		map_data->file[i] = ft_strdup(line);
+		mlx->map->file[i] = ft_strdup(line);
+		mem_check(mlx->map->file[i], mlx, 2);
 		free(line);
 		line = NULL;
 		i++;
 	}
-	map_data->file[i] = ft_strdup(line);
+	mlx->map->file[i] = ft_strdup(line);
+	mem_check(mlx->map->file[i], mlx, 2);
 	free(line);
 	if (close(fd) < 0)
 		error_handler(12);
-	map_data->sprite_nb = 0;
-	map_init(map_data);
-	return (map_data);
+	map_init(mlx);
 }

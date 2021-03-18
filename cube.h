@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/17 12:23:51 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/18 12:03:10 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,19 +135,19 @@ typedef struct	s_mlx_parmas {
 	t_input		*input;
 }				t_mlx_params;
 
-t_map			*map_open(char *path);
+void			map_open(char *path, t_mlx_params *mlx);
 
 int				file_len(char *path);
 int				is_map(char *line);
-int				analyne(t_map *map_data, char *line);
+int				analyne(t_map *map_data, char *line, t_mlx_params *mlx);
 
 int				data_check(t_map *map_data);
-void			start_check(t_map *map_data);
-void			map_check(int x, int y, t_map *map_data);
+void			start_check(t_map *map_data, t_mlx_params *mlx);
+void			map_check(int x, int y, t_map *map_data, t_mlx_params *mlx);
 
-void			map_data_init(t_map *map_data, char *path);
-void			grid_init(t_map *map_data);
-void			map_init(t_map *map_data);
+void			map_data_init(t_mlx_params *mlx, char *path);
+void			grid_init(t_mlx_params *mlx);
+void			map_init(t_mlx_params *mlx);
 t_image			*img_init(t_mlx_params *mlx);
 t_mlx_params	*mlx_data_init(char *path);
 t_player		*pl_init(t_map *map_data);
@@ -175,7 +175,6 @@ void			ray_cannon(float fish, t_mlx_params *mlx);
 void			sprite_check(t_mlx_params *mlx);
 void			sprite_dist(t_mlx_params *mlx);
 void			sprite_sort(t_mlx_params *mlx);
-// void			sprite_enable(t_mlx_params *mlx);
 void			sprite_enable(int i, t_mlx_params *mlx);
 
 void			sprite_reset(t_mlx_params *mlx);
@@ -199,12 +198,13 @@ int				key_release(int keycode, t_mlx_params *mlx);
 
 int				escape_key(int keycode);
 
-int				get_colour(char *line);
-char			*get_path(char *line);
+int				get_colour(char *line, t_mlx_params *mlx);
+char			*get_path(char *line, t_mlx_params *mlx);
 int				get_map(char **grid, int maxlen, char *line);
 void			dup_map(char **grid, char **dup);
-void			get_resolution(t_map *map_data, char *line);
+void			get_resolution(t_map *map_data, char *line, t_mlx_params *mlx);
 
+void			mem_check(void *ptr, t_mlx_params *mlx, int ernum);
 void			error_handler(int ernum);
 
 int				rgbtoi(int t, int r, int g, int b);

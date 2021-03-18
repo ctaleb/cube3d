@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 11:01:02 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/23 15:19:28 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/18 10:56:45 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,10 @@ void	error_handler(int ernum)
 	close(fd);
 	printf("Unexpected Error\n");
 	exit(-99);
+}
+
+void	mem_check(void *ptr, t_mlx_params *mlx, int ernum)
+{
+	if (!ptr)
+		error_handler(ernum);
 }

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 14:00:22 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/25 10:50:58 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/18 14:01:11 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	data_check(t_map *map_data)
 	return (0);
 }
 
-int	get_colour(char *line)
+int	get_colour(char *line, t_mlx_params *mlx)
 {
 	int	i;
 	int	r;
@@ -48,7 +48,7 @@ int	get_colour(char *line)
 	return (rgbtoi(0, r, g, b));
 }
 
-char	*get_path(char *line)
+char	*get_path(char *line, t_mlx_params *mlx)
 {
 	int		i;
 	int		j;
@@ -72,7 +72,7 @@ char	*get_path(char *line)
 	return (dest);
 }
 
-void	get_resolution(t_map *map_data, char *line)
+void	get_resolution(t_map *map_data, char *line, t_mlx_params *mlx)
 {
 	int	i;
 

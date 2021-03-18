@@ -6,75 +6,88 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 15:23:57 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/25 10:51:05 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/18 13:54:19 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	map_data_init(t_map *map_data, char *path)
+void	map_data_init(t_mlx_params *mlx, char *path)
 {
-	map_data->grid = NULL;
-	map_data->dup = NULL;
-	map_data->res_x = -1;
-	map_data->res_y = -1;
-	map_data->floor_c = -1;
-	map_data->ceiling_c = -1;
-	map_data->max_x = 0;
-	map_data->north_t = NULL;
-	map_data->south_t = NULL;
-	map_data->east_t = NULL;
-	map_data->west_t = NULL;
-	map_data->sprite_t = NULL;
-	map_data->file = ft_calloc(file_len(path) + 1, sizeof(char *));
-	map_data->start_x = -1;
-	map_data->start_y = -1;
-	map_data->ratio = 10;
+	mlx->map->grid = NULL;
+	mlx->map->dup = NULL;
+	mlx->map->res_x = -1;
+	mlx->map->res_y = -1;
+	mlx->map->floor_c = -1;
+	mlx->map->ceiling_c = -1;
+	mlx->map->max_x = 0;
+	mlx->map->north_t = NULL;
+	mlx->map->south_t = NULL;
+	mlx->map->east_t = NULL;
+	mlx->map->west_t = NULL;
+	mlx->map->sprite_t = NULL;
+	mlx->map->sprite_nb = 0;
+	mlx->map->file = ft_calloc(file_len(path) + 1, sizeof(char *));
+	mem_check(mlx->map, mlx, 2);
+	mlx->map->start_x = -1;
+	mlx->map->start_y = -1;
+	mlx->map->ratio = 10;
 }
 
-void	grid_init(t_map *map_data)
+void	grid_creator(t_mlx_params *mlx)
+{
+	int	i;
+
+	mlx->map->grid = ft_calloc(mlx->map->max_y + 1, sizeof(char *));
+	mem_check(mlx->map->grid, mlx, 2);
+	mlx->map->dup = ft_calloc(mlx->map->max_y + 1, sizeof(char *));
+	mem_check(mlx->map->dup, mlx, 2);
+	i = 0;
+	while (i < mlx->map->max_y)
+	{
+		mlx->map->grid[i] = ft_calloc(mlx->map->max_x + 1, sizeof(char));
+		mem_check(mlx->map->grid[i], mlx, 2);
+		mlx->map->dup[i] = ft_calloc(mlx->map->max_x + 1, sizeof(char));
+		mem_check(mlx->map->dup[i], mlx, 2);
+		i++;
+	}
+}
+
+void	grid_init(t_mlx_params *mlx)
 {
 	int		i;
 	int		j;
 	int		temp;
 
 	i = 0;
-	while (!is_map(map_data->file[i]))
+	while (!is_map(mlx->map->file[i]))
 		i++;
 	j = 0;
-	while (map_data->file[i] != NULL && is_map(map_data->file[i]))
+	while (mlx->map->file[i] != NULL && is_map(mlx->map->file[i]))
 	{
-		temp = ft_strlen(map_data->file[i++]);
-		if (temp > map_data->max_x)
-			map_data->max_x = temp;
+		temp = ft_strlen(mlx->map->file[i++]);
+		if (temp > mlx->map->max_x)
+			mlx->map->max_x = temp;
 		j++;
 	}
-	map_data->max_y = j;
-	map_data->grid = ft_calloc(map_data->max_y + 1, sizeof(char *));
-	map_data->dup = ft_calloc(map_data->max_y + 1, sizeof(char *));
-	i = 0;
-	while (i < j)
-	{
-		map_data->grid[i] = ft_calloc(map_data->max_x + 1, sizeof(char));
-		map_data->dup[i] = ft_calloc(map_data->max_x + 1, sizeof(char));
-		i++;
-	}
+	mlx->map->max_y = j;
+	grid_creator(mlx);
 }
 
-void	map_init(t_map *map_data)
+void	map_init(t_mlx_params *mlx)
 {
 	int	i;
 
-	grid_init(map_data);
+	grid_init(mlx);
 	i = 0;
-	while (map_data->file[i])
+	while (mlx->map->file[i])
 	{
-		analyne(map_data, map_data->file[i]);
-		free(map_data->file[i]);
+		analyne(mlx->map, mlx->map->file[i], mlx);
+		free(mlx->map->file[i]);
 		i++;
 	}
-	free(map_data->file);
-	dup_map(map_data->grid, map_data->dup);
-	start_check(map_data);
-	map_check(map_data->start_x, map_data->start_y, map_data);
+	free(mlx->map->file);
+	dup_map(mlx->map->grid, mlx->map->dup);
+	start_check(mlx->map, mlx);
+	map_check(mlx->map->start_x, mlx->map->start_y, mlx->map, mlx);
 }

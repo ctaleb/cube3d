@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 13:05:42 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/17 13:04:21 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/18 11:58:15 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	file_len(char *path)
 	return (i);
 }
 
-void	start_check(t_map *map_data)
+void	start_check(t_map *map_data, t_mlx_params *mlx)
 {
 	int	i;
 	int	j;
@@ -62,7 +62,7 @@ void	start_check(t_map *map_data)
 	}
 }
 
-void	map_check(int x, int y, t_map *map_data)
+void	map_check(int x, int y, t_map *map_data, t_mlx_params *mlx)
 {
 	if (x >= map_data->max_x || y >= map_data->max_y)
 		return ;
@@ -80,14 +80,14 @@ void	map_check(int x, int y, t_map *map_data)
 		|| (y == map_data->max_y && (x >= 0 && x < map_data->max_x)))
 		error_handler(26);
 	map_data->dup[y][x] = 'o';
-	map_check(x - 1, y - 1, map_data);
-	map_check(x - 1, y, map_data);
-	map_check(x - 1, y + 1, map_data);
-	map_check(x, y + 1, map_data);
-	map_check(x, y - 1, map_data);
-	map_check(x + 1, y - 1, map_data);
-	map_check(x + 1, y, map_data);
-	map_check(x + 1, y + 1, map_data);
+	map_check(x - 1, y - 1, map_data, mlx);
+	map_check(x - 1, y, map_data, mlx);
+	map_check(x - 1, y + 1, map_data, mlx);
+	map_check(x, y + 1, map_data, mlx);
+	map_check(x, y - 1, map_data, mlx);
+	map_check(x + 1, y - 1, map_data, mlx);
+	map_check(x + 1, y, map_data, mlx);
+	map_check(x + 1, y + 1, map_data, mlx);
 }
 
 int	get_map(char **grid, int maxlen, char *line)
