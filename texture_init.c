@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 15:50:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/25 15:12:48 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 10:46:58 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,39 +34,22 @@ static void	texture_convert(t_mlx_params *mlx)
 
 static void	texture_check(t_mlx_params *mlx)
 {
-	if (!mlx->n_txt->ptr)
-		error_handler(13);
-	if (!mlx->s_txt->ptr)
-		error_handler(13);
-	if (!mlx->e_txt->ptr)
-		error_handler(13);
-	if (!mlx->w_txt->ptr)
-		error_handler(13);
+	mem_check(mlx->n_txt->ptr, mlx, 13);
+	mem_check(mlx->s_txt->ptr, mlx, 13);
+	mem_check(mlx->e_txt->ptr, mlx, 13);
+	mem_check(mlx->w_txt->ptr, mlx, 13);
 }
 
 void	texture_init(t_mlx_params *mlx)
 {
-	t_texture	*north_texture;
-	t_texture	*south_texture;
-	t_texture	*east_texture;
-	t_texture	*west_texture;
-
-	north_texture = malloc(sizeof(t_texture));
-	if (!north_texture)
-		error_handler(2);
-	south_texture = malloc(sizeof(t_texture));
-	if (!south_texture)
-		error_handler(2);
-	east_texture = malloc(sizeof(t_texture));
-	if (!east_texture)
-		error_handler(2);
-	west_texture = malloc(sizeof(t_texture));
-	if (!west_texture)
-		error_handler(2);
-	mlx->n_txt = north_texture;
-	mlx->s_txt = south_texture;
-	mlx->e_txt = east_texture;
-	mlx->w_txt = west_texture;
+	mlx->n_txt = malloc(sizeof(t_texture));
+	mem_check(mlx->n_txt, mlx, 2);
+	mlx->s_txt = malloc(sizeof(t_texture));
+	mem_check(mlx->s_txt, mlx, 2);
+	mlx->e_txt = malloc(sizeof(t_texture));
+	mem_check(mlx->e_txt, mlx, 2);
+	mlx->w_txt = malloc(sizeof(t_texture));
+	mem_check(mlx->w_txt, mlx, 2);
 	texture_convert(mlx);
 	texture_check(mlx);
 }

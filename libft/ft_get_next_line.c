@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:16:07 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/21 10:31:42 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 14:58:36 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static char	*get_line(char *temp)
 	i = 0;
 	while (temp[i] != '\n' && temp[i])
 		i++;
-	if (!(nline = ft_calloc(i + 1, sizeof(char))))
+	nline = ft_calloc(i + 1, sizeof(char));
+	if (!nline)
 		return (NULL);
 	j = 0;
 	while (j < i)
@@ -44,7 +45,8 @@ static char	*trim_temp(char *temp)
 		i++;
 	i++;
 	new_size = ft_strlen(&temp[i]);
-	if (!(new_temp = ft_calloc(new_size + 1, sizeof(char))))
+	new_temp = ft_calloc(new_size + 1, sizeof(char));
+	if (!new_temp)
 	{
 		if (temp)
 			free(temp);
@@ -52,11 +54,7 @@ static char	*trim_temp(char *temp)
 	}
 	j = 0;
 	while (temp[i])
-	{
-		new_temp[j] = temp[i];
-		i++;
-		j++;
-	}
+		new_temp[j++] = temp[i++];
 	free(temp);
 	return (new_temp);
 }
@@ -77,7 +75,8 @@ static char	*joiner(char *temp, char *buf, int buf_len)
 	unsigned int	new_size;
 
 	new_size = ft_strlen(temp) + buf_len + 2;
-	if (!(joined = ft_calloc(new_size, sizeof(char))))
+	joined = ft_calloc(new_size, sizeof(char));
+	if (!joined)
 	{
 		if (temp)
 			free(temp);
@@ -90,9 +89,9 @@ static char	*joiner(char *temp, char *buf, int buf_len)
 	return (joined);
 }
 
-int			ft_get_next_line(int fd, int b_size, char **line)
+int	ft_get_next_line(int fd, int b_size, char **line)
 {
-	static char *temp;
+	static char	*temp;
 	char		*buf;
 	int			rd;
 
@@ -103,7 +102,8 @@ int			ft_get_next_line(int fd, int b_size, char **line)
 		temp = ft_calloc(1, sizeof(char));
 	while (!ft_memchr(temp, '\n', ft_strlen(temp)) && rd > 0)
 	{
-		if (!(buf = ft_calloc(b_size + 1, sizeof(char))))
+		buf = ft_calloc(b_size + 1, sizeof(char));
+		if (!buf)
 			return (liberator(&temp, -1));
 		rd = read(fd, buf, b_size);
 		if (rd == -1)

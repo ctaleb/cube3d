@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 13:27:33 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/18 14:13:48 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 10:59:20 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	map_open(char *path, t_mlx_params *mlx)
 	map_data_init(mlx, path);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		error_handler(11);
+		error_handler(11, mlx);
 	i = 0;
 	while (ft_get_next_line(fd, 10, &line))
 	{
@@ -86,6 +86,6 @@ void	map_open(char *path, t_mlx_params *mlx)
 	mem_check(mlx->map->file[i], mlx, 2);
 	free(line);
 	if (close(fd) < 0)
-		error_handler(12);
+		error_handler(12, mlx);
 	map_init(mlx);
 }

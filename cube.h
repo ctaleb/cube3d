@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/18 12:03:10 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 16:46:49 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define CUBE_H
 # include "libft/libft.h"
 # include "minilibx/mlx.h"
-# include <math.h>
 
 typedef struct	 s_map {
 	char		**file;
@@ -137,7 +136,7 @@ typedef struct	s_mlx_parmas {
 
 void			map_open(char *path, t_mlx_params *mlx);
 
-int				file_len(char *path);
+int				file_len(char *path, t_mlx_params *mlx);
 int				is_map(char *line);
 int				analyne(t_map *map_data, char *line, t_mlx_params *mlx);
 
@@ -148,9 +147,9 @@ void			map_check(int x, int y, t_map *map_data, t_mlx_params *mlx);
 void			map_data_init(t_mlx_params *mlx, char *path);
 void			grid_init(t_mlx_params *mlx);
 void			map_init(t_mlx_params *mlx);
-t_image			*img_init(t_mlx_params *mlx);
+void			img_init(t_mlx_params *mlx);
 t_mlx_params	*mlx_data_init(char *path);
-t_player		*pl_init(t_map *map_data);
+void			pl_init(t_mlx_params *mlx);
 void			sprite_init(t_mlx_params *mlx);
 void			fov_init(t_mlx_params *mlx);
 void			ray_init(t_mlx_params *mlx);
@@ -169,7 +168,7 @@ void			put_fov(t_mlx_params *mlx);
 
 void			find_y(t_mlx_params *mlx);
 void			find_x(t_mlx_params *mlx);
-int				is_valid_coord(float x, float y, int shft_x, int shft_y, t_mlx_params *mlx);
+int				is_valid_coord(int shft_x, int shft_y, t_mlx_params *mlx);
 
 void			ray_cannon(float fish, t_mlx_params *mlx);
 void			sprite_check(t_mlx_params *mlx);
@@ -204,8 +203,8 @@ int				get_map(char **grid, int maxlen, char *line);
 void			dup_map(char **grid, char **dup);
 void			get_resolution(t_map *map_data, char *line, t_mlx_params *mlx);
 
-void			mem_check(void *ptr, t_mlx_params *mlx, int ernum);
-void			error_handler(int ernum);
+void			mem_check(void *ptr, t_mlx_params *mlx, int ernum/*, int stage*/);
+void			error_handler(int ernum, t_mlx_params *mlx/*, int stage*/);
 
 int				rgbtoi(int t, int r, int g, int b);
 float			dist_calc(float x, float y);

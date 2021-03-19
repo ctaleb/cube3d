@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 15:41:16 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/18 14:23:11 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 15:01:18 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	char *str;
+	char	*str;
 
 	str = malloc(size * count);
 	if (!str)

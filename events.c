@@ -6,13 +6,13 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 10:41:03 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/10 12:51:29 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 14:37:03 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-int		key_press(int keycode, t_mlx_params *mlx)
+int	key_press(int keycode, t_mlx_params *mlx)
 {
 	if (keycode == 53)
 		exit(0);
@@ -31,7 +31,7 @@ int		key_press(int keycode, t_mlx_params *mlx)
 	return (0);
 }
 
-int		key_release(int keycode, t_mlx_params *mlx)
+int	key_release(int keycode, t_mlx_params *mlx)
 {
 	if (keycode == 126 || keycode == 13)
 		mlx->input->forward = 0;
@@ -50,16 +50,12 @@ int		key_release(int keycode, t_mlx_params *mlx)
 
 void	input_init(t_mlx_params *mlx)
 {
-	t_input	*input;
-
-	input = malloc(sizeof(t_input));
-	if (!input)
-		error_handler(2);
-	input->forward = 0;
-	input->backward = 0;
-	input->strafe_l = 0;
-	input->strafe_r = 0;
-	input->rotate_l = 0;
-	input->rotate_r = 0;
-	mlx->input = input;
+	mlx->input = malloc(sizeof(t_input));
+	mem_check(mlx->input, mlx, 2);
+	mlx->input->forward = 0;
+	mlx->input->backward = 0;
+	mlx->input->strafe_l = 0;
+	mlx->input->strafe_r = 0;
+	mlx->input->rotate_l = 0;
+	mlx->input->rotate_r = 0;
 }

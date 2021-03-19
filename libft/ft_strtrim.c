@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctaleb <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 13:08:21 by ctaleb            #+#    #+#             */
-/*   Updated: 2020/11/29 16:52:39 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 14:44:26 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	end = ft_strlen(s1) - 1;
 	if (start == end + 1)
 	{
-		if (!(str = ft_calloc(1, sizeof(char))))
+		str = ft_calloc(1, sizeof(char));
+		if (!str)
 			return (NULL);
 		return (str);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctaleb <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 16:23:57 by ctaleb            #+#    #+#             */
-/*   Updated: 2020/11/28 12:55:03 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 14:51:00 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ t_list	*ft_lstnew(void *content)
 {
 	t_list	*lstnew;
 
-	if (!(lstnew = ft_calloc(1, sizeof(t_list))))
+	lstnew = ft_calloc(1, sizeof(t_list));
+	if (!lstnew)
 		return (NULL);
 	lstnew->content = content;
 	lstnew->next = NULL;

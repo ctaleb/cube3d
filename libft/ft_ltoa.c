@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 11:43:48 by ctaleb            #+#    #+#             */
-/*   Updated: 2020/12/22 14:06:21 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 16:28:25 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,14 @@ static unsigned int	ft_nbrlen(long long nb)
 	return (size);
 }
 
-static char			*ft_maxcase(void)
+static char	*ft_maxcase(void)
 {
 	char	*nbr;
 	char	*str;
 	int		i;
 
-	if (!(nbr = ft_calloc(21, sizeof(char))))
+	nbr = ft_calloc(21, sizeof(char));
+	if (!nbr)
 		return (NULL);
 	str = "-9223372036854775808";
 	i = 0;
@@ -50,7 +51,7 @@ static char			*ft_maxcase(void)
 	return (nbr);
 }
 
-char				*ft_ltoa(long long n)
+char	*ft_ltoa(long long n)
 {
 	unsigned int		size;
 	char				*nbr;
@@ -59,7 +60,8 @@ char				*ft_ltoa(long long n)
 	if (9223372036854775808U == (unsigned long long)n)
 		return (ft_maxcase());
 	size = ft_nbrlen(n);
-	if (!(nbr = ft_calloc(size + 1, sizeof(char))))
+	nbr = ft_calloc(size + 1, sizeof(char));
+	if (!nbr)
 		return (NULL);
 	nb = n;
 	if (nb < 0)
@@ -72,9 +74,8 @@ char				*ft_ltoa(long long n)
 		nbr[size] = 48;
 	while (nb != 0)
 	{
-		nbr[size] = nb % 10 + 48;
+		nbr[size--] = nb % 10 + 48;
 		nb /= 10;
-		size--;
 	}
 	return (nbr);
 }

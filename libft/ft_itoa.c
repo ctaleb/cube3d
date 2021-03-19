@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctaleb <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 11:43:48 by ctaleb            #+#    #+#             */
-/*   Updated: 2020/11/26 14:59:59 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 14:52:59 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static unsigned int	ft_nbrlen(long nb)
 {
-	unsigned int size;
+	unsigned int	size;
 
 	size = 0;
 	if (nb == 0)
@@ -32,14 +32,15 @@ static unsigned int	ft_nbrlen(long nb)
 	return (size);
 }
 
-char				*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	unsigned int	size;
 	char			*nbr;
 	long			nb;
 
 	size = ft_nbrlen(n);
-	if (!(nbr = ft_calloc(size + 1, sizeof(char))))
+	nbr = ft_calloc(size + 1, sizeof(char));
+	if (!nbr)
 		return (NULL);
 	nb = n;
 	if (nb < 0)

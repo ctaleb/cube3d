@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:52:50 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/17 12:27:29 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 16:52:41 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	movement(t_mlx_params *mlx)
 {
-	float speed;
+	float	speed;
 
 	if ((mlx->input->forward || mlx->input->backward)
 		&& (mlx->input->strafe_l || mlx->input->strafe_r))
@@ -35,14 +35,6 @@ int	movement(t_mlx_params *mlx)
 		rotate_pl(124, mlx, speed);
 	sprite_dist(mlx);
 	return (0);
-
-	// sprite_reset(mlx);
-	// if (keycode == 126 || keycode == 13 || keycode == 125 || keycode == 1)
-	// 	move_pl(keycode, mlx);
-	// else if (keycode == 123 || keycode == 124)
-	// 	rotate_pl(keycode, mlx);
-	// else if (keycode == 0 || keycode == 2)
-	// 	strafe_pl(keycode, mlx);
 }
 
 int	move_pl(int keycode, t_mlx_params *mlx, float speed)
@@ -68,33 +60,16 @@ int	move_pl(int keycode, t_mlx_params *mlx, float speed)
 
 int	rotate_pl(int keycode, t_mlx_params *mlx, float speed)
 {
-	float	vec_x;
-	float	vec_y;
-
-	vec_x = mlx->f->cam_x;
-	vec_y = mlx->f->cam_y;
 	if (keycode == 123)
-	{
-		mlx->f->cam_x = vec_x * cos(-speed) - vec_y * sin(-speed);
-		mlx->f->cam_y = vec_x * sin(-speed) + vec_y * cos(-speed);
-	}
+		ft_vec_rot(&mlx->f->cam_x, &mlx->f->cam_y, -speed);
 	else if (keycode == 124)
-	{
-		mlx->f->cam_x = vec_x * cos(speed) - vec_y * sin(speed);
-		mlx->f->cam_y = vec_x * sin(speed) + vec_y * cos(speed);
-	}
+		ft_vec_rot(&mlx->f->cam_x, &mlx->f->cam_y, speed);
 	return (0);
 }
 
 int	strafe_pl(int keycode, t_mlx_params *mlx, float speed)
 {
-	float	vec_x;
-	float	vec_y;
-
-	vec_x = mlx->f->cam_x;
-	vec_y = mlx->f->cam_y;
-	mlx->f->cam_x = vec_x * cos(-1.5708) - vec_y * sin(-1.5708);
-	mlx->f->cam_y = vec_x * sin(-1.5708) + vec_y * cos(-1.5708);
+	ft_vec_rot(&mlx->f->cam_x, &mlx->f->cam_y, deg_rad(-90));
 	if (keycode == 0)
 	{
 		if (check_coords('F', mlx, speed))
@@ -111,8 +86,7 @@ int	strafe_pl(int keycode, t_mlx_params *mlx, float speed)
 			mlx->pl->y = mlx->pl->y - mlx->f->cam_y * speed;
 		}
 	}
-	mlx->f->cam_x = vec_x;
-	mlx->f->cam_y = vec_y;
+	ft_vec_rot(&mlx->f->cam_x, &mlx->f->cam_y, deg_rad(90));
 	return (0);
 }
 

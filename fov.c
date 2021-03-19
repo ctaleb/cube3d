@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 12:07:24 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/17 12:20:53 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 14:34:29 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	step_x_calc(t_mlx_params *mlx)
 	if (mlx->f->cam_x == 0)
 		return ;
 	find_y(mlx);
-	while (is_valid_coord(mlx->r->s_x, mlx->r->s_y, mlx->r->shift_x, 0, mlx))
+	while (is_valid_coord(mlx->r->shift_x, 0, mlx))
 	{
 		mlx->r->s_x += mlx->r->n_x;
 		mlx->r->s_y += mlx->r->n_y;
@@ -50,7 +50,7 @@ static void	step_y_calc(t_mlx_params *mlx)
 	if (mlx->f->cam_y == 0)
 		return ;
 	find_x(mlx);
-	while (is_valid_coord(mlx->r->s_x, mlx->r->s_y, 0, mlx->r->shift_y, mlx))
+	while (is_valid_coord(0, mlx->r->shift_y, mlx))
 	{
 		mlx->r->s_x += mlx->r->n_x;
 		mlx->r->s_y += mlx->r->n_y;
@@ -64,32 +64,9 @@ static void	step_y_calc(t_mlx_params *mlx)
 
 void	put_rov(float fish, t_mlx_params *mlx)
 {
-	// float	x;
-	// float	y;
-	// float	dx;
-	// float	dy;
-	// float	len;
-	// float	i;
 	shift_init(mlx);
 	step_x_calc(mlx);
 	step_y_calc(mlx);
-	// if (fabs(mlx->r->nwall_x - mlx->pl->x) >= fabs(mlx->r->nwall_y - mlx->pl->y))
-	// 	len = fabs(mlx->r->nwall_x - mlx->pl->x);
-	// else
-	// 	len = fabs(mlx->r->nwall_y - mlx->pl->y);
-	// dx = (mlx->r->nwall_x - mlx->pl->x) / len;
-	// dy = (mlx->r->nwall_y - mlx->pl->y) / len;
-	// x = mlx->pl->x + 0.0033;
-	// y = mlx->pl->y + 0.0033;
-	// i = 1;
-	//prints one FoV ray on minimap
-	// while (i <= len && x < mlx->map->max_x && y < mlx->map->max_y && mlx->map->grid[(int)y][(int)x] != '1')
-	// {
-	// 	my_mlx_pixel_put(mlx, x * mlx->map->ratio, y * mlx->map->ratio, rgbtoi(0, 255, 0, 255));
-	// 	x = x + (dx / mlx->map->ratio);
-	// 	y = y + (dy / mlx->map->ratio);
-	// 	i = i + (1 / mlx->map->ratio);
-	// }
 	ray_cannon(fish, mlx);
 }
 

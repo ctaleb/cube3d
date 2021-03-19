@@ -4,7 +4,7 @@ SO ./srcs/textures/wood.xpm
 WE ./srcs/textures/redbrick.xpm
 
 EA ./srcs/textures/texture15.xpm
-S ./srcs/textures/chest.xpm
+S ./srcs/textures/barrel.xpm
 
 F 220,100,0
 

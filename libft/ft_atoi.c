@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctaleb <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 15:03:04 by ctaleb            #+#    #+#             */
-/*   Updated: 2020/11/28 17:53:02 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 16:25:40 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static int	symbol_set(char symbol)
+{
+	if (symbol == '-')
+		return (-1);
+	else
+		return (1);
+}
 
 int	ft_atoi(const char *str)
 {
@@ -23,10 +31,7 @@ int	ft_atoi(const char *str)
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
 		i++;
 	if (str[i] == '+' || str[i] == '-')
-	{
-		sym = (str[i] == '-') ? (-1) : (1);
-		i++;
-	}
+		sym = symbol_set(str[i++]);
 	nb = 0;
 	while (ft_isdigit(str[i]))
 	{
@@ -34,6 +39,11 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	if (nb > 9223372036854775807)
-		return (sym > 0) ? (-1) : (0);
+	{
+		if (sym > 0)
+			return (-1);
+		else
+			return (0);
+	}
 	return (nb * sym);
 }

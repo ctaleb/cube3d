@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ctaleb <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/28 15:12:07 by ctaleb            #+#    #+#              #
-#    Updated: 2021/01/17 12:09:27 by ctaleb           ###   ########lyon.fr    #
+#    Updated: 2021/03/19 16:44:41 by ctaleb           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,8 @@ SRCS = ft_memset.c\
 		ft_ishex.c\
 		ft_ltoa.c\
 		ft_lutoa.c\
-		ft_get_next_line.c
+		ft_get_next_line.c\
+		ft_vec_rot.c
 
 OBJS = $(SRCS:.c=.o)
 INCS = libft.h

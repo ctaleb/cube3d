@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:55:21 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/16 10:57:21 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 14:26:54 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ float	ft_dist(float x1, float y1, float x2, float y2)
 
 int	anglizer(float vx1, float vy1, float vx2, float vy2)
 {
-	float determinant;
+	float	determinant;
 
 	determinant = vx1 * vy2 - vx2 * vy1;
 	if (determinant >= 0)

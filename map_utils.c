@@ -6,13 +6,13 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 13:05:42 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/18 11:58:15 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 11:01:01 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-int	file_len(char *path)
+int	file_len(char *path, t_mlx_params *mlx)
 {
 	int		fd;
 	int		i;
@@ -20,7 +20,7 @@ int	file_len(char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		error_handler(11);
+		error_handler(11, mlx);
 	i = 0;
 	while (ft_get_next_line(fd, 10, &line))
 	{
@@ -30,7 +30,7 @@ int	file_len(char *path)
 	free(line);
 	i++;
 	if (close(fd) < 0)
-		error_handler(12);
+		error_handler(12, mlx);
 	return (i);
 }
 
@@ -54,7 +54,7 @@ void	start_check(t_map *map_data, t_mlx_params *mlx)
 					map_data->start_y = i;
 				}
 				else
-					error_handler(25);
+					error_handler(25, mlx);
 			}
 			j++;
 		}
@@ -73,12 +73,12 @@ void	map_check(int x, int y, t_map *map_data, t_mlx_params *mlx)
 	if (map_data->dup[y][x] == 'o')
 		return ;
 	if (map_data->dup[y][x] == ' ')
-		error_handler(26);
+		error_handler(26, mlx);
 	if ((x == 0 && (y >= 0 && y < map_data->max_y))
 		|| (x == map_data->max_x && (y >= 0 && y < map_data->max_y))
 		|| (y == 0 && (x >= 0 && x < map_data->max_x))
 		|| (y == map_data->max_y && (x >= 0 && x < map_data->max_x)))
-		error_handler(26);
+		error_handler(26, mlx);
 	map_data->dup[y][x] = 'o';
 	map_check(x - 1, y - 1, map_data, mlx);
 	map_check(x - 1, y, map_data, mlx);

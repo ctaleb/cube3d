@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctaleb <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 11:00:49 by ctaleb            #+#    #+#             */
-/*   Updated: 2020/12/21 11:49:25 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 14:42:27 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static unsigned int	ft_nbrlen(unsigned long long nb, unsigned int blen)
 	return (size);
 }
 
-char				*ft_utoa_base(unsigned long long n, char *base)
+char	*ft_utoa_base(unsigned long long n, char *base)
 {
 	unsigned int		size;
 	char				*nbr;
@@ -36,7 +36,8 @@ char				*ft_utoa_base(unsigned long long n, char *base)
 
 	blen = ft_strlen(base);
 	size = ft_nbrlen(n, blen);
-	if (!(nbr = ft_calloc(size + 1, sizeof(char))))
+	nbr = ft_calloc(size + 1, sizeof(char));
+	if (!nbr)
 		return (NULL);
 	nb = n;
 	size--;

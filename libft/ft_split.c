@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctaleb <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 19:41:17 by ctaleb            #+#    #+#             */
-/*   Updated: 2020/11/28 17:15:35 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 14:47:31 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	ft_fillup(const char *str, char c, char **split)
 
 static int	ft_freeall(char **split, int n)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < n)
@@ -80,7 +80,7 @@ static int	ft_freeall(char **split, int n)
 	return (0);
 }
 
-char		**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	int		n;
 	char	**split;
@@ -88,7 +88,8 @@ char		**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	n = ft_strcount(s, c) + 1;
-	if (!(split = ft_calloc(n, sizeof(char *))))
+	split = ft_calloc(n, sizeof(char *));
+	if (!split)
 		return (NULL);
 	split[n - 1] = NULL;
 	if (ft_strchr(s, c) == NULL)

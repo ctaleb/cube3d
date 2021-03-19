@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_numlen.c                                        :+:      :+:    :+:   */
+/*   ft_vec_rot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/23 17:27:45 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/19 14:47:56 by ctaleb           ###   ########lyon.fr   */
+/*   Created: 2021/03/19 16:38:48 by ctaleb            #+#    #+#             */
+/*   Updated: 2021/03/19 16:53:54 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_numlen(const char *str)
+void	ft_vec_rot(float *vec_x, float *vec_y, float angle)
 {
-	size_t	size;
-	size_t	digit;
+	float	old_vec_x;
+	float	old_vec_y;
 
-	size = 0;
-	digit = 0;
-	while (str[size])
-	{
-		if (ft_ishex(str[size]))
-			digit++;
-		size++;
-	}
-	return (digit);
+	old_vec_x = *vec_x;
+	old_vec_y = *vec_y;
+	*vec_x = old_vec_x * cos(angle) - old_vec_y * sin(angle);
+	*vec_y = old_vec_x * sin(angle) + old_vec_y * cos(angle);
 }

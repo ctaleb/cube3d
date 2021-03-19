@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctaleb <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 12:17:46 by ctaleb            #+#    #+#             */
-/*   Updated: 2020/11/26 16:29:30 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 14:45:05 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_strncmp(const char *str1, const char *str2, size_t size)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	if (size == 0)
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 14:00:22 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/18 14:01:11 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 10:57:26 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ int	get_colour(char *line, t_mlx_params *mlx)
 	while (ft_isdigit(line[i]))
 		i++;
 	if (line[i++] != ',')
-		error_handler(21);
+		error_handler(21, mlx);
 	g = ft_atoi(&line[i]);
 	while (ft_isdigit(line[i]))
 		i++;
 	if (line[i++] != ',')
-		error_handler(21);
+		error_handler(21, mlx);
 	b = ft_atoi(&line[i]);
 	if (r > 255 || r < 0 || g > 255 || g < 0 || b > 255 || b < 0)
-		error_handler(22);
+		error_handler(22, mlx);
 	return (rgbtoi(0, r, g, b));
 }
 
@@ -58,13 +58,12 @@ char	*get_path(char *line, t_mlx_params *mlx)
 	while (line[i] == ' ')
 		i++;
 	dest = malloc(sizeof(char) * (ft_strlen(&line[i]) + 1));
-	if (!dest)
-		error_handler(2);
+	mem_check(dest, mlx, 2);
 	j = 0;
 	while (line[i + j])
 	{
 		if (ft_isspace(line[i]))
-			error_handler(21);
+			error_handler(21, mlx);
 		dest[j] = line[i + j];
 		j++;
 	}
@@ -77,7 +76,7 @@ void	get_resolution(t_map *map_data, char *line, t_mlx_params *mlx)
 	int	i;
 
 	if (map_data->res_x >= 0 || map_data->res_y >= 0)
-		error_handler(23);
+		error_handler(23, mlx);
 	i = 0;
 	while (line[i] == ' ')
 		i++;
@@ -88,5 +87,5 @@ void	get_resolution(t_map *map_data, char *line, t_mlx_params *mlx)
 		i++;
 	map_data->res_y = ft_atoi(&line[i]);
 	if (map_data->res_x > 5120 || map_data->res_y > 2880)
-		error_handler(22);
+		error_handler(22, mlx);
 }

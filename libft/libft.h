@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 11:02:18 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/01/17 14:20:46 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 16:46:53 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <math.h>
 
 typedef struct		s_list
 {
@@ -90,5 +91,7 @@ char				*ft_ltoa(long long n);
 char				*ft_lutoa(unsigned long long n);
 
 int					ft_get_next_line(int fd, int b_size, char **line);
+
+void				ft_vec_rot(float *vec_x, float *vec_y, float angle);
 
 #endif

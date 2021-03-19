@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:50:46 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/02/15 11:29:28 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 10:41:39 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	put_map(int x, int y, t_mlx_params *mlx)
 {
 	if (x / mlx->map->ratio >= mlx->map->max_x
 		|| y / mlx->map->ratio >= mlx->map->max_y)
+		return ;
+	else if (x % mlx->map->ratio == 0 || y % mlx->map->ratio == 0)
 		my_mlx_pixel_put(mlx, x, y, rgbtoi(0, 0, 0, 0));
 	else if (mlx->map->grid[y / mlx->map->ratio][x / mlx->map->ratio] == ' ')
 		my_mlx_pixel_put(mlx, x, y, rgbtoi(0, 38, 38, 38));

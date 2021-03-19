@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 15:23:57 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/18 13:54:19 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 11:00:29 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	map_data_init(t_mlx_params *mlx, char *path)
 	mlx->map->west_t = NULL;
 	mlx->map->sprite_t = NULL;
 	mlx->map->sprite_nb = 0;
-	mlx->map->file = ft_calloc(file_len(path) + 1, sizeof(char *));
+	mlx->map->file = ft_calloc(file_len(path, mlx) + 1, sizeof(char *));
 	mem_check(mlx->map, mlx, 2);
 	mlx->map->start_x = -1;
 	mlx->map->start_y = -1;
