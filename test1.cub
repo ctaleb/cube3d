@@ -1,10 +1,10 @@
 R 1920 1080
-NO ./srcs/textures/colorstone.xpm
-SO ./srcs/textures/wood.xpm
-WE ./srcs/textures/redbrick.xpm
+NO ./src/textures/colorstone.xpm
+SO ./src/textures/wood.xpm
+WE ./src/textures/redbrick.xpm
 
-EA ./srcs/textures/texture15.xpm
-S ./srcs/textures/barrel.xpm
+EA ./src/textures/texture15.xpm
+S ./src/textures/barrel.xpm
 
 F 220,100,0
 

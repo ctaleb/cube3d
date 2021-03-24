@@ -6,21 +6,30 @@
 #    By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 11:40:32 by ctaleb            #+#    #+#              #
-#    Updated: 2021/03/17 09:27:32 by ctaleb           ###   ########lyon.fr    #
+#    Updated: 2021/03/24 14:14:49 by ctaleb           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -g3 -O3 -Wall -Wextra #-Werror
+CFLAGS = -g3 -fsanitize=address -O3 -Wall -Wextra #-Werror
 RM = rm -f
 
 AR = ar
 ARFLAGS = rcs
 
-INCS_PATH = .
+INCS_PATH = inc/
 LIB_PATH = libft/
 
-SRCS = map_extractor.c\
+# SRC_DIR = src
+# OBJ_DIR = obj
+
+MLX = -L minilibx -lmlx -framework OpenGL -framework AppKit
+MLX_PATH = minilibx/
+
+INCS = cube.h
+
+SRCS = main.c\
+		map_extractor.c\
 		data_extractor.c\
 		colour_utils.c\
 		map_utils.c\
@@ -43,12 +52,19 @@ SRCS = map_extractor.c\
 		spriter.c\
 		sprite_utils.c\
 		sprite_calcs.c\
-		error_handler.c
+		error_handler.c\
+		freedom.c
 
+# OBJ_FILES = $(SRC_FILES:.c=.o)
+
+# SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
+# OBJS = $(addprefix $(OBJ_DIR)/, $(OBJ_FILES))
+# OBJS = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 OBJS = $(SRCS:.c=.o)
-INCS = cube.h
+
 LIB = libft.a
-NAME = cube.a
+MLIB = libmlx.a
+NAME = cub3D
 
 GREEN = \033[32m
 RED = \033[31m
@@ -67,29 +83,35 @@ DELAY = 0.02
 
 all: project $(NAME)
 
-$(NAME): $(OBJS) $(LIB_PATH)$(LIB)
+$(NAME): $(MLX_PATH)$(MLIB) $(OBJS) $(LIB_PATH)$(LIB)
 	@printf "$(MAGENTA)"
-	cp $(LIB_PATH)$(LIB) $(NAME)
-	@printf "$(DEFAULT)*********** $(CYAN)making $(NAME)$(DEFAULT) ***********\n"
-	@printf "$(ORANGE)"
-	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
-	@printf "                 $(GREEN)[lib done]$(DEFAULT)                     \n\n"
+	@printf "$(DEFAULT)*************** $(CYAN)making $(NAME)$(DEFAULT) ***************\n"
+	@printf "$(YELLOW)building$(DEFAULT)	%-20s	" "$(NAME)"
+	@$(CC) $(CFLAGS) -o $@ -I $(INCS_PATH). $(OBJS) $(LIB_PATH)$(LIB) $(MLX)
+	@printf "$(GREEN)[ok]$(DEFAULT)\n"
+	@printf "                $(GREEN)[exec done]$(DEFAULT)                    \n\n"
+
+%.o: %.c $(INCS_PATH)$(INCS)
+	@mkdir -p obj
+	@printf "$(YELLOW)building$(DEFAULT)	%-20s	" "$@"
+	@$(CC) $(CFLAGS) -I $(INCS_PATH). -o $@ -c $<
+	@printf "$(GREEN)[ok]$(DEFAULT)\n"
 
 bonus: all
 
 $(LIB_PATH)$(LIB):
 	@make -C $(LIB_PATH)
 
-%.o: %.c $(INCS)
-	@printf "$(YELLOW)building$(DEFAULT)	%-20s	" "$@"
-	@$(CC) $(CFLAGS) -I$(INCS_PATH) -o $@ -c $<
-	@printf "$(GREEN)[ok]$(DEFAULT)\n"
+$(MLX_PATH)$(MLIB):
+	@make -C $(MLX_PATH)
+
 
 clean:
 	@printf "$(RED)"
 	$(RM) $(OBJS) $(OBNS)
 	@printf "$(DEFAULT)"
 	@make -C $(LIB_PATH) clean
+	@make -C $(MLX_PATH) clean
 
 fclean: clean
 	@printf "$(RED)"

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:56:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/19 14:37:53 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 13:16:11 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ray_init(t_mlx_params *mlx)
 {
 	mlx->r = malloc(sizeof(t_ray));
-	mem_check(mlx->r, mlx, 2);
+	mem_check(mlx->r, mlx, 2, 10);
 	mlx->r->id = 0;
 	mlx->r->pos = 0;
 	mlx->r->nwall_x = 0;
@@ -36,7 +36,7 @@ void	ray_init(t_mlx_params *mlx)
 void	fov_init(t_mlx_params *mlx)
 {
 	mlx->f = malloc(sizeof(t_fov));
-	mem_check(mlx->f, mlx, 2);
+	mem_check(mlx->f, mlx, 2, 8);
 	mlx->f->fov = 30;
 	mlx->f->cam_x = 0;
 	mlx->f->cam_y = 0;
@@ -49,7 +49,7 @@ void	fov_init(t_mlx_params *mlx)
 	else if (mlx->map->grid[mlx->map->start_y][mlx->map->start_x] == 'W')
 		mlx->f->cam_x = -2;
 	mlx->f->dist = malloc(sizeof(float) * mlx->map->res_x);
-	mem_check(mlx->f->dist, mlx, 2);
+	mem_check(mlx->f->dist, mlx, 2, 9);
 	rotate_pl(123, mlx, 0.05);
 	rotate_pl(124, mlx, 0.05);
 }
@@ -57,7 +57,7 @@ void	fov_init(t_mlx_params *mlx)
 void	pl_init(t_mlx_params *mlx)
 {
 	mlx->pl = malloc(sizeof(t_player));
-	mem_check(mlx->pl, mlx, 2);
+	mem_check(mlx->pl, mlx, 2, 7);
 	mlx->pl->x = mlx->map->start_x + 0.5;
 	mlx->pl->y = mlx->map->start_y + 0.5;
 	mlx->pl->f_x = 0;

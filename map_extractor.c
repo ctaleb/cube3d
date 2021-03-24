@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 13:27:33 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/19 10:59:20 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 13:05:01 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,24 +68,24 @@ void	map_open(char *path, t_mlx_params *mlx)
 	char	*line;
 
 	mlx->map = malloc(sizeof(t_map));
-	mem_check(mlx->map, mlx, 2);
+	mem_check(mlx->map, mlx, 2, 1);
 	map_data_init(mlx, path);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		error_handler(11, mlx);
+		error_handler(11, mlx, 3);
 	i = 0;
 	while (ft_get_next_line(fd, 10, &line))
 	{
 		mlx->map->file[i] = ft_strdup(line);
-		mem_check(mlx->map->file[i], mlx, 2);
+		file_check(mlx->map->file[i], mlx, i);
 		free(line);
 		line = NULL;
 		i++;
 	}
 	mlx->map->file[i] = ft_strdup(line);
-	mem_check(mlx->map->file[i], mlx, 2);
+	file_check(mlx->map->file[i], mlx, i);
 	free(line);
 	if (close(fd) < 0)
-		error_handler(12, mlx);
+		error_handler(12, mlx, 4);
 	map_init(mlx);
 }

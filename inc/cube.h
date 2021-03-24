@@ -6,14 +6,14 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/19 16:46:49 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 15:18:49 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBE_H
 # define CUBE_H
-# include "libft/libft.h"
-# include "minilibx/mlx.h"
+# include "libft.h"
+# include "mlx.h"
 
 typedef struct	 s_map {
 	char		**file;
@@ -32,6 +32,7 @@ typedef struct	 s_map {
 	char		*west_t;
 	char		*sprite_t;
 	int			sprite_nb;
+	int			file_len;
 	int			floor_c;
 	int			ceiling_c;
 }				t_map;
@@ -203,8 +204,12 @@ int				get_map(char **grid, int maxlen, char *line);
 void			dup_map(char **grid, char **dup);
 void			get_resolution(t_map *map_data, char *line, t_mlx_params *mlx);
 
-void			mem_check(void *ptr, t_mlx_params *mlx, int ernum/*, int stage*/);
-void			error_handler(int ernum, t_mlx_params *mlx/*, int stage*/);
+void			mem_check(void *ptr, t_mlx_params *mlx, int ernum, int stage);
+void			file_check(void *ptr, t_mlx_params *mlx, int j);
+void			matrix_check(void *ptr, t_mlx_params *mlx, int j, int mode);
+void			sp_check(void *ptr, t_mlx_params *mlx, int j);
+void			error_handler(int ernum, t_mlx_params *mlx, int stage);
+void			free_all(t_mlx_params *mlx, int stage);
 
 int				rgbtoi(int t, int r, int g, int b);
 float			dist_calc(float x, float y);

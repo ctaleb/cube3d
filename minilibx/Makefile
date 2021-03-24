@@ -22,3 +22,5 @@ clean:
 	rm -f mlx_app
 
 re: clean all
+
+.SILENT:

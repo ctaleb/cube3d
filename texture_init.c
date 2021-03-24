@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 15:50:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/19 10:46:58 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 13:20:16 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,22 @@ static void	texture_convert(t_mlx_params *mlx)
 
 static void	texture_check(t_mlx_params *mlx)
 {
-	mem_check(mlx->n_txt->ptr, mlx, 13);
-	mem_check(mlx->s_txt->ptr, mlx, 13);
-	mem_check(mlx->e_txt->ptr, mlx, 13);
-	mem_check(mlx->w_txt->ptr, mlx, 13);
+	mem_check(mlx->n_txt->ptr, mlx, 13, 19);
+	mem_check(mlx->s_txt->ptr, mlx, 13, 20);
+	mem_check(mlx->e_txt->ptr, mlx, 13, 21);
+	mem_check(mlx->w_txt->ptr, mlx, 13, 22);
 }
 
 void	texture_init(t_mlx_params *mlx)
 {
 	mlx->n_txt = malloc(sizeof(t_texture));
-	mem_check(mlx->n_txt, mlx, 2);
+	mem_check(mlx->n_txt, mlx, 2, 15);
 	mlx->s_txt = malloc(sizeof(t_texture));
-	mem_check(mlx->s_txt, mlx, 2);
+	mem_check(mlx->s_txt, mlx, 2, 16);
 	mlx->e_txt = malloc(sizeof(t_texture));
-	mem_check(mlx->e_txt, mlx, 2);
+	mem_check(mlx->e_txt, mlx, 2, 17);
 	mlx->w_txt = malloc(sizeof(t_texture));
-	mem_check(mlx->w_txt, mlx, 2);
+	mem_check(mlx->w_txt, mlx, 2, 18);
 	texture_convert(mlx);
 	texture_check(mlx);
 }

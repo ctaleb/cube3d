@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 15:23:57 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/19 11:00:29 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 15:20:00 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ void	map_data_init(t_mlx_params *mlx, char *path)
 	mlx->map->west_t = NULL;
 	mlx->map->sprite_t = NULL;
 	mlx->map->sprite_nb = 0;
-	mlx->map->file = ft_calloc(file_len(path, mlx) + 1, sizeof(char *));
-	mem_check(mlx->map, mlx, 2);
+	mlx->map->file_len = file_len(path, mlx);
+	mlx->map->file = ft_calloc(mlx->map->file_len + 1, sizeof(char *));
+	mem_check(mlx->map->file, mlx, 2, 2);
 	mlx->map->start_x = -1;
 	mlx->map->start_y = -1;
 	mlx->map->ratio = 10;
@@ -39,16 +40,16 @@ void	grid_creator(t_mlx_params *mlx)
 	int	i;
 
 	mlx->map->grid = ft_calloc(mlx->map->max_y + 1, sizeof(char *));
-	mem_check(mlx->map->grid, mlx, 2);
+	mem_check(mlx->map->grid, mlx, 2, 4);
 	mlx->map->dup = ft_calloc(mlx->map->max_y + 1, sizeof(char *));
-	mem_check(mlx->map->dup, mlx, 2);
+	mem_check(mlx->map->dup, mlx, 2, 5);
 	i = 0;
 	while (i < mlx->map->max_y)
 	{
 		mlx->map->grid[i] = ft_calloc(mlx->map->max_x + 1, sizeof(char));
-		mem_check(mlx->map->grid[i], mlx, 2);
+		matrix_check(mlx->map->grid[i], mlx, i, 0);
 		mlx->map->dup[i] = ft_calloc(mlx->map->max_x + 1, sizeof(char));
-		mem_check(mlx->map->dup[i], mlx, 2);
+		matrix_check(mlx->map->dup[i], mlx, i, 1);
 		i++;
 	}
 }
