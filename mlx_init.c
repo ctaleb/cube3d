@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 15:57:40 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/24 13:16:32 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/25 09:55:18 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_mlx_params	*mlx_data_init(char *path)
 	mlx = malloc(sizeof(t_mlx_params));
 	mem_check(mlx, mlx, 2, 0);
 	map_open(path, mlx);
+	free_matrix(mlx, 1);
 	pl_init(mlx);
 	fov_init(mlx);
 	ray_init(mlx);

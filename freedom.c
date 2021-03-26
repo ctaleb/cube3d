@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 12:30:10 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/24 15:24:52 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/25 10:59:33 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,26 @@ void	free_file(t_mlx_params *mlx)
 	}
 }
 
-void	free_matrix(t_mlx_params *mlx)
+void	free_matrix(t_mlx_params *mlx, int mode)
 {
 	int	i;
 
 	i = 0;
-	while (mlx->map->grid[i])
+	if (mode == 0)
 	{
-		free(mlx->map->grid[i]);
-		free(mlx->map->dup[i]);
-		i++;
+		while (mlx->map->grid[i])
+		{
+			free(mlx->map->grid[i]);
+			i++;
+		}
+	}
+	else
+	{
+		while (mlx->map->dup[i])
+		{
+			free(mlx->map->dup[i]);
+			i++;
+		}	
 	}
 }
 
@@ -81,7 +91,7 @@ void	free_all(t_mlx_params *mlx, int stage)
 	if (stage >= 16)
 		free(mlx->n_txt);
 	if (stage >= 15)
-		// mlx_destroy_image(mlx, mlx->img->ptr);
+		mlx_destroy_image(mlx->ptr, mlx->img->ptr);
 	if (stage >= 14)
 		free(mlx->img);
 	if (stage >= 13)
@@ -97,7 +107,7 @@ void	free_all(t_mlx_params *mlx, int stage)
 	if (stage >= 8)
 		free(mlx->pl);
 	if (stage >= 7)
-		free_matrix(mlx);
+		free_matrix(mlx, 0);
 	if (stage >= 6)
 		free(mlx->map->dup);
 	if (stage >= 5)

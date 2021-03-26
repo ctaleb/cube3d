@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/24 15:18:49 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/25 12:36:57 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,7 @@ int				movement(t_mlx_params *mlx);
 int				move_pl(int keycode, t_mlx_params *mlx, float speed);
 int				rotate_pl(int keycode, t_mlx_params *mlx, float speed);
 int				strafe_pl(int keycode, t_mlx_params *mlx, float speed);
-int				check_coords(char dir, t_mlx_params *mlx, float speed);
+int				check_coords(char dir, char side, t_mlx_params *mlx, float speed);
 void			wall_dist_calc(char dir, t_mlx_params *mlx);
 int				wall_check(float x, float y, t_mlx_params *mlx);
 void			inverse_cam(char dir, t_mlx_params *mlx);
@@ -204,6 +204,7 @@ int				get_map(char **grid, int maxlen, char *line);
 void			dup_map(char **grid, char **dup);
 void			get_resolution(t_map *map_data, char *line, t_mlx_params *mlx);
 
+void			free_matrix(t_mlx_params *mlx, int mode);
 void			mem_check(void *ptr, t_mlx_params *mlx, int ernum, int stage);
 void			file_check(void *ptr, t_mlx_params *mlx, int j);
 void			matrix_check(void *ptr, t_mlx_params *mlx, int j, int mode);

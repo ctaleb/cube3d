@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:59:41 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/19 12:48:53 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/26 10:07:20 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,21 +86,7 @@ void	wall_dist_calc(char dir, t_mlx_params *mlx)
 
 int	wall_check(float x, float y, t_mlx_params *mlx)
 {
-	if ((mlx->f->cam_x >= 0 && mlx->f->cam_y <= 0)
-		&& ((x >= mlx->r->nwall_x && y <= mlx->r->nwall_y)
-			|| (mlx->map->grid[(int)y][(int)x] == '1')))
-		return (0);
-	else if ((mlx->f->cam_x >= 0 && mlx->f->cam_y >= 0)
-		&& ((x >= mlx->r->nwall_x && y >= mlx->r->nwall_y)
-			|| (mlx->map->grid[(int)y][(int)x] == '1')))
-		return (0);
-	else if ((mlx->f->cam_x <= 0 && mlx->f->cam_y >= 0)
-		&& ((x <= mlx->r->nwall_x && y >= mlx->r->nwall_y)
-			|| (mlx->map->grid[(int)y][(int)x] == '1')))
-		return (0);
-	else if ((mlx->f->cam_x <= 0 && mlx->f->cam_y <= 0)
-		&& ((x <= mlx->r->nwall_x && y <= mlx->r->nwall_y)
-			|| (mlx->map->grid[(int)y][(int)x] == '1')))
+	if (mlx->map->grid[(int)y][(int)x] == '1')
 		return (0);
 	return (1);
 }
