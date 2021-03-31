@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 11:51:23 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/19 13:52:29 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:54:46 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,30 @@ void	sprite_xpos(int i, t_mlx_params *mlx)
 		mlx->sp[i]->r_x = 1;
 	else if (mlx->sp[i]->r_x < -1)
 		mlx->sp[i]->r_x = -1;
-	if (acos(mlx->sp[i]->r_x) < -mlx->f->fov * 0.0174533
-		|| acos(mlx->sp[i]->r_x) > mlx->f->fov * 0.0174533)
-		mlx->sp[i]->visible = 0;
+	// if (acos(mlx->sp[i]->r_x) < -mlx->f->fov * 0.0174533
+	// 	|| acos(mlx->sp[i]->r_x) > mlx->f->fov * 0.0174533)
+	// 	mlx->sp[i]->visible = 0;
+	mlx->sp[i]->angle = acos(mlx->sp[i]->r_x);
 	mlx->sp[i]->r_x = roundf((tan(acos(mlx->sp[i]->r_x))
 				* ((float)mlx->map->res_x / 2)) / tan(deg_rad(mlx->f->fov)));
 	mlx->sp[i]->r_x *= anglizer(mlx->f->cam_x, mlx->f->cam_y,
 			mlx->sp[i]->d_x, mlx->sp[i]->d_y);
 }
+
+// void	sprite_enable(float x, float y, t_mlx_params *mlx)
+// {
+// 	int i;
+
+// 	x = (int)x + 0.5;
+// 	y = (int)y + 0.5;
+// 	i = 0;
+// 	while (i < mlx->map->sprite_nb)
+// 	{
+// 		if (mlx->sp[i]->x == x && mlx->sp[i]->y == y)
+// 			mlx->sp[i]->visible = 1;
+// 		i++;
+// 	}
+// }
 
 void	sprite_reset(t_mlx_params *mlx)
 {

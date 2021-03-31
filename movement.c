@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:52:50 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/26 10:06:24 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/31 16:48:17 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	relocate(t_mlx_params *mlx)
 {
-	printf("%f, %f\n", mlx->pl->x, mlx->pl->y);
 	if (mlx->map->grid[(int)mlx->pl->y][(int)mlx->pl->x + 1] == '1'
 		&& mlx->pl->x > (int)mlx->pl->x + 0.9)
 		mlx->pl->x = (int)mlx->pl->x + 0.9;
@@ -27,7 +26,6 @@ void	relocate(t_mlx_params *mlx)
 	else if (mlx->map->grid[(int)mlx->pl->y - 1][(int)mlx->pl->x] == '1'
 		&& mlx->pl->y < (int)mlx->pl->y + 0.1)
 		mlx->pl->y = (int)mlx->pl->y + 0.1;
-	printf("%f, %f\n", mlx->pl->x, mlx->pl->y);
 }
 
 int	movement(t_mlx_params *mlx)
@@ -91,7 +89,6 @@ int	move_pl(int keycode, t_mlx_params *mlx, float speed)
 {
 	if (keycode == 126 || keycode == 13)
 	{
-		// wall_dist_calc('F', mlx);
 		if (check_f_coords('x', mlx, speed))
 			mlx->pl->x = mlx->pl->x + mlx->f->cam_x * speed;
 		if (check_f_coords('y', mlx, speed))
@@ -99,7 +96,6 @@ int	move_pl(int keycode, t_mlx_params *mlx, float speed)
 	}
 	else if (keycode == 125 || keycode == 1)
 	{
-		// wall_dist_calc('B', mlx);
 		if (check_b_coords('x', mlx, speed))
 			mlx->pl->x = mlx->pl->x - mlx->f->cam_x * speed;
 		if (check_b_coords('y', mlx, speed))
@@ -122,7 +118,7 @@ int	strafe_pl(int keycode, t_mlx_params *mlx, float speed)
 	ft_vec_rot(&mlx->f->cam_x, &mlx->f->cam_y, deg_rad(-90));
 	if (keycode == 0)
 	{
-		// wall_dist_calc('F', mlx);
+
 		if (check_f_coords('x', mlx, speed))
 			mlx->pl->x = mlx->pl->x + mlx->f->cam_x * speed;
 		if (check_f_coords('y', mlx, speed))
@@ -130,7 +126,6 @@ int	strafe_pl(int keycode, t_mlx_params *mlx, float speed)
 	}
 	else if (keycode == 2)
 	{
-		// wall_dist_calc('B', mlx);
 		if (check_b_coords('x', mlx, speed))
 			mlx->pl->x = mlx->pl->x - mlx->f->cam_x * speed;
 		if (check_b_coords('y', mlx, speed))

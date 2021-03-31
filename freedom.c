@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 12:30:10 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/25 10:59:33 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/31 11:11:24 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,42 +64,44 @@ void	free_sp(t_mlx_params *mlx)
 
 void	free_all(t_mlx_params *mlx, int stage)
 {
-	if (stage >= 28)
+	if (stage >= 29)
 		free(mlx->input);
-	if (stage >= 27)
+	if (stage >= 28)
 		mlx_destroy_image(mlx->ptr, mlx->sp_txt->ptr);
-	if (stage >= 26)
+	if (stage >= 27)
 		free(mlx->sp_txt);
-	if (stage >= 25)
+	if (stage >= 26)
 		free_sp(mlx);
-	if (stage >= 24)
+	if (stage >= 25)
 		free(mlx->sp);
-	if (stage >= 23)
+	if (stage >= 24)
 		mlx_destroy_image(mlx->ptr, mlx->w_txt->ptr);
-	if (stage >= 22)
+	if (stage >= 23)
 		mlx_destroy_image(mlx->ptr, mlx->e_txt->ptr);
-	if (stage >= 21)
+	if (stage >= 22)
 		mlx_destroy_image(mlx->ptr, mlx->s_txt->ptr);
-	if (stage >= 20)
+	if (stage >= 21)
 		mlx_destroy_image(mlx->ptr, mlx->n_txt->ptr);
-	if (stage >= 19)
+	if (stage >= 20)
 		free(mlx->w_txt);
-	if (stage >= 18)
+	if (stage >= 19)
 		free(mlx->e_txt);
-	if (stage >= 17)
+	if (stage >= 18)
 		free(mlx->s_txt);
-	if (stage >= 16)
+	if (stage >= 17)
 		free(mlx->n_txt);
-	if (stage >= 15)
+	if (stage >= 16)
 		mlx_destroy_image(mlx->ptr, mlx->img->ptr);
-	if (stage >= 14)
+	if (stage >= 15)
 		free(mlx->img);
-	if (stage >= 13)
+	if (stage >= 14)
 		mlx_destroy_window(mlx->ptr, mlx->win);
-	if (stage >= 12)
+	if (stage >= 13)
 		free(mlx->ptr);
-	if (stage >= 11)
+	if (stage >= 12)
 		free(mlx->r);
+	if (stage >= 11)
+		free(mlx->f->shade);
 	if (stage >= 10)
 		free(mlx->f->dist);
 	if (stage >= 9)

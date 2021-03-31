@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/25 12:36:57 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/31 16:59:40 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ typedef struct	s_fov {
 	float		cam_x;
 	float		cam_y;
 	float		*dist;
+	float		mod;
+	float		*shade;
 }				t_fov;
 
 typedef struct	s_texture {
@@ -116,6 +118,7 @@ typedef struct	s_sprites {
 	int			b_coord;
 	int			l_coord;
 	int			r_coord;
+	float		angle;
 }				t_sprites;
 
 typedef struct	s_mlx_parmas {
@@ -175,7 +178,7 @@ void			ray_cannon(float fish, t_mlx_params *mlx);
 void			sprite_check(t_mlx_params *mlx);
 void			sprite_dist(t_mlx_params *mlx);
 void			sprite_sort(t_mlx_params *mlx);
-void			sprite_enable(int i, t_mlx_params *mlx);
+void			sprite_disable(int i, t_mlx_params *mlx);
 
 void			sprite_reset(t_mlx_params *mlx);
 void			sprite_xpos(int i, t_mlx_params *mlx);
@@ -213,6 +216,8 @@ void			error_handler(int ernum, t_mlx_params *mlx, int stage);
 void			free_all(t_mlx_params *mlx, int stage);
 
 int				rgbtoi(int t, int r, int g, int b);
+int				trgbmod(int trgb, float factor);
+void			shader(t_mlx_params *mlx);
 float			dist_calc(float x, float y);
 float			ft_dist(float x1, float y1, float x2, float y2);
 int				anglizer(float vx1, float vy1, float vx2, float vy2);

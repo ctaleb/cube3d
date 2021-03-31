@@ -6,7 +6,7 @@
 #    By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 11:40:32 by ctaleb            #+#    #+#              #
-#    Updated: 2021/03/25 10:59:01 by ctaleb           ###   ########lyon.fr    #
+#    Updated: 2021/03/31 13:50:05 by ctaleb           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS = main.c\
 		colour_utils.c\
 		map_utils.c\
 		math_utils.c\
+		converter.c\
 		map_init.c\
 		mlx_init.c\
 		texture_init.c\

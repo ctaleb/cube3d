@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:38:27 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/24 12:38:15 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/31 11:03:46 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	img_init(t_mlx_params *mlx)
 {
 	mlx->img = malloc(sizeof(t_image));
-	mem_check(mlx->img, mlx, 2, 13);
+	mem_check(mlx->img, mlx, 2, 14);
 	mlx->img->ptr = mlx_new_image(mlx->ptr,
 			mlx->map->res_x, mlx->map->res_y);
-	mem_check(mlx->img, mlx, 2, 14);
+	mem_check(mlx->img, mlx, 2, 15);
 	mlx->img->addr = mlx_get_data_addr(mlx->img->ptr,
 			&mlx->img->bpp, &mlx->img->len, &mlx->img->endian);
 }

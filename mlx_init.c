@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 15:57:40 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/25 09:55:18 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/31 11:03:33 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ t_mlx_params	*mlx_data_init(char *path)
 	fov_init(mlx);
 	ray_init(mlx);
 	mlx->ptr = mlx_init();
-	mem_check(mlx->ptr, mlx, 2, 11);
+	mem_check(mlx->ptr, mlx, 2, 12);
 	mlx->win = mlx_new_window(mlx->ptr, mlx->map->res_x,
 			mlx->map->res_y, "Cube 3D");
-	mem_check(mlx->win, mlx, 2, 12);
+	mem_check(mlx->win, mlx, 2, 13);
 	img_init(mlx);
 	texture_init(mlx);
 	sprite_init(mlx);

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 11:41:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/19 14:03:00 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/31 16:55:15 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ void	sprite_sizer(int i, t_mlx_params *mlx)
 {
 	int		ray_height;
 	int		size;
+	float	fish_dist;
 	float	ray;
 
 	ray = -mlx->f->fov + (((float)mlx->f->fov * 2)
 			/ ((float)mlx->map->res_x))
 		* ((float)mlx->map->res_x / 2 + mlx->sp[i]->r_x);
-	if (mlx->sp[i]->dist > 0)
-		mlx->sp[i]->dist *= cos(deg_rad(1) * ray);
-	ray_height = (int)(mlx->map->res_y / mlx->sp[i]->dist);
+	fish_dist = mlx->sp[i]->dist * cos(deg_rad(1) * ray);
+	ray_height = (int)(mlx->map->res_y / fish_dist);
 	mlx->sp[i]->u_coord = - ((float)ray_height) / 2
 		+ (float)mlx->map->res_y / 2 - 2;
 	mlx->sp[i]->b_coord = (float)ray_height / 2
@@ -50,4 +50,12 @@ void	sprite_sizer(int i, t_mlx_params *mlx)
 		+ mlx->sp[i]->r_x - size / 2;
 	mlx->sp[i]->r_coord = (float)mlx->map->res_x / 2
 		+ mlx->sp[i]->r_x + size / 2;
+}
+
+
+void	sprite_disable(int i, t_mlx_params *mlx)
+{
+	if (mlx->sp[i]->angle + 0.2 < -mlx->f->fov * 0.0174533
+		|| mlx->sp[i]->angle - 0.2 > mlx->f->fov * 0.0174533)
+		mlx->sp[i]->visible = 0;
 }
