@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/31 16:59:40 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/01 13:48:55 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct	s_input {
 	int			strafe_r;
 	int			rotate_l;
 	int			rotate_r;
+	int			crouch;
 }				t_input;
 
 typedef struct s_player {
@@ -124,6 +125,7 @@ typedef struct	s_sprites {
 typedef struct	s_mlx_parmas {
 	void		*ptr;
 	void		*win;
+	int			save;
 	t_image		*img;
 	t_map		*map;
 	t_texture	*n_txt;
@@ -152,7 +154,7 @@ void			map_data_init(t_mlx_params *mlx, char *path);
 void			grid_init(t_mlx_params *mlx);
 void			map_init(t_mlx_params *mlx);
 void			img_init(t_mlx_params *mlx);
-t_mlx_params	*mlx_data_init(char *path);
+t_mlx_params	*mlx_data_init(int ac, char **av);
 void			pl_init(t_mlx_params *mlx);
 void			sprite_init(t_mlx_params *mlx);
 void			fov_init(t_mlx_params *mlx);
@@ -206,6 +208,8 @@ char			*get_path(char *line, t_mlx_params *mlx);
 int				get_map(char **grid, int maxlen, char *line);
 void			dup_map(char **grid, char **dup);
 void			get_resolution(t_map *map_data, char *line, t_mlx_params *mlx);
+
+int				create_bitmap(t_mlx_params *mlx);
 
 void			free_matrix(t_mlx_params *mlx, int mode);
 void			mem_check(void *ptr, t_mlx_params *mlx, int ernum, int stage);

@@ -6,7 +6,7 @@
 #    By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 11:40:32 by ctaleb            #+#    #+#              #
-#    Updated: 2021/03/31 13:50:05 by ctaleb           ###   ########lyon.fr    #
+#    Updated: 2021/04/01 14:04:48 by ctaleb           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,8 @@ SRCS = main.c\
 		sprite_utils.c\
 		sprite_calcs.c\
 		error_handler.c\
-		freedom.c
+		freedom.c\
+		bitmapping.c
 
 # OBJ_FILES = $(SRC_FILES:.c=.o)
 

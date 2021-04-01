@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 15:28:59 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/31 17:04:05 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/01 13:34:35 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,30 @@ int	rgbtoi(int t, int r, int g, int b)
 void	shader(t_mlx_params *mlx)
 {
 	int		i;
+	float	x;
 	float	j;
 	float	step;
 
 	i = 0;
 	j = 0;
-	step = mlx->map->res_y / 510;
-	while (i < mlx->map->res_y / 2)
+	x = 0;
+	step = (mlx->map->res_y) / 510;
+	while (i < (mlx->map->res_y) / 2)
 	{
 		mlx->f->shade[i] = trgbmod(mlx->map->ceiling_c, 1 - j * 0.0005);
-		j += step;
-		i++;
-	}
+		if (i++ % (mlx->map->res_y) / 10 == 0)
+			x += 0.17;
+		j += step * x;
+	}	
 	while (i < mlx->map->res_y)
 	{
 		mlx->f->shade[i] = trgbmod(mlx->map->floor_c, 1 - j * 0.0005);
-		j -= step;
-		i++;
+		if (i++ % mlx->map->res_y / 10 == 0)
+			x -= 0.17;
+		j -= step * x;
 	}
+	while (i < mlx->map->res_y + 80)
+		mlx->f->shade[i++] = mlx->map->floor_c;
 }
 
 int	trgbmod(int trgb, float factor)

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 11:01:02 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/24 13:42:45 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/01 12:13:12 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	file_check(void *ptr, t_mlx_params *mlx, int j)
 
 void	matrix_check(void *ptr, t_mlx_params *mlx, int j, int mode)
 {
-	int i;
+	int	i;
 
 	if (ptr)
 		return ;

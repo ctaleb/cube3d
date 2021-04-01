@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:56:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/31 11:20:56 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/01 13:34:18 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	fov_init(t_mlx_params *mlx)
 		mlx->f->cam_x = -2;
 	mlx->f->dist = malloc(sizeof(float) * mlx->map->res_x);
 	mem_check(mlx->f->dist, mlx, 2, 9);
-	mlx->f->shade = malloc(sizeof(float) * mlx->map->res_y);
+	mlx->f->shade = malloc(sizeof(float) * (mlx->map->res_y + 80));
 	mem_check(mlx->f->shade, mlx, 2, 10);
 	shader(mlx);
 	rotate_pl(123, mlx, 0.05);

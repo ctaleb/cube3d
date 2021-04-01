@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:38:27 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/31 11:03:46 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/01 13:59:25 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ int	frame_gen(t_mlx_params *mlx)
 	print_minimap(mlx);
 	put_camera(mlx);
 	put_player(mlx);
+	if (mlx->save)
+	{
+		create_bitmap(mlx);
+		free_all(mlx, 29);
+		exit (0);
+	}
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img->ptr, 0, 0);
 	return (0);
 }

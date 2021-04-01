@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 09:24:07 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/26 13:40:20 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/31 17:40:02 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	is_valid_coord(int shft_x, int shft_y, t_mlx_params *mlx)
 	x = mlx->r->s_x - shft_x;
 	y = mlx->r->s_y - shft_y;
 	if (mlx->r->s_x >= mlx->map->max_x || mlx->r->s_y >= mlx->map->max_y
-		|| x < 0 || y < 0 || mlx->map->grid[(int)y][(int)x] == '1')
+		|| x < 0 || y < 0 || mlx->map->grid[(int)y][(int)x] == '1'
+		|| mlx->map->grid[(int)y][(int)x] == '3')
 		return (0);
 	return (1);
 }

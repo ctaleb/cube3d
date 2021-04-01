@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:50:46 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/19 10:41:39 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/03/31 17:40:54 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	put_map(int x, int y, t_mlx_params *mlx)
 		my_mlx_pixel_put(mlx, x, y, rgbtoi(0, 0, 0, 0));
 	else if (mlx->map->grid[y / mlx->map->ratio][x / mlx->map->ratio] == ' ')
 		my_mlx_pixel_put(mlx, x, y, rgbtoi(0, 38, 38, 38));
-	else if (mlx->map->grid[y / mlx->map->ratio][x / mlx->map->ratio] == '1')
+	else if (mlx->map->grid[y / mlx->map->ratio][x / mlx->map->ratio] == '1'
+		|| mlx->map->grid[y / mlx->map->ratio][x / mlx->map->ratio] == '3')
 		my_mlx_pixel_put(mlx, x, y, rgbtoi(0, 80, 80, 80));
 	else if (mlx->map->grid[y / mlx->map->ratio][x / mlx->map->ratio] == '0')
 		my_mlx_pixel_put(mlx, x, y, rgbtoi(0, 255, 255, 255));

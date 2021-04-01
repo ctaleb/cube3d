@@ -19,7 +19,6 @@
 
 
 
-
 21: Invalid argument
 22: Invalid data
 23: Invalid .cub (duplicate definitions)
