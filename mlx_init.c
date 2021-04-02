@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 15:57:40 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/01 13:26:55 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 12:59:32 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ t_mlx_params	*mlx_data_init(int ac, char **av)
 	ray_init(mlx);
 	mlx->ptr = mlx_init();
 	mem_check(mlx->ptr, mlx, 2, 12);
-	if (ac == 3 && !(ft_strncmp(av[2], "--save", 6)))
-		mlx->save = 1;
-	else
-	{
-		mlx->save = 0;
+	mlx->save = 0;
+	if (ac == 2)
 		mlx->win = mlx_new_window(mlx->ptr, mlx->map->res_x,
 				mlx->map->res_y, "Cube 3D");
-	}
+	else if (ac == 3 && !(ft_strncmp(av[2], "--save", 6)))
+		mlx->save = 1;
+	else if (ac == 3)
+		error_handler(3, mlx, 12);
 	mem_check(mlx->win, mlx, 2, 13);
 	img_init(mlx);
 	texture_init(mlx);

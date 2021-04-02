@@ -6,11 +6,19 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 15:50:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/31 11:04:09 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 15:15:44 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+
+static void	texture_check(t_mlx_params *mlx)
+{
+	mem_check(mlx->n_txt->ptr, mlx, 13, 20);
+	mem_check(mlx->s_txt->ptr, mlx, 13, 21);
+	mem_check(mlx->e_txt->ptr, mlx, 13, 22);
+	mem_check(mlx->w_txt->ptr, mlx, 13, 23);
+}
 
 static void	texture_convert(t_mlx_params *mlx)
 {
@@ -22,6 +30,7 @@ static void	texture_convert(t_mlx_params *mlx)
 			&mlx->e_txt->width, &mlx->e_txt->height);
 	mlx->w_txt->ptr = mlx_xpm_file_to_image(mlx->ptr, mlx->map->west_t,
 			&mlx->w_txt->width, &mlx->w_txt->height);
+	texture_check(mlx);
 	mlx->n_txt->addr = (int *)mlx_get_data_addr(mlx->n_txt->ptr,
 			&mlx->n_txt->bpp, &mlx->n_txt->len, &mlx->n_txt->endian);
 	mlx->s_txt->addr = (int *)mlx_get_data_addr(mlx->s_txt->ptr,
@@ -30,14 +39,6 @@ static void	texture_convert(t_mlx_params *mlx)
 			&mlx->e_txt->bpp, &mlx->e_txt->len, &mlx->e_txt->endian);
 	mlx->w_txt->addr = (int *)mlx_get_data_addr(mlx->w_txt->ptr,
 			&mlx->w_txt->bpp, &mlx->w_txt->len, &mlx->w_txt->endian);
-}
-
-static void	texture_check(t_mlx_params *mlx)
-{
-	mem_check(mlx->n_txt->ptr, mlx, 13, 20);
-	mem_check(mlx->s_txt->ptr, mlx, 13, 21);
-	mem_check(mlx->e_txt->ptr, mlx, 13, 22);
-	mem_check(mlx->w_txt->ptr, mlx, 13, 23);
 }
 
 void	texture_init(t_mlx_params *mlx)
@@ -51,5 +52,4 @@ void	texture_init(t_mlx_params *mlx)
 	mlx->w_txt = malloc(sizeof(t_texture));
 	mem_check(mlx->w_txt, mlx, 2, 19);
 	texture_convert(mlx);
-	texture_check(mlx);
 }

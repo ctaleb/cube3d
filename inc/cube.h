@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/01 13:48:55 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 17:12:23 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef struct	 s_map {
 	char		**file;
 	char		**grid;
+	int			map_id;
 	int			max_y;
 	int			max_x;
 	char		**dup;
@@ -145,6 +146,8 @@ void			map_open(char *path, t_mlx_params *mlx);
 int				file_len(char *path, t_mlx_params *mlx);
 int				is_map(char *line);
 int				analyne(t_map *map_data, char *line, t_mlx_params *mlx);
+int				space_dig(char *line, int i, t_mlx_params *mlx);
+int				space_comma(char *line, int i, t_mlx_params *mlx);
 
 int				data_check(t_map *map_data);
 void			start_check(t_map *map_data, t_mlx_params *mlx);

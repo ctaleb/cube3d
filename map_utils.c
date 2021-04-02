@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 13:05:42 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/01 15:05:03 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 11:35:25 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ void	map_check(int x, int y, t_map *map_data, t_mlx_params *mlx)
 		return ;
 	if (map_data->dup[y][x] == ' ')
 		error_handler(26, mlx, 7);
-	if ((x == 0 && (y >= 0 && y < map_data->max_y))
-		|| (x == map_data->max_x && (y >= 0 && y < map_data->max_y))
-		|| (y == 0 && (x >= 0 && x < map_data->max_x))
-		|| (y == map_data->max_y && (x >= 0 && x < map_data->max_x)))
+	if ((x == 0 && (y >= 0 && y < map_data->max_y - 1))
+		|| (x == map_data->max_x - 1 && (y >= 0 && y < map_data->max_y - 1))
+		|| (y == 0 && (x >= 0 && x < map_data->max_x - 1))
+		|| (y == map_data->max_y - 1 && (x >= 0 && x < map_data->max_x - 1)))
 		error_handler(26, mlx, 7);
 	map_data->dup[y][x] = 'o';
 	map_check(x - 1, y - 1, map_data, mlx);

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 15:23:57 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/01 14:37:16 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 17:52:44 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,36 @@ void	grid_init(t_mlx_params *mlx)
 	int		temp;
 
 	i = 0;
-	while (!is_map(mlx->map->file[i]))
+	while (!data_check(mlx->map))
+	{
+		if (mlx->map->file[i][0] == 'R')
+			get_resolution(mlx->map, &mlx->map->file[i][1], mlx);
+		else if (mlx->map->file[i][0] == 'F' && mlx->map->floor_c < 0)
+			mlx->map->floor_c = get_colour(&mlx->map->file[i][1], mlx);
+		else if (mlx->map->file[i][0] == 'C' && mlx->map->ceiling_c < 0)
+			mlx->map->ceiling_c = get_colour(&mlx->map->file[i][1], mlx);
+		else if (mlx->map->file[i][0] == 'S' && mlx->map->file[i][1] == ' ' && !mlx->map->sprite_t)
+			mlx->map->sprite_t = get_path(&mlx->map->file[i][2], mlx);
+		else if (mlx->map->file[i][0] == 'N' && mlx->map->file[i][1] == 'O' && !mlx->map->north_t)
+			mlx->map->north_t = get_path(&mlx->map->file[i][2], mlx);
+		else if (mlx->map->file[i][0] == 'S' && mlx->map->file[i][1] == 'O' && !mlx->map->south_t)
+			mlx->map->south_t = get_path(&mlx->map->file[i][2], mlx);
+		else if (mlx->map->file[i][0] == 'E' && mlx->map->file[i][1] == 'A' && !mlx->map->east_t)
+			mlx->map->east_t = get_path(&mlx->map->file[i][2], mlx);
+		else if (mlx->map->file[i][0] == 'W' && mlx->map->file[i][1] == 'E' && !mlx->map->west_t)
+			mlx->map->west_t = get_path(&mlx->map->file[i][2], mlx);
+		else if (mlx->map->file[i][0] != '\0')
+			error_handler(24, mlx, 4);
 		i++;
+	}
+	while (mlx->map->file[i] != NULL && mlx->map->file[i][0] == '\0')
+		i++;
+	// while (!is_map(mlx->map->file[i]))
+	// 	i++;
+	if (mlx->map->file[i] != NULL && is_map(mlx->map->file[i]))
+		mlx->map->map_id = i;
+	else
+		error_handler(24, mlx, 4);
 	j = 0;
 	while (mlx->map->file[i] != NULL && is_map(mlx->map->file[i]))
 	{
@@ -71,6 +99,8 @@ void	grid_init(t_mlx_params *mlx)
 			mlx->map->max_x = temp;
 		j++;
 	}
+	if (mlx->map->file[i] != NULL && !is_map(mlx->map->file[i]))
+		error_handler(20, mlx, 4);
 	mlx->map->max_y = j;
 	grid_creator(mlx);
 }
@@ -80,7 +110,7 @@ void	map_init(t_mlx_params *mlx)
 	int	i;
 
 	grid_init(mlx);
-	i = 0;
+	i = mlx->map->map_id;
 	while (mlx->map->file[i])
 	{
 		analyne(mlx->map, mlx->map->file[i], mlx);

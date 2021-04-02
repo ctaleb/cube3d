@@ -1,7 +1,7 @@
 00: Something went wrong
-01: Invalid argument count
+01: Invalid launch argument count
 02: Memory allocation error
-
+03: Invalid launch argument
 
 
 
@@ -18,7 +18,7 @@
 
 
 
-
+20: Invalid map
 21: Invalid argument
 22: Invalid data
 23: Invalid .cub (duplicate definitions)

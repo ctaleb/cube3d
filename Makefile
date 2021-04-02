@@ -6,7 +6,7 @@
 #    By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 11:40:32 by ctaleb            #+#    #+#              #
-#    Updated: 2021/04/01 14:04:48 by ctaleb           ###   ########lyon.fr    #
+#    Updated: 2021/04/02 13:58:08 by ctaleb           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,8 @@ SRCS = main.c\
 		sprite_calcs.c\
 		error_handler.c\
 		freedom.c\
-		bitmapping.c
+		bitmapping.c\
+		parser.c
 
 # OBJ_FILES = $(SRC_FILES:.c=.o)
 
@@ -67,6 +68,8 @@ OBJS = $(SRCS:.c=.o)
 LIB = libft.a
 MLIB = libmlx.a
 NAME = cub3D
+
+RESOLUTION = 1
 
 GREEN = \033[32m
 RED = \033[31m

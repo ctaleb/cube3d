@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 14:00:22 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/24 11:12:33 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 17:53:30 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,20 @@ int	get_colour(char *line, t_mlx_params *mlx)
 	int	b;
 
 	i = 0;
-	while (line[i] == ' ')
-		i++;
+	i = space_dig(line, i, mlx);
 	r = ft_atoi(&line[i]);
 	while (ft_isdigit(line[i]))
 		i++;
-	if (line[i++] != ',')
-		error_handler(21, mlx, 7);
+	i = space_comma(line, i, mlx);
 	g = ft_atoi(&line[i]);
 	while (ft_isdigit(line[i]))
 		i++;
-	if (line[i++] != ',')
-		error_handler(21, mlx, 7);
+	i = space_comma(line, i, mlx);
 	b = ft_atoi(&line[i]);
-	if (r > 255 || r < 0 || g > 255 || g < 0 || b > 255 || b < 0)
-		error_handler(22, mlx, 7);
+	while (ft_isdigit(line[i]))
+		i++;
+	if (line[i] || r > 255 || r < 0 || g > 255 || g < 0 || b > 255 || b < 0)
+		error_handler(22, mlx, 4);
 	return (rgbtoi(0, r, g, b));
 }
 
@@ -63,7 +62,7 @@ char	*get_path(char *line, t_mlx_params *mlx)
 	while (line[i + j])
 	{
 		if (ft_isspace(line[i]))
-			error_handler(21, mlx, 7);
+			error_handler(21, mlx, 4);
 		dest[j] = line[i + j];
 		j++;
 	}
@@ -76,16 +75,21 @@ void	get_resolution(t_map *map_data, char *line, t_mlx_params *mlx)
 	int	i;
 
 	if (map_data->res_x >= 0 || map_data->res_y >= 0)
-		error_handler(23, mlx, 7);
+		error_handler(23, mlx, 4);
 	i = 0;
-	while (line[i] == ' ')
-		i++;
+	i = space_dig(line, i, mlx);
 	map_data->res_x = ft_atoi(&line[i]);
 	while (ft_isdigit(line[i]))
 		i++;
-	while (line[i] == ' ')
-		i++;
+	i = space_dig(line, i, mlx);
 	map_data->res_y = ft_atoi(&line[i]);
-	if (map_data->res_x > 5120 || map_data->res_y > 2880)
-		error_handler(22, mlx, 7);
+	while (ft_isdigit(line[i]))
+		i++;
+	if (line[i])
+		error_handler(22, mlx, 4);
+	if (map_data->res_x > 2880 || map_data->res_y > 1620)
+	{
+		map_data->res_x = 2880;
+		map_data->res_y = 1620;
+	}
 }
