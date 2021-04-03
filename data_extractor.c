@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 14:00:22 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/02 17:53:30 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/03 15:27:06 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	data_check(t_map *map_data)
 	if (map_data->res_x && map_data->res_y && map_data->north_t
 		&& map_data->south_t && map_data->east_t && map_data->west_t
 		&& map_data->sprite_t && map_data->floor_c >= 0
-		&& map_data->ceiling_c >= 0)
+		&& map_data->ceiling_c >= 0 && map_data->skybox_t)
 		return (1);
 	return (0);
 }
@@ -87,9 +87,9 @@ void	get_resolution(t_map *map_data, char *line, t_mlx_params *mlx)
 		i++;
 	if (line[i])
 		error_handler(22, mlx, 4);
-	if (map_data->res_x > 2880 || map_data->res_y > 1620)
+	if (map_data->res_x > 2560 || map_data->res_y > 1440)
 	{
-		map_data->res_x = 2880;
-		map_data->res_y = 1620;
+		map_data->res_x = 2560;
+		map_data->res_y = 1440;
 	}
 }

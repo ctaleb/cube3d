@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:10:38 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/01 12:10:15 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/03 14:54:37 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	put_wall(t_texture *texture, t_mlx_params *mlx)
 	if (tex_y > texture->height - 1)
 		tex_y -= 1;
 	color = trgbmod(texture->addr[tex_y * texture->width + tex_x], mlx->f->mod);
-	my_mlx_pixel_put(mlx, mlx->r->id, mlx->r->pos, color);
+	my_mlx_multi_put(mlx, mlx->r->id, mlx->r->pos, color);
 }
 
 t_texture	*select_wall(t_mlx_params *mlx)
@@ -46,7 +46,7 @@ void	put_ray(t_mlx_params *mlx)
 	int	ratio;
 
 	if (mlx->input->crouch)
-		ratio = 70;
+		ratio = (int)(mlx->map->res_y * 0.07);
 	else
 		ratio = 0;
 	mlx->r->pos = 0;
@@ -57,14 +57,29 @@ void	put_ray(t_mlx_params *mlx)
 	while (mlx->r->pos < mlx->map->res_y)
 	{
 		if (mlx->r->pos < mlx->r->u_wall)
-			my_mlx_pixel_put(mlx, mlx->r->id, mlx->r->pos,
+			my_mlx_multi_put(mlx, mlx->r->id, mlx->r->pos,
 				mlx->f->shade[mlx->r->pos + ratio]);
 		else if (mlx->r->pos >= mlx->r->u_wall && mlx->r->pos <= mlx->r->l_wall)
 			put_wall(select_wall(mlx), mlx);
 		else
-			my_mlx_pixel_put(mlx, mlx->r->id, mlx->r->pos,
+			my_mlx_multi_put(mlx, mlx->r->id, mlx->r->pos,
 				mlx->f->shade[mlx->r->pos + ratio]);
 		mlx->r->pos++;
+	}
+}
+
+static void	distancer(float dist, t_mlx_params *mlx)
+{
+	int	i;
+	int	x;
+
+	i = 0;
+	x = mlx->r->id;
+	while (i < mlx->f->multi)
+	{
+		mlx->f->dist[x] = dist;
+		x++;
+		i++;
 	}
 }
 
@@ -82,7 +97,7 @@ void	ray_cannon(float fish, t_mlx_params *mlx)
 		ray_len = mlx->r->dist_x * fish;
 	else
 		ray_len = mlx->r->dist_y * fish;
-	mlx->f->dist[mlx->r->id] = ray_len;
+	 distancer(ray_len, mlx);
 	mlx->f->mod = 1 - (int)ray_len * 0.05;
 	ray_height = (int)((mlx->map->res_y / ray_len)) + 1;
 	mlx->r->u_wall = roundf(- ((float)ray_height) / 2

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:38:27 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/01 13:59:25 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/03 15:42:48 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,25 @@ void	my_mlx_pixel_put(t_mlx_params *mlx, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = mlx->img->addr + (y * mlx->img->len + x
-			* (mlx->img->bpp / 8));
-	*(unsigned int *)dst = color;
+	if (x >= 0 && y >= 0 && x < mlx->map->res_x && y < mlx->map->res_y)
+	{
+		dst = mlx->img->addr + (y * mlx->img->len + x
+				* (mlx->img->bpp / 8));
+		*(unsigned int *)dst = color;
+	}
+}
+
+void	my_mlx_multi_put(t_mlx_params *mlx, int x, int y, int color)
+{
+	int	i;
+
+	i = 0;
+	while (i < mlx->f->multi)
+	{
+		my_mlx_pixel_put(mlx, x, y, color);
+		x++;
+		i++;
+	}
 }
 
 int	frame_gen(t_mlx_params *mlx)
@@ -44,7 +60,7 @@ int	frame_gen(t_mlx_params *mlx)
 	if (mlx->save)
 	{
 		create_bitmap(mlx);
-		free_all(mlx, 29);
+		free_all(mlx, 31);
 		exit (0);
 	}
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img->ptr, 0, 0);

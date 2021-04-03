@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/02 17:12:23 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/03 15:24:50 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct	 s_map {
 	char		*east_t;
 	char		*west_t;
 	char		*sprite_t;
+	char		*skybox_t;
 	int			sprite_nb;
 	int			file_len;
 	int			floor_c;
@@ -84,6 +85,7 @@ typedef struct	s_ray {
 
 typedef struct	s_fov {
 	int			fov;
+	int			multi;
 	float		cam_x;
 	float		cam_y;
 	float		*dist;
@@ -134,6 +136,7 @@ typedef struct	s_mlx_parmas {
 	t_texture	*e_txt;
 	t_texture	*w_txt;
 	t_texture	*sp_txt;
+	t_texture	*skybox;
 	t_player	*pl;
 	t_ray		*r;
 	t_fov		*f;
@@ -145,7 +148,7 @@ void			map_open(char *path, t_mlx_params *mlx);
 
 int				file_len(char *path, t_mlx_params *mlx);
 int				is_map(char *line);
-int				analyne(t_map *map_data, char *line, t_mlx_params *mlx);
+int				analyne(t_map *map_data, char *line);
 int				space_dig(char *line, int i, t_mlx_params *mlx);
 int				space_comma(char *line, int i, t_mlx_params *mlx);
 
@@ -167,6 +170,7 @@ void			input_init(t_mlx_params *mlx);
 
 int				frame_gen(t_mlx_params *mlx);
 void			my_mlx_pixel_put(t_mlx_params *mlx, int x, int y, int color);
+void			my_mlx_multi_put(t_mlx_params *mlx, int x, int y, int color);
 void			print_minimap(t_mlx_params *mlx);
 void			put_map(int x, int y, t_mlx_params *mlx);
 void			put_player(t_mlx_params *mlx);

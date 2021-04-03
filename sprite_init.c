@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 14:20:18 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/02 17:38:23 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/03 15:44:54 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ void	sprite_finder(t_mlx_params *mlx)
 void	sprite_init(t_mlx_params *mlx)
 {
 	mlx->sp = malloc(sizeof(t_sprites *) * mlx->map->sprite_nb);
-	mem_check(mlx->sp, mlx, 2, 25);
+	mem_check(mlx->sp, mlx, 2, 26);
 	sprite_finder(mlx);
 	mlx->sp_txt = malloc(sizeof(t_texture));
-	mem_check(mlx->sp_txt, mlx, 2, 26);
+	mem_check(mlx->sp_txt, mlx, 2, 27);
 	mlx->sp_txt->ptr = mlx_xpm_file_to_image(mlx->ptr, mlx->map->sprite_t,
 			&mlx->sp_txt->width, &mlx->sp_txt->height);
-	mem_check(mlx->sp_txt->ptr, mlx, 13, 27);
+	mem_check(mlx->sp_txt->ptr, mlx, 13, 29);
 	mlx->sp_txt->addr = (int *)mlx_get_data_addr(mlx->sp_txt->ptr,
 			&mlx->sp_txt->bpp, &mlx->sp_txt->len, &mlx->sp_txt->endian);
 }

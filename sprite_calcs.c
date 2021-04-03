@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 11:41:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/01 12:14:06 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/03 12:54:33 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	sprite_sizer(int i, t_mlx_params *mlx)
 {
 	int		ray_height;
 	int		size;
-	float	fish_dist;
 	float	ray;
 	float	crouch_value;
 
@@ -44,8 +43,8 @@ void	sprite_sizer(int i, t_mlx_params *mlx)
 	ray = -mlx->f->fov + (((float)mlx->f->fov * 2)
 			/ ((float)mlx->map->res_x))
 		* ((float)mlx->map->res_x / 2 + mlx->sp[i]->r_x);
-	fish_dist = mlx->sp[i]->dist * cos(deg_rad(1) * ray);
-	ray_height = (int)(mlx->map->res_y / fish_dist);
+	mlx->sp[i]->dist *= cos(deg_rad(1) * ray);
+	ray_height = (int)(mlx->map->res_y / mlx->sp[i]->dist);
 	mlx->sp[i]->u_coord = - ((float)ray_height) / 2
 		+ (float)mlx->map->res_y / crouch_value - 2;
 	mlx->sp[i]->b_coord = (float)ray_height / 2

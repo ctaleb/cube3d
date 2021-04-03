@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 11:01:02 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/01 12:13:12 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/03 15:42:06 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	sp_check(void *ptr, t_mlx_params *mlx, int j)
 		free(mlx->sp[i]);
 		i++;
 	}
-	error_handler(2, mlx, 24);
+	error_handler(2, mlx, 25);
 }
 
 void	mem_check(void *ptr, t_mlx_params *mlx, int ernum, int stage)

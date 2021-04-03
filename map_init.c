@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 15:23:57 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/02 17:52:44 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/03 15:25:37 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ void	grid_init(t_mlx_params *mlx)
 			mlx->map->east_t = get_path(&mlx->map->file[i][2], mlx);
 		else if (mlx->map->file[i][0] == 'W' && mlx->map->file[i][1] == 'E' && !mlx->map->west_t)
 			mlx->map->west_t = get_path(&mlx->map->file[i][2], mlx);
+		else if (mlx->map->file[i][0] == 'S' && mlx->map->file[i][1] == 'B' && !mlx->map->skybox_t)
+			mlx->map->skybox_t = get_path(&mlx->map->file[i][2], mlx);
 		else if (mlx->map->file[i][0] != '\0')
 			error_handler(24, mlx, 4);
 		i++;
@@ -113,7 +115,7 @@ void	map_init(t_mlx_params *mlx)
 	i = mlx->map->map_id;
 	while (mlx->map->file[i])
 	{
-		analyne(mlx->map, mlx->map->file[i], mlx);
+		analyne(mlx->map, mlx->map->file[i]);
 		free(mlx->map->file[i]);
 		i++;
 	}

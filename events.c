@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 10:41:03 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/01 13:28:55 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/03 15:43:54 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	key_press(int keycode, t_mlx_params *mlx)
 {
 	if (keycode == 53)
 	{
-		free_all(mlx, 29);
+		free_all(mlx, 31);
 		exit(0);
 	}
 	if (keycode == 126 || keycode == 13)
@@ -58,7 +58,7 @@ int	key_release(int keycode, t_mlx_params *mlx)
 void	input_init(t_mlx_params *mlx)
 {
 	mlx->input = malloc(sizeof(t_input));
-	mem_check(mlx->input, mlx, 2, 28);
+	mem_check(mlx->input, mlx, 2, 30);
 	mlx->input->forward = 0;
 	mlx->input->backward = 0;
 	mlx->input->strafe_l = 0;

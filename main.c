@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 13:36:57 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/01 14:01:21 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/03 15:43:07 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	exit_window(t_mlx_params *mlx)
 {
-	free_all(mlx, 29);
+	free_all(mlx, 31);
 	exit(0);
 }
 

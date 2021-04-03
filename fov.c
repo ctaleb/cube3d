@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 12:07:24 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/01 14:10:11 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/03 14:21:17 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ void	put_fov(t_mlx_params *mlx)
 		mlx->f->cam_x = cam_x * cos(0.01745 * ray) - cam_y * sin(0.01745 * ray);
 		mlx->f->cam_y = cam_x * sin(0.01745 * ray) + cam_y * cos(0.01745 * ray);
 		put_rov(cos(0.01745 * ray), mlx);
-		ray += nb_ray;
-		mlx->r->id++;
+		ray += nb_ray * mlx->f->multi;
+		mlx->r->id += mlx->f->multi;
 	}
 	mlx->f->cam_x = cam_x;
 	mlx->f->cam_y = cam_y;

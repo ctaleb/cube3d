@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 12:30:10 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/01 14:24:00 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/03 15:44:12 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,16 +93,20 @@ void	mem_set(t_mlx_params *mlx)
 
 void	free_all(t_mlx_params *mlx, int stage)
 {
-	if (stage >= 29)
+	if (stage >= 31)
 		free(mlx->input);
-	if (stage >= 28)
+	if (stage >= 30)
 		mlx_destroy_image(mlx->ptr, mlx->sp_txt->ptr);
-	if (stage >= 27)
+	if (stage >= 29)
 		free(mlx->sp_txt);
-	if (stage >= 26)
+	if (stage >= 28)
 		free_sp(mlx);
-	if (stage >= 25)
+	if (stage >= 27)
 		free(mlx->sp);
+	if (stage >= 26)
+		mlx_destroy_image(mlx->ptr, mlx->skybox->ptr);
+	if (stage >= 25)
+		free(mlx->skybox);
 	if (stage >= 24)
 		mlx_destroy_image(mlx->ptr, mlx->w_txt->ptr);
 	if (stage >= 23)

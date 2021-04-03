@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 15:50:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/02 15:15:44 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/03 15:51:02 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,18 @@ static void	texture_convert(t_mlx_params *mlx)
 			&mlx->w_txt->bpp, &mlx->w_txt->len, &mlx->w_txt->endian);
 }
 
+static void	skybox_init(t_mlx_params *mlx)
+{
+	mlx->skybox = malloc(sizeof(t_texture));
+	mem_check(mlx->skybox, mlx, 2, 24);
+	mlx->skybox->ptr = mlx_xpm_file_to_image(mlx->ptr, mlx->map->skybox_t,
+			&mlx->skybox->width, &mlx->skybox->height);
+	mem_check(mlx->skybox->ptr, mlx, 13, 25);
+	mlx->n_txt->addr = (int *)mlx_get_data_addr(mlx->n_txt->ptr,
+			&mlx->n_txt->bpp, &mlx->n_txt->len, &mlx->n_txt->endian);
+	
+}
+
 void	texture_init(t_mlx_params *mlx)
 {
 	mlx->n_txt = malloc(sizeof(t_texture));
@@ -52,4 +64,5 @@ void	texture_init(t_mlx_params *mlx)
 	mlx->w_txt = malloc(sizeof(t_texture));
 	mem_check(mlx->w_txt, mlx, 2, 19);
 	texture_convert(mlx);
+	skybox_init(mlx);
 }

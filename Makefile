@@ -6,12 +6,12 @@
 #    By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 11:40:32 by ctaleb            #+#    #+#              #
-#    Updated: 2021/04/02 13:58:08 by ctaleb           ###   ########lyon.fr    #
+#    Updated: 2021/04/03 14:58:14 by ctaleb           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -g3 -O3 -Wall -Wextra #-Werror -fsanitize=address
+CFLAGS = -O3 -Wall -Wextra #-Werror -g3 -fsanitize=address
 RM = rm -f
 
 AR = ar
