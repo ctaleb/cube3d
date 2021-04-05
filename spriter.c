@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 15:14:24 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/03 14:42:47 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/04 13:47:24 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	put_sprite_pixel(int i, int x, t_texture *texture, t_mlx_params *mlx)
 			if (texture->addr[tex_y * texture->width + tex_x])
 			{
 				colour = trgbmod(texture->addr[tex_y * texture->width + tex_x],
-						1 - (int)mlx->sp[i]->dist * 0.05);
+						0 + (int)mlx->sp[i]->dist * 0.05);
 				my_mlx_multi_put(mlx, x, y, colour);
 			}
 		}

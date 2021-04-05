@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:38:27 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/03 15:42:48 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/04 13:52:59 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	frame_gen(t_mlx_params *mlx)
 {
 	sprite_reset(mlx);
 	movement(mlx);
+	put_sky(mlx);
 	put_fov(mlx);
 	sprite_check(mlx);
 	print_minimap(mlx);

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 15:50:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/03 15:51:02 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/04 12:56:52 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static void	skybox_init(t_mlx_params *mlx)
 	mlx->skybox->ptr = mlx_xpm_file_to_image(mlx->ptr, mlx->map->skybox_t,
 			&mlx->skybox->width, &mlx->skybox->height);
 	mem_check(mlx->skybox->ptr, mlx, 13, 25);
-	mlx->n_txt->addr = (int *)mlx_get_data_addr(mlx->n_txt->ptr,
-			&mlx->n_txt->bpp, &mlx->n_txt->len, &mlx->n_txt->endian);
+	mlx->skybox->addr = (int *)mlx_get_data_addr(mlx->skybox->ptr,
+			&mlx->skybox->bpp, &mlx->skybox->len, &mlx->skybox->endian);
 	
 }
 

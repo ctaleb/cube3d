@@ -6,12 +6,12 @@
 #    By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 11:40:32 by ctaleb            #+#    #+#              #
-#    Updated: 2021/04/03 14:58:14 by ctaleb           ###   ########lyon.fr    #
+#    Updated: 2021/04/04 12:26:28 by ctaleb           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -O3 -Wall -Wextra #-Werror -g3 -fsanitize=address
+CFLAGS = -O3 -g3 -Wall -Wextra #-Werror -fsanitize=address
 RM = rm -f
 
 AR = ar
@@ -56,7 +56,8 @@ SRCS = main.c\
 		error_handler.c\
 		freedom.c\
 		bitmapping.c\
-		parser.c
+		parser.c\
+		skybox.c
 
 # OBJ_FILES = $(SRC_FILES:.c=.o)
 

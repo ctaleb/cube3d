@@ -1,4 +1,4 @@
-R 1000   1000
+R 1920   1080
 NO ./src/textures/colorstone.xpm
 SO ./src/textures/wood.xpm
 WE ./src/textures/redbrick.xpm
@@ -6,7 +6,8 @@ WE ./src/textures/redbrick.xpm
 SB ./src/textures/skybox.xpm
 
 EA ./src/textures/texture15.xpm
-S ./src/textures/barrel.xpm
+S ./src/textures/pizza.xpm
+
 
 F 220 ,   100,0
 

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 15:28:59 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/03 11:41:10 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/04 13:59:06 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	shader(t_mlx_params *mlx)
 	step = (mlx->map->res_y) / 510;
 	while (i < (mlx->map->res_y) / 2)
 	{
-		mlx->f->shade[i] = trgbmod(mlx->map->ceiling_c, 1 - j * 0.0007);
+		mlx->f->shade[i] = trgbmod(mlx->map->ceiling_c, 0 + j * 0.0007);
 		// if (i++ % (mlx->map->res_y) / 10 == 0)
 		// 	x += 0.17;
 		j += step /** x*/;
@@ -38,7 +38,7 @@ void	shader(t_mlx_params *mlx)
 	}	
 	while (i < mlx->map->res_y)
 	{
-		mlx->f->shade[i] = trgbmod(mlx->map->floor_c, 1 - j * 0.0007);
+		mlx->f->shade[i] = trgbmod(mlx->map->floor_c, 0 + j * 0.0007);
 		// if (i++ % mlx->map->res_y / 10 == 0)
 		// 	x -= 0.17;
 		j -= step /** x*/;
@@ -59,20 +59,20 @@ int	trgbmod(int trgb, float factor)
 	r = (trgb & (255 << 16)) / 65536;
 	g = (trgb & (255 << 8)) / 256;
 	b = trgb & (255);
-	r *= factor;
+	r += factor * 50;
+	if (r >= 256)
+		r = 255;
 	if (r <= 0)
 		r = 0;
-	if (r > 256)
-		r = 255;
-	g *= factor;
+	g += factor * 50;
+	if (g >= 256)
+		g = 255;
 	if (g <= 0)
 		g = 0;
-	if (g > 256)
-		g = 255;
-	b *= factor;
+	b += factor * 50;
+	if (b >= 256)
+		b = 255;
 	if (b <= 0)
 		b = 0;
-	if (b > 256)
-		b = 255;
 	return (rgbtoi(t, r, g, b));
 }

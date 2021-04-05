@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/03 15:24:50 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/05 15:02:02 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ typedef struct	s_input {
 	int			rotate_l;
 	int			rotate_r;
 	int			crouch;
+	int			mouse_x;
+	int			mouse_y;
+	float		*mouse_speed;
 }				t_input;
 
 typedef struct s_player {
@@ -88,6 +91,7 @@ typedef struct	s_fov {
 	int			multi;
 	float		cam_x;
 	float		cam_y;
+	float		angle;
 	float		*dist;
 	float		mod;
 	float		*shade;
@@ -107,6 +111,7 @@ typedef struct	s_texture {
 typedef struct	s_sprites {
 	int			id;
 	int			type;
+	int			state;
 	int			active;
 	int			visible;
 	float		x;
@@ -136,6 +141,9 @@ typedef struct	s_mlx_parmas {
 	t_texture	*e_txt;
 	t_texture	*w_txt;
 	t_texture	*sp_txt;
+	t_texture	*h_pickup;
+	t_texture	*d_pickup;
+	t_texture	*ending;
 	t_texture	*skybox;
 	t_player	*pl;
 	t_ray		*r;
@@ -167,6 +175,7 @@ void			fov_init(t_mlx_params *mlx);
 void			ray_init(t_mlx_params *mlx);
 void			texture_init(t_mlx_params *mlx);
 void			input_init(t_mlx_params *mlx);
+void			mousespeed_calc(float speed, t_mlx_params *mlx);
 
 int				frame_gen(t_mlx_params *mlx);
 void			my_mlx_pixel_put(t_mlx_params *mlx, int x, int y, int color);
@@ -205,9 +214,11 @@ void			wall_dist_calc(char dir, t_mlx_params *mlx);
 int				wall_check(float x, float y, t_mlx_params *mlx);
 void			inverse_cam(char dir, t_mlx_params *mlx);
 
+void			put_sky(t_mlx_params *mlx);
+
 int				key_press(int keycode, t_mlx_params *mlx);
 int				key_release(int keycode, t_mlx_params *mlx);
-
+int				mouse_move(int x, int y, t_mlx_params *mlx);
 int				escape_key(int keycode);
 
 int				get_colour(char *line, t_mlx_params *mlx);

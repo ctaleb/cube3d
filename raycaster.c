@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:10:38 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/03 14:54:37 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/04 13:46:51 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ void	put_ray(t_mlx_params *mlx)
 		mlx->r->side = 0;
 	while (mlx->r->pos < mlx->map->res_y)
 	{
-		if (mlx->r->pos < mlx->r->u_wall)
-			my_mlx_multi_put(mlx, mlx->r->id, mlx->r->pos,
-				mlx->f->shade[mlx->r->pos + ratio]);
-		else if (mlx->r->pos >= mlx->r->u_wall && mlx->r->pos <= mlx->r->l_wall)
+		// if (mlx->r->pos < mlx->r->u_wall)
+		// 	my_mlx_multi_put(mlx, mlx->r->id, mlx->r->pos,
+		// 		mlx->f->shade[mlx->r->pos + ratio]);
+		if (mlx->r->pos >= mlx->r->u_wall && mlx->r->pos <= mlx->r->l_wall)
 			put_wall(select_wall(mlx), mlx);
-		else
+		else if (mlx->r->pos > mlx->r->l_wall)
 			my_mlx_multi_put(mlx, mlx->r->id, mlx->r->pos,
 				mlx->f->shade[mlx->r->pos + ratio]);
 		mlx->r->pos++;
@@ -98,7 +98,7 @@ void	ray_cannon(float fish, t_mlx_params *mlx)
 	else
 		ray_len = mlx->r->dist_y * fish;
 	 distancer(ray_len, mlx);
-	mlx->f->mod = 1 - (int)ray_len * 0.05;
+	mlx->f->mod = 0 + (int)ray_len * 0.05;
 	ray_height = (int)((mlx->map->res_y / ray_len)) + 1;
 	mlx->r->u_wall = roundf(- ((float)ray_height) / 2
 			+ (float)mlx->map->res_y / ratio);

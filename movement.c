@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:52:50 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/01 11:34:04 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/05 15:42:23 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,43 @@ void	relocate(t_mlx_params *mlx)
 	else if (mlx->map->grid[(int)mlx->pl->y - 1][(int)mlx->pl->x] == '1'
 		&& mlx->pl->y < (int)mlx->pl->y + 0.1)
 		mlx->pl->y = (int)mlx->pl->y + 0.1;
+	if (!mlx->save)
+		mlx_mouse_move(mlx->win, mlx->map->res_x / 2, mlx->map->res_y / 2);
+	mlx->input->mouse_x = mlx->map->res_x / 2;
+	mlx->input->mouse_y = mlx->map->res_x / 2;
+}
+
+void	mousespeed_calc(float speed, t_mlx_params *mlx)
+{
+	int		i;
+	int		j;
+	int		factor;
+	float	step;
+
+	mlx->input->mouse_speed = malloc(sizeof(float) * (mlx->map->res_x));
+	mem_check(mlx->input->mouse_speed, mlx, 2, 30);
+	i = 0;
+	j = 0;
+	factor = 100;
+	step = mlx->map->res_x / 100;
+	while (i < mlx->map->res_x / 2)
+	{
+		mlx->input->mouse_speed[i] = speed * factor;
+		if ((float)(i++) >= j)
+		{
+			factor--;
+			j += step;
+		}
+	}
+	while (i < mlx->map->res_x)
+	{
+		mlx->input->mouse_speed[i] = speed * factor;
+		if ((float)(i++) >= j)
+		{
+			factor++;
+			j += step;
+		}
+	}
 }
 
 int	movement(t_mlx_params *mlx)
@@ -51,6 +88,16 @@ int	movement(t_mlx_params *mlx)
 		rotate_pl(123, mlx, speed);
 	else if (mlx->input->rotate_r && !mlx->input->rotate_l)
 		rotate_pl(124, mlx, speed);
+	if (mlx->input->mouse_x < mlx->map->res_x / 2)
+	{
+		rotate_pl(123, mlx, mlx->input->mouse_speed[mlx->input->mouse_x]);
+	// 	// printf("%f\t%i\n", mlx->input->mouse_speed[mlx->input->mouse_x], mlx->input->mouse_x);
+	}
+	else if (mlx->input->mouse_x > mlx->map->res_x / 2)
+	{
+		rotate_pl(124, mlx, mlx->input->mouse_speed[mlx->input->mouse_x]);
+	// 	// printf("%f\t%i\n", mlx->input->mouse_speed[mlx->input->mouse_x], mlx->input->mouse_x);
+	}
 	relocate(mlx);
 	sprite_dist(mlx);
 	return (0);

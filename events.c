@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 10:41:03 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/03 15:43:54 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/05 15:43:31 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ int	key_release(int keycode, t_mlx_params *mlx)
 	return (0);
 }
 
+int mouse_move(int x, int y, t_mlx_params *mlx)
+{
+	mlx->input->mouse_x = x;
+	return (0);
+}
+
 void	input_init(t_mlx_params *mlx)
 {
 	mlx->input = malloc(sizeof(t_input));
@@ -66,4 +72,9 @@ void	input_init(t_mlx_params *mlx)
 	mlx->input->rotate_l = 0;
 	mlx->input->rotate_r = 0;
 	mlx->input->crouch = 0;
+	if (!mlx->save)
+		mlx_mouse_move(mlx->win, mlx->map->res_x / 2, mlx->map->res_y / 2);
+	mlx->input->mouse_x = mlx->map->res_x / 2;
+	mlx->input->mouse_y = mlx->map->res_x / 2;
+	mousespeed_calc(0.001, mlx);
 }
