@@ -6,7 +6,7 @@
 #    By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 11:40:32 by ctaleb            #+#    #+#              #
-#    Updated: 2021/04/04 12:26:28 by ctaleb           ###   ########lyon.fr    #
+#    Updated: 2021/04/09 14:48:48 by ctaleb           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,8 @@ SRCS = main.c\
 		freedom.c\
 		bitmapping.c\
 		parser.c\
-		skybox.c
+		skybox.c\
+		hud.c
 
 # OBJ_FILES = $(SRC_FILES:.c=.o)
 

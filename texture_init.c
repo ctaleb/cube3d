@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 15:50:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/04 12:56:52 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 15:42:03 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@ static void	texture_convert(t_mlx_params *mlx)
 			&mlx->w_txt->bpp, &mlx->w_txt->len, &mlx->w_txt->endian);
 }
 
-static void	skybox_init(t_mlx_params *mlx)
+static void	bonus_textures(t_mlx_params *mlx)
 {
-	mlx->skybox = malloc(sizeof(t_texture));
-	mem_check(mlx->skybox, mlx, 2, 24);
-	mlx->skybox->ptr = mlx_xpm_file_to_image(mlx->ptr, mlx->map->skybox_t,
-			&mlx->skybox->width, &mlx->skybox->height);
-	mem_check(mlx->skybox->ptr, mlx, 13, 25);
-	mlx->skybox->addr = (int *)mlx_get_data_addr(mlx->skybox->ptr,
-			&mlx->skybox->bpp, &mlx->skybox->len, &mlx->skybox->endian);
-	
+	if (mlx->defined->skybox)
+		mlx->skybox = texturer(mlx, mlx->map->skybox_t);
+	if (mlx->defined->healthbar)
+		mlx->healthbar = texturer(mlx, mlx->map->healthbar_t);
+	if (mlx->defined->ending)
+		mlx->ending = texturer(mlx, mlx->map->ending_t);
+	if (mlx->defined->gameover)
+		mlx->gameover = texturer(mlx, mlx->map->gameover_t);
 }
 
 void	texture_init(t_mlx_params *mlx)
@@ -64,5 +64,5 @@ void	texture_init(t_mlx_params *mlx)
 	mlx->w_txt = malloc(sizeof(t_texture));
 	mem_check(mlx->w_txt, mlx, 2, 19);
 	texture_convert(mlx);
-	skybox_init(mlx);
+	bonus_textures(mlx);
 }

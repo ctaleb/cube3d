@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 15:14:24 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/04 13:47:24 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 13:00:35 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,31 @@ void	put_sprite(int i, t_texture *texture, t_mlx_params *mlx)
 	}
 }
 
+t_texture	*sprite_select(t_mlx_params *mlx, int i)
+{
+	if (mlx->sp[i]->type == '4')
+		return (mlx->sec_sp);
+	else if (mlx->sp[i]->type == '5')
+		return (mlx->h_pickup);
+	else if (mlx->sp[i]->type == '6')
+		return (mlx->d_pickup);
+	else if (mlx->sp[i]->type == '9')
+	{
+		if (mlx->sp[i]->state++ == 1)
+			return (mlx->tp_a);
+		else if (mlx->sp[i]->state++ == 2)
+			return (mlx->tp_b);
+		else if (mlx->sp[i]->state++ == 3)
+			return (mlx->tp_c);
+		else if (mlx->sp[i]->state == 4)
+		{
+			mlx->sp[i]->state = 1;
+			return (mlx->tp_d);
+		}
+	}
+	return (mlx->sp_txt);
+}
+
 void	sprite_check(t_mlx_params *mlx)
 {
 	int	i;
@@ -67,7 +92,7 @@ void	sprite_check(t_mlx_params *mlx)
 			sprite_xpos(i, mlx);
 			sprite_sizer(i, mlx);
 			sprite_disable(i, mlx);
-			put_sprite(i, mlx->sp_txt, mlx);
+			put_sprite(i, sprite_select(mlx, i), mlx);
 		}
 		i++;
 	}

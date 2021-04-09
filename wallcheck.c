@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:59:41 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/31 16:45:16 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 13:02:04 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,20 @@ void	wall_dist_calc(char dir, t_mlx_params *mlx)
 int	wall_check(float x, float y, t_mlx_params *mlx)
 {
 	if (mlx->map->grid[(int)y][(int)x] == '1'
-		|| mlx->map->grid[(int)y][(int)x] == '2')
+		|| mlx->map->grid[(int)y][(int)x] == '2'
+		|| mlx->map->grid[(int)y][(int)x] == '4')
 		return (0);
+	else if (mlx->map->grid[(int)y][(int)x] == '5')
+		if (mlx->pl->health > 80)
+			mlx->pl->health = 100;
+		else
+			mlx->pl->health += 20;
+	else if (mlx->map->grid[(int)y][(int)x] == '6')
+	{
+		if (mlx->pl->health < 80)
+			mlx->pl->health = 0;
+		else
+			mlx->pl->health -= 20;
+	}
 	return (1);
 }

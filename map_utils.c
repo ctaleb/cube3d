@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 13:05:42 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/02 11:35:25 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 12:08:50 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,8 @@ int	get_map(char **grid, int maxlen, char *line)
 	while (line[j])
 	{
 		grid[i][j] = line[j];
-		if (line[j] == '2')
+		if (line[j] == '2' || line[j] == '4' || line[j] == '5'
+			|| line[j] == '6' || line[j] == '9')
 			sprite_nb++;
 		j++;
 	}

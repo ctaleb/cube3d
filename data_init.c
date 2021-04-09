@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:56:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/03 14:47:30 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 15:20:39 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,21 @@ void	pl_init(t_mlx_params *mlx)
 	mlx->pl->y = mlx->map->start_y + 0.5;
 	mlx->pl->f_x = 0;
 	mlx->pl->f_y = 0;
+	mlx->pl->health = 100;
 	mlx->pl->colour = rgbtoi(0, 255, 0, 0);
+}
+
+void	define_init(t_mlx_params *mlx)
+{
+	mlx->defined = malloc(sizeof(t_defined));
+	mem_check(mlx->defined, mlx, 2, 90);
+	mlx->defined->nxt_lvl = 0;
+	mlx->defined->skybox = 0;
+	mlx->defined->healthbar = 0;
+	mlx->defined->h_pickup = 0;
+	mlx->defined->d_pickup = 0;
+	mlx->defined->sec_sp = 0;
+	mlx->defined->teleporter = 0;
+	mlx->defined->ending = 0;
+	mlx->defined->gameover = 0;
 }

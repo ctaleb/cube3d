@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 12:30:10 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/03 15:44:12 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 14:13:31 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,34 +62,11 @@ void	free_sp(t_mlx_params *mlx)
 	}
 }
 
-void	mem_set(t_mlx_params *mlx)
-{
-	mlx->input = NULL;
-	mlx->sp_txt->ptr = NULL;
-	mlx->sp_txt = NULL;
-	mlx->sp = NULL;
-	mlx->w_txt->ptr = NULL;
-	mlx->e_txt->ptr = NULL;
-	mlx->s_txt->ptr = NULL;
-	mlx->n_txt->ptr = NULL;
-	mlx->w_txt = NULL;
-	mlx->e_txt = NULL;
-	mlx->s_txt = NULL;
-	mlx->n_txt = NULL;
-	mlx->img->ptr = NULL;
-	mlx->img = NULL;
-	mlx->win = NULL;
-	mlx->ptr = NULL;
-	mlx->r = NULL;
-	mlx->f->shade = NULL;
-	mlx->f->dist = NULL;
-	mlx->f = NULL;
-	mlx->pl = NULL;
-	mlx->map->dup = NULL;
-	mlx->map->grid = NULL;
-	mlx = NULL;
-	mlx->map = NULL;
-}
+
+
+
+
+
 
 void	free_all(t_mlx_params *mlx, int stage)
 {

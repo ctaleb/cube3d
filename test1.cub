@@ -3,10 +3,27 @@ NO ./src/textures/colorstone.xpm
 SO ./src/textures/wood.xpm
 WE ./src/textures/redbrick.xpm
 
-SB ./src/textures/skybox.xpm
+BX ./src/textures/skybox.xpm
+HB ./src/textures/healthbar.xpm
+
+O1 ./src/textures/food.xpm
+O2 ./src/textures/trap.xpm
+
+O3 ./src/textures/pillar.xpm
+
+T1 ./src/textures/teleporter1.xpm
+T2 ./src/textures/teleporter2.xpm
+T3 ./src/textures/teleporter3.xpm
+T4 ./src/textures/teleporter4.xpm
+
+GO ./src/textures/gameover.xpm
+ED ./src/textures/ending.xpm
+
+NL ./test2.cub
 
 EA ./src/textures/texture15.xpm
-S ./src/textures/pizza.xpm
+S./src/textures/pizza.xpm
+
 
 
 F 220 ,   100,0
@@ -17,7 +34,7 @@ C0,     255     ,  0
 
 
 11111   1111111111111111111111111
-10001   1000000000110000000000001
+10001   1000000000110060500400091
 113111111011000001110000000000001
 1000000000000000000000000E0000021
 113111111011000001110000000000001

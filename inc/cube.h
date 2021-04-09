@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/05 15:02:02 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 15:41:24 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,18 @@ typedef struct	 s_map {
 	char		*east_t;
 	char		*west_t;
 	char		*sprite_t;
+	char		*sec_sp_t;
 	char		*skybox_t;
+	char		*healthbar_t;
+	char		*food_t;
+	char		*trap_t;
+	char		*tp_a_t;
+	char		*tp_b_t;
+	char		*tp_c_t;
+	char		*tp_d_t;
+	char		*ending_t;
+	char		*gameover_t;
+	char		*nextlevel;
 	int			sprite_nb;
 	int			file_len;
 	int			floor_c;
@@ -58,6 +69,7 @@ typedef struct s_player {
 	float		f_x;
 	float		f_y;
 	int			colour;
+	int			health;
 }				t_player;
 
 typedef struct	s_image {
@@ -130,21 +142,41 @@ typedef struct	s_sprites {
 	float		angle;
 }				t_sprites;
 
+typedef struct s_defined {
+	int			nxt_lvl;
+	int			skybox;
+	int			healthbar;
+	int			h_pickup;
+	int			d_pickup;
+	int			sec_sp;
+	int			teleporter;
+	int			ending;
+	int			gameover;
+}				t_defined;
+
 typedef struct	s_mlx_parmas {
 	void		*ptr;
 	void		*win;
 	int			save;
 	t_image		*img;
 	t_map		*map;
+	t_defined	*defined;
 	t_texture	*n_txt;
 	t_texture	*s_txt;
 	t_texture	*e_txt;
 	t_texture	*w_txt;
 	t_texture	*sp_txt;
+	t_texture	*sec_sp;
 	t_texture	*h_pickup;
 	t_texture	*d_pickup;
+	t_texture	*tp_a;
+	t_texture	*tp_b;
+	t_texture	*tp_c;
+	t_texture	*tp_d;
+	t_texture	*gameover;
 	t_texture	*ending;
 	t_texture	*skybox;
+	t_texture	*healthbar;
 	t_player	*pl;
 	t_ray		*r;
 	t_fov		*f;
@@ -168,12 +200,14 @@ void			map_data_init(t_mlx_params *mlx, char *path);
 void			grid_init(t_mlx_params *mlx);
 void			map_init(t_mlx_params *mlx);
 void			img_init(t_mlx_params *mlx);
+void			define_init(t_mlx_params *mlx);
 t_mlx_params	*mlx_data_init(int ac, char **av);
 void			pl_init(t_mlx_params *mlx);
 void			sprite_init(t_mlx_params *mlx);
 void			fov_init(t_mlx_params *mlx);
 void			ray_init(t_mlx_params *mlx);
 void			texture_init(t_mlx_params *mlx);
+t_texture		*texturer(t_mlx_params *mlx, char *path);
 void			input_init(t_mlx_params *mlx);
 void			mousespeed_calc(float speed, t_mlx_params *mlx);
 
@@ -215,6 +249,7 @@ int				wall_check(float x, float y, t_mlx_params *mlx);
 void			inverse_cam(char dir, t_mlx_params *mlx);
 
 void			put_sky(t_mlx_params *mlx);
+void			put_healthbar(t_mlx_params *mlx);
 
 int				key_press(int keycode, t_mlx_params *mlx);
 int				key_release(int keycode, t_mlx_params *mlx);
@@ -228,6 +263,8 @@ void			dup_map(char **grid, char **dup);
 void			get_resolution(t_map *map_data, char *line, t_mlx_params *mlx);
 
 int				create_bitmap(t_mlx_params *mlx);
+
+// void			mem_set(t_mlx_params *mlx);
 
 void			free_matrix(t_mlx_params *mlx, int mode);
 void			mem_check(void *ptr, t_mlx_params *mlx, int ernum, int stage);

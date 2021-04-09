@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 14:00:22 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/03 15:27:06 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 13:06:17 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@ int	data_check(t_map *map_data)
 	if (map_data->res_x && map_data->res_y && map_data->north_t
 		&& map_data->south_t && map_data->east_t && map_data->west_t
 		&& map_data->sprite_t && map_data->floor_c >= 0
-		&& map_data->ceiling_c >= 0 && map_data->skybox_t)
+		&& map_data->ceiling_c >= 0
+		&& map_data->skybox_t && map_data->healthbar_t && map_data->food_t
+		&& map_data->trap_t && map_data->tp_a_t && map_data->tp_b_t
+		&& map_data->tp_c_t && map_data->tp_d_t && map_data->sec_sp_t
+		&& map_data->ending_t && map_data->gameover_t && map_data->nextlevel)
 		return (1);
 	return (0);
 }

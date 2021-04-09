@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 13:27:33 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/03 11:18:57 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 13:27:11 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	is_map(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if ((line[i] >= '0' && line[i] <= '3') || line[i] == ' '
+		if ((line[i] >= '0' && line[i] <= '6') || line[i] == ' '
 			|| line[i] == 'N' || line[i] == 'S' || line[i] == 'E'
-			|| line[i] == 'W' || line[i] == '3')
+			|| line[i] == 'W' || line[i] == '9')
 			i++;
 		else
 			return (0);

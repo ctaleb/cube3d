@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:38:27 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/04 13:52:59 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 14:47:58 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	frame_gen(t_mlx_params *mlx)
 	print_minimap(mlx);
 	put_camera(mlx);
 	put_player(mlx);
+	put_healthbar(mlx);
 	if (mlx->save)
 	{
 		create_bitmap(mlx);

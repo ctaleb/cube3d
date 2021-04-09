@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 10:41:03 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/05 15:43:31 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 12:59:04 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	key_release(int keycode, t_mlx_params *mlx)
 
 int mouse_move(int x, int y, t_mlx_params *mlx)
 {
+	(void)y;
 	mlx->input->mouse_x = x;
 	return (0);
 }

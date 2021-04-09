@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 14:20:18 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/03 15:44:54 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 15:40:34 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	sprite_creator(int count, int x, int y, t_mlx_params *mlx)
 	mlx->sp[count] = malloc(sizeof(t_sprites));
 	sp_check(mlx->sp[count], mlx, count);
 	mlx->sp[count]->id = count;
-	mlx->sp[count]->type = 0;
+	mlx->sp[count]->type = (int)mlx->map->grid[y][x] - 48;
 	mlx->sp[count]->active = 1;
 	mlx->sp[count]->visible = 0;
 	mlx->sp[count]->x = x + 0.5;
@@ -39,7 +39,11 @@ void	sprite_finder(t_mlx_params *mlx)
 		j = 0;
 		while (mlx->map->grid[i][j])
 		{
-			if (mlx->map->grid[i][j] == '2')
+			if (mlx->map->grid[i][j] == '2'
+				|| mlx->map->grid[i][j] == '4'
+				|| mlx->map->grid[i][j] == '5'
+				|| mlx->map->grid[i][j] == '6'
+				|| mlx->map->grid[i][j] == '9')
 			{
 				sprite_creator(count, j, i, mlx);
 				count++;
@@ -50,10 +54,40 @@ void	sprite_finder(t_mlx_params *mlx)
 	}
 }
 
-// void	sprite_texture_init(t_mlx_params *mlx)
-// {
+t_texture	*texturer(t_mlx_params *mlx, char *path)
+{
+	t_texture	*texture;
 
-// }
+	texture = malloc(sizeof(t_texture));
+	mem_check(texture, mlx, 2, 26);
+	texture->ptr = mlx_xpm_file_to_image(mlx->ptr, path,
+		&texture->width, &texture->height);
+	mem_check(texture->ptr, mlx, 13, 26);
+	texture->addr = (int *)mlx_get_data_addr(texture->ptr,
+		&texture->bpp, &texture->len, &texture->endian);
+	return (texture);
+}
+
+void	bonus_sprites(t_mlx_params *mlx)
+{
+	if (mlx->defined->h_pickup)
+		mlx->h_pickup = texturer(mlx, mlx->map->food_t);
+	if (mlx->defined->d_pickup)
+		mlx->d_pickup = texturer(mlx, mlx->map->trap_t);
+	if (mlx->defined->sec_sp)
+		mlx->sec_sp = texturer(mlx, mlx->map->sec_sp_t);
+	if (mlx->defined->teleporter)
+	{
+		mlx->tp_a = texturer(mlx, mlx->map->tp_a_t);
+		mlx->tp_b = texturer(mlx, mlx->map->tp_b_t);
+		mlx->tp_c = texturer(mlx, mlx->map->tp_c_t);
+		mlx->tp_d = texturer(mlx, mlx->map->tp_d_t);
+	}
+	if (mlx->defined->ending)
+		mlx->ending = texturer(mlx, mlx->map->ending_t);
+	if (mlx->defined->gameover)
+		mlx->gameover = texturer(mlx, mlx->map->gameover_t);
+}
 
 void	sprite_init(t_mlx_params *mlx)
 {
@@ -67,4 +101,5 @@ void	sprite_init(t_mlx_params *mlx)
 	mem_check(mlx->sp_txt->ptr, mlx, 13, 29);
 	mlx->sp_txt->addr = (int *)mlx_get_data_addr(mlx->sp_txt->ptr,
 			&mlx->sp_txt->bpp, &mlx->sp_txt->len, &mlx->sp_txt->endian);
+	bonus_sprites(mlx);
 }
