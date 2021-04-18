@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 11:41:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 10:47:43 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/18 16:45:36 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,8 @@ void	sprite_disable(int i, t_mlx_params *mlx)
 
 void	health_change(int status, t_mlx_params *mlx)
 {
-	char	*argv[3];
-
-	argv[0] = "cub3D";
-	argv[1] = ft_strdup(mlx->map->nextlevel);
-	argv[2] = NULL;
 	if (status == 2)
-	{
-		free_all(mlx, 99);
-		execve(argv[0], argv, NULL);
-		exit(0);
-	}
+		ender(mlx);
 	else if (status == 1)
 	{
 		if (mlx->pl->health > 80)
@@ -87,7 +78,7 @@ void	health_change(int status, t_mlx_params *mlx)
 	}
 	else
 	{
-		if (mlx->pl->health < 80)
+		if (mlx->pl->health < 0)
 			mlx->pl->health = 0;
 		else
 			mlx->pl->health -= 20;

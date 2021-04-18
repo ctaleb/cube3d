@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 14:20:18 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 13:11:34 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/18 17:28:43 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,38 +70,34 @@ t_texture	*texturer(t_mlx_params *mlx, char *path, int *check)
 	texture = malloc(sizeof(t_texture));
 	mem_check(texture, mlx, 2, mlx->stage);
 	texture->ptr = mlx_xpm_file_to_image(mlx->ptr, path,
-		&texture->width, &texture->height);
+			&texture->width, &texture->height);
 	mem_check(texture->ptr, mlx, 13, -1);
 	*check += 1;
 	texture->addr = (int *)mlx_get_data_addr(texture->ptr,
-		&texture->bpp, &texture->len, &texture->endian);
+			&texture->bpp, &texture->len, &texture->endian);
 	return (texture);
 }
 
 void	bonus_sprites(t_mlx_params *mlx)
 {
-	if (mlx->defined->h_pickup)
-		mlx->h_pickup = texturer(mlx, mlx->map->food_t, &mlx->defined->h_pickup);
-	if (mlx->defined->d_pickup)
-		mlx->d_pickup = texturer(mlx, mlx->map->trap_t, &mlx->defined->d_pickup);
-	if (mlx->defined->sec_sp)
-		mlx->sec_sp = texturer(mlx, mlx->map->sec_sp_t, &mlx->defined->sec_sp);
-	if (mlx->defined->tp_a)
-		mlx->tp_a = texturer(mlx, mlx->map->tp_a_t, &mlx->defined->tp_a);
-	if (mlx->defined->tp_b)
-		mlx->tp_b = texturer(mlx, mlx->map->tp_b_t, &mlx->defined->tp_b);
-	if (mlx->defined->tp_c)
-		mlx->tp_c = texturer(mlx, mlx->map->tp_c_t, &mlx->defined->tp_c);
-	if (mlx->defined->tp_d)
-		mlx->tp_d = texturer(mlx, mlx->map->tp_d_t, &mlx->defined->tp_d);
-	if (mlx->defined->key_a)
-		mlx->key_a = texturer(mlx, mlx->map->key_a_t, &mlx->defined->key_a);
-	if (mlx->defined->key_b)
-		mlx->key_b = texturer(mlx, mlx->map->key_b_t, &mlx->defined->key_b);
-	if (mlx->defined->ending)
-		mlx->ending = texturer(mlx, mlx->map->ending_t, &mlx->defined->ending);
-	if (mlx->defined->gameover)
-		mlx->gameover = texturer(mlx, mlx->map->gameover_t, &mlx->defined->gameover);
+	if (mlx->def->h_pickup)
+		mlx->h_pickup = texturer(mlx, mlx->map->food_t, &mlx->def->h_pickup);
+	if (mlx->def->d_pickup)
+		mlx->d_pickup = texturer(mlx, mlx->map->trap_t, &mlx->def->d_pickup);
+	if (mlx->def->sec_sp)
+		mlx->sec_sp = texturer(mlx, mlx->map->sp_b_t, &mlx->def->sec_sp);
+	if (mlx->def->tp_a)
+		mlx->tp_a = texturer(mlx, mlx->map->tp_a_t, &mlx->def->tp_a);
+	if (mlx->def->tp_b)
+		mlx->tp_b = texturer(mlx, mlx->map->tp_b_t, &mlx->def->tp_b);
+	if (mlx->def->tp_c)
+		mlx->tp_c = texturer(mlx, mlx->map->tp_c_t, &mlx->def->tp_c);
+	if (mlx->def->tp_d)
+		mlx->tp_d = texturer(mlx, mlx->map->tp_d_t, &mlx->def->tp_d);
+	if (mlx->def->key_a)
+		mlx->key_a = texturer(mlx, mlx->map->key_a_t, &mlx->def->key_a);
+	if (mlx->def->key_b)
+		mlx->key_b = texturer(mlx, mlx->map->key_b_t, &mlx->def->key_b);
 }
 
 void	sprite_init(t_mlx_params *mlx)
@@ -111,10 +107,10 @@ void	sprite_init(t_mlx_params *mlx)
 	sprite_finder(mlx);
 	mlx->sp_txt = malloc(sizeof(t_texture));
 	mem_check(mlx->sp_txt, mlx, 2, -1);
-	mlx->sp_txt->ptr = mlx_xpm_file_to_image(mlx->ptr, mlx->map->sprite_t,
+	mlx->sp_txt->ptr = mlx_xpm_file_to_image(mlx->ptr, mlx->map->sp_t,
 			&mlx->sp_txt->width, &mlx->sp_txt->height);
 	mem_check(mlx->sp_txt->ptr, mlx, 13, -1);
-	mlx->defined->sprite += 1;
+	mlx->def->sprite += 1;
 	mlx->sp_txt->addr = (int *)mlx_get_data_addr(mlx->sp_txt->ptr,
 			&mlx->sp_txt->bpp, &mlx->sp_txt->len, &mlx->sp_txt->endian);
 	bonus_sprites(mlx);

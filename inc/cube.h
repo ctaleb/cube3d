@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 13:33:15 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/18 17:32:07 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ typedef struct	 s_map {
 	char		*south_t;
 	char		*east_t;
 	char		*west_t;
-	char		*sprite_t;
-	char		*sec_sp_t;
-	char		*skybox_t;
+	char		*sp_t;
+	char		*sp_b_t;
+	char		*sky_t;
 	char		*cdoor_t;
-	char		*healthbar_t;
+	char		*hb_t;
 	char		*food_t;
 	char		*trap_t;
 	char		*tp_a_t;
@@ -44,9 +44,9 @@ typedef struct	 s_map {
 	char		*tp_d_t;
 	char		*key_a_t;
 	char		*key_b_t;
-	char		*ending_t;
-	char		*gameover_t;
-	char		*nextlevel;
+	char		*end_t;
+	char		*go_t;
+	char		*nlvl;
 	int			sprite_nb;
 	int			file_len;
 	int			floor_c;
@@ -156,7 +156,7 @@ typedef struct s_defined {
 	int			nxt_lvl;
 	int			skybox;
 	int			cdoor;
-	int			healthbar;
+	int			hb;
 	int			h_pickup;
 	int			d_pickup;
 	int			sec_sp;
@@ -167,7 +167,7 @@ typedef struct s_defined {
 	int			key_a;
 	int			key_b;
 	int			ending;
-	int			gameover;
+	int			go;
 	int			sprite;
 	int			north;
 	int			south;
@@ -182,11 +182,12 @@ typedef struct	s_mlx_parmas {
 	int			stage;
 	int			d_stage;
 	int			w_stage;
+	int			finished;
 	char		*memory[255];
 	char		**file;
 	t_image		*img;
 	t_map		*map;
-	t_defined	*defined;
+	t_defined	*def;
 	t_texture	*n_txt;
 	t_texture	*s_txt;
 	t_texture	*e_txt;
@@ -224,6 +225,7 @@ int				space_comma(char *line, int i, t_mlx_params *mlx);
 int				data_check(t_map *map_data);
 void			start_check(t_map *map_data, t_mlx_params *mlx);
 void			map_check(int x, int y, t_map *map_data, t_mlx_params *mlx);
+int				read_cub(t_mlx_params *mlx);
 void			read_mandatory(int i, t_mlx_params *mlx);
 void			read_textures(int i, t_mlx_params *mlx);
 void			read_bonus_sprites(int i, t_mlx_params *mlx);
@@ -244,7 +246,6 @@ void			ray_init(t_mlx_params *mlx);
 void			texture_init(t_mlx_params *mlx);
 t_texture		*texturer(t_mlx_params *mlx, char *path, int *check);
 void			input_init(t_mlx_params *mlx);
-void			mousespeed_calc(float speed, t_mlx_params *mlx);
 
 int				frame_gen(t_mlx_params *mlx);
 void			my_mlx_pixel_put(t_mlx_params *mlx, int x, int y, int color);
@@ -272,6 +273,7 @@ void			sprite_reset(t_mlx_params *mlx);
 void			sprite_xpos(int i, t_mlx_params *mlx);
 void			sprite_sizer(int i, t_mlx_params *mlx);
 void			link_door(t_mlx_params *mlx, int i, int x, int y);
+void			door_opener(t_mlx_params *mlx, int i);
 
 int				anglizer(float vx1, float vy1, float vx2, float vy2);
 int				angler(float alpha, float beta);
@@ -292,6 +294,10 @@ void			put_healthbar(t_mlx_params *mlx);
 int				key_press(int keycode, t_mlx_params *mlx);
 int				key_release(int keycode, t_mlx_params *mlx);
 int				mouse_move(int x, int y, t_mlx_params *mlx);
+int				check_f_coords(char side, t_mlx_params *mlx, float speed);
+int				check_b_coords(char side, t_mlx_params *mlx, float speed);
+void			relocate(t_mlx_params *mlx);
+
 int				escape_key(int keycode);
 void			action(t_mlx_params *mlx);
 
@@ -303,8 +309,6 @@ void			get_resolution(t_map *map_data, char *line, t_mlx_params *mlx);
 
 int				create_bitmap(t_mlx_params *mlx);
 
-// void			mem_set(t_mlx_params *mlx);
-
 void			free_matrix(t_mlx_params *mlx, int mode);
 void			mem_check(void *ptr, t_mlx_params *mlx, int ernum, int stage);
 void			file_check(void *ptr, t_mlx_params *mlx, int j);
@@ -312,6 +316,9 @@ void			matrix_check(void *ptr, t_mlx_params *mlx, int j, int mode);
 void			sp_check(void *ptr, t_mlx_params *mlx, int j);
 void			error_handler(int ernum, t_mlx_params *mlx, int stage);
 void			free_all(t_mlx_params *mlx, int stage);
+void			ender(t_mlx_params *mlx);
+void			put_ending(t_mlx_params *mlx);
+void			put_gameover(t_mlx_params *mlx);
 
 int				rgbtoi(int t, int r, int g, int b);
 int				trgbmod(int trgb, float factor);

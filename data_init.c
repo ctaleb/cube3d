@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:56:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 13:33:55 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/18 16:06:59 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,27 +75,27 @@ void	pl_init(t_mlx_params *mlx)
 
 void	define_init(t_mlx_params *mlx)
 {
-	mlx->defined = malloc(sizeof(t_defined));
-	mem_check(mlx->defined, mlx, 2, mlx->stage);
+	mlx->def = malloc(sizeof(t_defined));
+	mem_check(mlx->def, mlx, 2, mlx->stage);
 	mlx->d_stage = mlx->stage;
-	mlx->defined->nxt_lvl = 0;
-	mlx->defined->skybox = 0;
-	mlx->defined->cdoor = 0;
-	mlx->defined->healthbar = 0;
-	mlx->defined->h_pickup = 0;
-	mlx->defined->d_pickup = 0;
-	mlx->defined->sec_sp = 0;
-	mlx->defined->tp_a = 0;
-	mlx->defined->tp_b = 0;
-	mlx->defined->tp_c = 0;
-	mlx->defined->tp_d = 0;
-	mlx->defined->key_a = 0;
-	mlx->defined->key_b = 0;
-	mlx->defined->ending = 0;
-	mlx->defined->gameover = 0;
-	mlx->defined->sprite = 0;
-	mlx->defined->north = 0;
-	mlx->defined->south = 0;
-	mlx->defined->east = 0;
-	mlx->defined->west = 0;
+	mlx->def->nxt_lvl = 0;
+	mlx->def->skybox = 0;
+	mlx->def->cdoor = 0;
+	mlx->def->hb = 0;
+	mlx->def->h_pickup = 0;
+	mlx->def->d_pickup = 0;
+	mlx->def->sec_sp = 0;
+	mlx->def->tp_a = 0;
+	mlx->def->tp_b = 0;
+	mlx->def->tp_c = 0;
+	mlx->def->tp_d = 0;
+	mlx->def->key_a = 0;
+	mlx->def->key_b = 0;
+	mlx->def->ending = 0;
+	mlx->def->go = 0;
+	mlx->def->sprite = 0;
+	mlx->def->north = 0;
+	mlx->def->south = 0;
+	mlx->def->east = 0;
+	mlx->def->west = 0;
 }

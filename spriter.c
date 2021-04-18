@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 15:14:24 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 13:05:35 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/18 16:14:21 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,9 @@ void	put_sprite(int i, t_texture *texture, t_mlx_params *mlx)
 	}
 }
 
-t_texture	*sprite_select(t_mlx_params *mlx, int i)
+static t_texture	*sub_selector(t_mlx_params *mlx, int i, int mode)
 {
-	if (mlx->sp[i]->type == 4 && mlx->defined->sec_sp)
-		return (mlx->sec_sp);
-	else if (mlx->sp[i]->type == 5 && mlx->defined->h_pickup)
-		return (mlx->h_pickup);
-	else if (mlx->sp[i]->type == 6 && mlx->defined->d_pickup)
-		return (mlx->d_pickup);
-	else if (mlx->sp[i]->type == 9 && mlx->defined->tp_a
-		&& mlx->defined->tp_b && mlx->defined->tp_c && mlx->defined->tp_d)
+	if (mode == 1)
 	{
 		mlx->sp[i]->state++;
 		if (mlx->sp[i]->state > 21)
@@ -77,14 +70,30 @@ t_texture	*sprite_select(t_mlx_params *mlx, int i)
 		else if (mlx->sp[i]->state <= 21)
 			return (mlx->tp_d);
 	}
-	else if (mlx->sp[i]->type == 10 && mlx->defined->key_a
-		&& mlx->defined->key_b)
+	else
 	{
 		if (mlx->sp[i]->state == 0)
 			return (mlx->key_a);
 		else
 			return (mlx->key_b);
 	}
+	return (mlx->sp_txt);
+}
+
+t_texture	*sprite_select(t_mlx_params *mlx, int i)
+{
+	if (mlx->sp[i]->type == 4 && mlx->def->sec_sp)
+		return (mlx->sec_sp);
+	else if (mlx->sp[i]->type == 5 && mlx->def->h_pickup)
+		return (mlx->h_pickup);
+	else if (mlx->sp[i]->type == 6 && mlx->def->d_pickup)
+		return (mlx->d_pickup);
+	else if (mlx->sp[i]->type == 9 && mlx->def->tp_a
+		&& mlx->def->tp_b && mlx->def->tp_c && mlx->def->tp_d)
+		return (sub_selector(mlx, i, 1));
+	else if (mlx->sp[i]->type == 10 && mlx->def->key_a
+		&& mlx->def->key_b)
+		return (sub_selector(mlx, i, 0));
 	return (mlx->sp_txt);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 10:41:03 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 10:47:52 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/18 17:27:01 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	key_release(int keycode, t_mlx_params *mlx)
 	return (0);
 }
 
-int mouse_move(int x, int y, t_mlx_params *mlx)
+int	mouse_move(int x, int y, t_mlx_params *mlx)
 {
 	(void)y;
 	mlx->input->mouse_x = x;
@@ -70,8 +70,6 @@ void	action(t_mlx_params *mlx)
 {
 	int	x;
 	int	y;
-	int	d_x;
-	int	d_y;
 	int	i;
 
 	x = (int)mlx->pl->x;
@@ -82,21 +80,7 @@ void	action(t_mlx_params *mlx)
 		while (i < mlx->map->sprite_nb)
 		{
 			if ((int)mlx->sp[i]->x == x && (int)mlx->sp[i]->y == y)
-			{
-				d_x = mlx->sp[i]->door_x;
-				d_y = mlx->sp[i]->door_y;
-				if (mlx->map->grid[d_y][d_x] == '8')
-				{
-					mlx->map->grid[d_y][d_x] = '7';
-					mlx->sp[i]->state = 0;
-				}
-				else
-				{
-					mlx->map->grid[d_y][d_x] = '8';
-					mlx->sp[i]->state = 1;
-				}
-				mlx->input->action = 0;
-			}
+				door_opener(mlx, i);
 			i++;
 		}
 	}
@@ -118,5 +102,4 @@ void	input_init(t_mlx_params *mlx)
 		mlx_mouse_move(mlx->win, mlx->map->res_x / 2, mlx->map->res_y / 2);
 	mlx->input->mouse_x = mlx->map->res_x / 2;
 	mlx->input->mouse_y = mlx->map->res_x / 2;
-	mousespeed_calc(0.001, mlx);
 }

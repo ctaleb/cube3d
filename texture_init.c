@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 15:50:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 13:14:44 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/18 17:32:07 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static void	texture_check(t_mlx_params *mlx)
 {
 	mem_check(mlx->n_txt->ptr, mlx, 13, -1);
-	mlx->defined->north += 1;
+	mlx->def->north += 1;
 	mem_check(mlx->s_txt->ptr, mlx, 13, -1);
-	mlx->defined->south += 1;
+	mlx->def->south += 1;
 	mem_check(mlx->e_txt->ptr, mlx, 13, -1);
-	mlx->defined->east += 1;
+	mlx->def->east += 1;
 	mem_check(mlx->w_txt->ptr, mlx, 13, -1);
-	mlx->defined->west += 1;
+	mlx->def->west += 1;
 }
 
 static void	texture_convert(t_mlx_params *mlx)
@@ -47,16 +47,16 @@ static void	texture_convert(t_mlx_params *mlx)
 
 static void	bonus_textures(t_mlx_params *mlx)
 {
-	if (mlx->defined->skybox)
-		mlx->skybox = texturer(mlx, mlx->map->skybox_t, &mlx->defined->skybox);
-	if (mlx->defined->healthbar)
-		mlx->healthbar = texturer(mlx, mlx->map->healthbar_t, &mlx->defined->healthbar);
-	if (mlx->defined->ending)
-		mlx->ending = texturer(mlx, mlx->map->ending_t, &mlx->defined->ending);
-	if (mlx->defined->gameover)
-		mlx->gameover = texturer(mlx, mlx->map->gameover_t, &mlx->defined->gameover);
-	if (mlx->defined->cdoor)
-		mlx->cdoor = texturer(mlx, mlx->map->cdoor_t, &mlx->defined->cdoor);
+	if (mlx->def->skybox)
+		mlx->skybox = texturer(mlx, mlx->map->sky_t, &mlx->def->skybox);
+	if (mlx->def->hb)
+		mlx->healthbar = texturer(mlx, mlx->map->hb_t, &mlx->def->hb);
+	if (mlx->def->ending)
+		mlx->ending = texturer(mlx, mlx->map->end_t, &mlx->def->ending);
+	if (mlx->def->go)
+		mlx->gameover = texturer(mlx, mlx->map->go_t, &mlx->def->go);
+	if (mlx->def->cdoor)
+		mlx->cdoor = texturer(mlx, mlx->map->cdoor_t, &mlx->def->cdoor);
 }
 
 void	texture_init(t_mlx_params *mlx)

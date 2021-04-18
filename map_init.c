@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 15:23:57 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 13:50:16 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/18 17:32:07 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	bonus_set(t_mlx_params *mlx)
 {
-	mlx->map->skybox_t = NULL;
+	mlx->map->sky_t = NULL;
 	mlx->map->cdoor_t = NULL;
-	mlx->map->sec_sp_t = NULL;
-	mlx->map->healthbar_t = NULL;
+	mlx->map->sp_b_t = NULL;
+	mlx->map->hb_t = NULL;
 	mlx->map->food_t = NULL;
 	mlx->map->trap_t = NULL;
 	mlx->map->tp_a_t = NULL;
@@ -26,9 +26,10 @@ void	bonus_set(t_mlx_params *mlx)
 	mlx->map->tp_d_t = NULL;
 	mlx->map->key_a_t = NULL;
 	mlx->map->key_b_t = NULL;
-	mlx->map->ending_t = NULL;
-	mlx->map->gameover_t = NULL;
-	mlx->map->nextlevel = NULL;
+	mlx->map->end_t = NULL;
+	mlx->map->go_t = NULL;
+	mlx->map->nlvl = NULL;
+	mlx->finished = 0;
 }
 
 void	map_data_init(t_mlx_params *mlx, char *path)
@@ -46,7 +47,7 @@ void	map_data_init(t_mlx_params *mlx, char *path)
 	mlx->map->south_t = NULL;
 	mlx->map->east_t = NULL;
 	mlx->map->west_t = NULL;
-	mlx->map->sprite_t = NULL;
+	mlx->map->sp_t = NULL;
 	mlx->map->sprite_nb = 0;
 	mlx->map->file_len = file_len(path, mlx);
 	mlx->file = ft_calloc(mlx->map->file_len + 1, sizeof(char *));
@@ -70,16 +71,14 @@ void	grid_creator(t_mlx_params *mlx)
 	{
 		mlx->map->grid[i] = ft_calloc(mlx->map->max_x + 1, sizeof(char));
 		mem_check(mlx->map->grid[i], mlx, 2, mlx->stage);
-		// matrix_check(mlx->map->grid[i], mlx, i, 0);
 		mlx->map->dup[i] = ft_calloc(mlx->map->max_x + 1, sizeof(char));
 		mem_check(mlx->map->dup[i], mlx, 2, mlx->stage);
-		// matrix_check(mlx->map->dup[i], mlx, i, 1);
 		i++;
 	}
 	mlx->map->ratio = (int)((mlx->map->res_x / mlx->map->res_y
-		+ mlx->map->res_x / 10 + mlx->map->res_y / 10)
-		/ (mlx->map->max_x / mlx->map->max_y + mlx->map->max_x
-		+ mlx->map->max_y));
+				+ mlx->map->res_x / 10 + mlx->map->res_y / 10)
+			/ (mlx->map->max_x / mlx->map->max_y + mlx->map->max_x
+				+ mlx->map->max_y));
 	if (mlx->map->ratio <= 0)
 		mlx->map->ratio = 1;
 }
@@ -90,24 +89,9 @@ void	grid_init(t_mlx_params *mlx)
 	int		j;
 	int		temp;
 
-	i = 0;
-	while (!data_check(mlx->map) && !is_map(mlx->file[i]))
-	{
-		read_mandatory(i, mlx);
-		read_textures(i, mlx);
-		read_bonus_sprites(i, mlx);
-		read_bonus_textures(i, mlx);
-		read_bonus_teleporter(i, mlx);
-		read_bonus_info(i, mlx);
-//function with other cases?
-		// else if (mlx->file[i][0] != '\0')
-		// 	error_handler(24, mlx, 4);
-		i++;
-	}
+	i = read_cub(mlx);
 	while (mlx->file[i] != NULL && mlx->file[i][0] == '\0')
 		i++;
-	// while (!is_map(mlx->file[i]))
-	// 	i++;
 	if (mlx->file[i] != NULL && is_map(mlx->file[i]))
 		mlx->map->map_id = i;
 	else
@@ -136,10 +120,8 @@ void	map_init(t_mlx_params *mlx)
 	while (mlx->file[i])
 	{
 		analyne(mlx->map, mlx->file[i]);
-		// free(mlx->file[i]);
 		i++;
 	}
-	// free(mlx->file);
 	dup_map(mlx->map->grid, mlx->map->dup);
 	start_check(mlx->map, mlx);
 	map_check(mlx->map->start_x, mlx->map->start_y, mlx->map, mlx);

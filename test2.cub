@@ -1,4 +1,4 @@
-R 1920 1080
+R 650 650
 NO ./src/textures/runewall.xpm
 SO ./src/textures/runedoor.xpm
 WE ./src/textures/slabwall.xpm
@@ -13,11 +13,19 @@ S ./src/textures/chest.xpm
 
 F 220,100,0
 
+T1 ./src/textures/portal1.xpm
+T2 ./src/textures/portal2.xpm
+T3 ./src/textures/portal3.xpm
+T4 ./src/textures/portal4.xpm
+
+ED ./src/textures/endscreen.xpm
+
 C 225,30,0
 
 
+
 11111111111111111111111111111111111111
-1E000000000000000000000000000000000001
+1E000000000000090000000000000000000001
 10000000000000000000000000000000000001
 10000000000000000000000000000000000001
 10000000000000000000000000000000000001

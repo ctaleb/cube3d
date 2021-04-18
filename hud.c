@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:48:07 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/17 16:51:06 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/18 17:14:20 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	sky_painter(t_mlx_params *mlx)
 
 void	put_sky(t_mlx_params *mlx)
 {
-	if (!mlx->defined->skybox)
+	if (!mlx->def->skybox)
 		return ;
 	mlx->f->angle = rad_deg(atan(mlx->f->cam_y / mlx->f->cam_x));
 	if (mlx->f->cam_x > 0 && mlx->f->cam_y < 0)
@@ -80,7 +80,7 @@ void	put_healthbar(t_mlx_params *mlx)
 	int	x;
 	int	y;
 
-	if (!mlx->defined->healthbar)
+	if (!mlx->def->hb)
 		return ;
 	tex_x = 0;
 	tex_y = 0;
@@ -91,7 +91,8 @@ void	put_healthbar(t_mlx_params *mlx)
 		tex_x = 0;
 		while (tex_x < mlx->healthbar->width)
 		{
-			my_mlx_pixel_put(mlx, x, y, mlx->healthbar->addr[tex_y * mlx->healthbar->width + tex_x]);
+			my_mlx_pixel_put(mlx, x, y, mlx->healthbar->addr[tex_y
+				* mlx->healthbar->width + tex_x]);
 			tex_x++;
 			x++;
 		}

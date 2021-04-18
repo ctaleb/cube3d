@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 13:27:33 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 13:50:12 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/18 17:13:25 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,24 @@ int	is_map(char *line)
 	return (1);
 }
 
+int	read_cub(t_mlx_params *mlx)
+{
+	int	i;
+
+	i = 0;
+	while (!data_check(mlx->map) && !is_map(mlx->file[i]))
+	{
+		read_mandatory(i, mlx);
+		read_textures(i, mlx);
+		read_bonus_sprites(i, mlx);
+		read_bonus_textures(i, mlx);
+		read_bonus_teleporter(i, mlx);
+		read_bonus_info(i, mlx);
+		i++;
+	}
+	return (i);
+}
+
 int	analyne(t_map *map_data, char *line)
 {
 	map_data->sprite_nb += get_map(map_data->grid, map_data->max_x, line);
@@ -43,28 +61,28 @@ void	read_textures(int i, t_mlx_params *mlx)
 {
 	if (mlx->file[i][0] == 'S' && mlx->file[i][1] != 'O')
 	{
-		mlx->map->sprite_t = get_path(&mlx->file[i][1], mlx->map->sprite_t, mlx);
-		mlx->defined->sprite = 1;
+		mlx->map->sp_t = get_path(&mlx->file[i][1], mlx->map->sp_t, mlx);
+		mlx->def->sprite = 1;
 	}
 	else if (mlx->file[i][0] == 'N' && mlx->file[i][1] == 'O')
 	{
 		mlx->map->north_t = get_path(&mlx->file[i][2], mlx->map->north_t, mlx);
-		mlx->defined->north = 1;
+		mlx->def->north = 1;
 	}
 	else if (mlx->file[i][0] == 'S' && mlx->file[i][1] == 'O')
 	{
 		mlx->map->south_t = get_path(&mlx->file[i][2], mlx->map->south_t, mlx);
-		mlx->defined->south = 1;
+		mlx->def->south = 1;
 	}
 	else if (mlx->file[i][0] == 'E' && mlx->file[i][1] == 'A')
 	{
 		mlx->map->east_t = get_path(&mlx->file[i][2], mlx->map->east_t, mlx);
-		mlx->defined->east = 1;
+		mlx->def->east = 1;
 	}
 	else if (mlx->file[i][0] == 'W' && mlx->file[i][1] == 'E')
 	{
 		mlx->map->west_t = get_path(&mlx->file[i][2], mlx->map->west_t, mlx);
-		mlx->defined->west = 1;
+		mlx->def->west = 1;
 	}
 }
 

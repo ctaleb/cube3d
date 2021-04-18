@@ -6,7 +6,7 @@
 #    By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 11:40:32 by ctaleb            #+#    #+#              #
-#    Updated: 2021/04/17 16:51:21 by ctaleb           ###   ########lyon.fr    #
+#    Updated: 2021/04/18 17:55:11 by ctaleb           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,10 @@ SRCS = main.c\
 		bitmapping.c\
 		parser.c\
 		hud.c\
-		data_reader.c
+		data_reader.c\
+		doors.c\
+		movement_utils.c\
+		events_utils.c
 
 # OBJ_FILES = $(SRC_FILES:.c=.o)
 
@@ -88,6 +91,12 @@ DELAY = 0.02
 
 .PHONY = all $(LIB_PATH)$(LIB) $(NAME) bonus clean fclean re project all42 42logo
 
+%.o: %.c $(INCS_PATH)$(INCS)
+	@mkdir -p obj
+	@printf "$(YELLOW)building$(DEFAULT)	%-20s	" "$@"
+	@$(CC) $(CFLAGS) -I $(INCS_PATH). -o $@ -c $<
+	@printf "$(GREEN)[ok]$(DEFAULT)\n"
+
 all: project $(NAME)
 
 $(NAME): $(MLX_PATH)$(MLIB) $(OBJS) $(LIB_PATH)$(LIB)
@@ -97,12 +106,6 @@ $(NAME): $(MLX_PATH)$(MLIB) $(OBJS) $(LIB_PATH)$(LIB)
 	@$(CC) $(CFLAGS) -o $@ -I $(INCS_PATH). $(OBJS) $(LIB_PATH)$(LIB) $(MLX)
 	@printf "$(GREEN)[ok]$(DEFAULT)\n"
 	@printf "                $(GREEN)[exec done]$(DEFAULT)                    \n\n"
-
-%.o: %.c $(INCS_PATH)$(INCS)
-	@mkdir -p obj
-	@printf "$(YELLOW)building$(DEFAULT)	%-20s	" "$@"
-	@$(CC) $(CFLAGS) -I $(INCS_PATH). -o $@ -c $<
-	@printf "$(GREEN)[ok]$(DEFAULT)\n"
 
 bonus: all
 

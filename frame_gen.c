@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:38:27 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 13:28:38 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/18 15:40:03 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	my_mlx_multi_put(t_mlx_params *mlx, int x, int y, int color)
 	}
 }
 
-int	frame_gen(t_mlx_params *mlx)
+static void	framer(t_mlx_params *mlx)
 {
 	sprite_reset(mlx);
 	movement(mlx);
@@ -65,6 +65,16 @@ int	frame_gen(t_mlx_params *mlx)
 		put_player(mlx);
 	}
 	put_healthbar(mlx);
+}
+
+int	frame_gen(t_mlx_params *mlx)
+{
+	if (!mlx->finished && mlx->pl->health > 0)
+		framer(mlx);
+	else if (mlx->finished)
+		put_ending(mlx);
+	else if (mlx->gameover)
+		put_gameover(mlx);
 	if (mlx->save)
 	{
 		create_bitmap(mlx);

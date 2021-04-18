@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 15:28:59 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/04 13:59:06 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/18 17:32:56 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,22 @@ int	rgbtoi(int t, int r, int g, int b)
 void	shader(t_mlx_params *mlx)
 {
 	int		i;
-	// float	x;
 	float	j;
 	float	step;
 
 	i = 0;
 	j = 0;
-	// x = 0;
 	step = (mlx->map->res_y) / 510;
 	while (i < (mlx->map->res_y) / 2)
 	{
 		mlx->f->shade[i] = trgbmod(mlx->map->ceiling_c, 0 + j * 0.0007);
-		// if (i++ % (mlx->map->res_y) / 10 == 0)
-		// 	x += 0.17;
-		j += step /** x*/;
+		j += step;
 		i++;
 	}	
 	while (i < mlx->map->res_y)
 	{
 		mlx->f->shade[i] = trgbmod(mlx->map->floor_c, 0 + j * 0.0007);
-		// if (i++ % mlx->map->res_y / 10 == 0)
-		// 	x -= 0.17;
-		j -= step /** x*/;
+		j -= step;
 		i++;
 	}
 	while (i < (int)(mlx->map->res_y * 1.3))
