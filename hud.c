@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:48:07 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/09 16:34:02 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/17 16:51:06 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	put_health(t_mlx_params *mlx, int x, int y)
 	x_max = x - 5 - 100 + mlx->pl->health;
 	y_max = y - 5;
 	y -= 20;
-	printf("%i\t%i\t%i\n", x_max, x, x - 105);
 	while (y < y_max)
 	{
 		var_x = x - 105;
@@ -34,6 +33,46 @@ void	put_health(t_mlx_params *mlx, int x, int y)
 	}
 }
 
+static void	sky_painter(t_mlx_params *mlx)
+{
+	int	tex_x;
+	int	tex_y;
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < mlx->map->res_y / 2)
+	{
+		x = 0;
+		while (x < mlx->map->res_x)
+		{
+			tex_x = x * (mlx->skybox->width / 4) / mlx->map->res_x
+				+ (mlx->skybox->width * mlx->f->angle / 360);
+			tex_y = y * (mlx->skybox->height / 3) / mlx->map->res_y
+				+ mlx->skybox->height / 3;
+			if (mlx->skybox->addr[tex_y * mlx->skybox->width + tex_x])
+				my_mlx_pixel_put(mlx, x, y, mlx->skybox->addr[tex_y
+					* mlx->skybox->width + tex_x]);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	put_sky(t_mlx_params *mlx)
+{
+	if (!mlx->defined->skybox)
+		return ;
+	mlx->f->angle = rad_deg(atan(mlx->f->cam_y / mlx->f->cam_x));
+	if (mlx->f->cam_x > 0 && mlx->f->cam_y < 0)
+		mlx->f->angle += 360;
+	if (mlx->f->cam_x < 0 && mlx->f->cam_y < 0)
+		mlx->f->angle += 180;
+	if (mlx->f->cam_x < 0 && mlx->f->cam_y > 0)
+		mlx->f->angle += 180;
+	sky_painter(mlx);
+}
+
 void	put_healthbar(t_mlx_params *mlx)
 {
 	int	tex_x;
@@ -41,6 +80,8 @@ void	put_healthbar(t_mlx_params *mlx)
 	int	x;
 	int	y;
 
+	if (!mlx->defined->healthbar)
+		return ;
 	tex_x = 0;
 	tex_y = 0;
 	y = (mlx->map->res_y / 4 * 3) - mlx->healthbar->height / 2;

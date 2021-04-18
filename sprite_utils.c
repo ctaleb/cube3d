@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 11:51:23 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/03 12:53:01 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/12 16:00:02 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,57 @@ void	sprite_xpos(int i, t_mlx_params *mlx)
 				* ((float)mlx->map->res_x / 2)) / tan(deg_rad(mlx->f->fov)));
 	mlx->sp[i]->r_x *= anglizer(mlx->f->cam_x, mlx->f->cam_y,
 			mlx->sp[i]->d_x, mlx->sp[i]->d_y);
+}
+
+// int		sprite_identify(t_mlx_params *mlx)
+// {
+// 	int	i;
+
+// 	i = 0;
+	
+// }
+
+void	link_door(t_mlx_params *mlx, int i, int x, int y)
+{
+	int	dist;
+	int	temp_x;
+	int	temp_y;
+	
+	dist = 1;
+	while(!mlx->sp[i]->door_x && !mlx->sp[i]->door_y)
+	{
+		temp_y = y - dist;
+		while (temp_y <= y + dist)
+		{
+			if (temp_y >= 0 && temp_y < mlx->map->max_y)
+			{
+				temp_x = x - dist;
+				while (temp_x <= x + dist)
+				{
+					if (temp_x >= 0 && temp_x < mlx->map->max_x)
+					{
+						if (mlx->map->grid[temp_y][temp_x] == '7'
+							|| mlx->map->grid[temp_y][temp_x] == '8')
+						{
+							if (mlx->map->grid[temp_y][temp_x] == '7')
+								mlx->sp[i]->state = 0;
+							else
+								mlx->sp[i]->state = 1;
+							mlx->sp[i]->door_x = temp_x;
+							mlx->sp[i]->door_y = temp_y;
+							return ;
+						}
+					}
+					if (temp_y == y - dist || temp_y == y + dist)
+						temp_x++;
+					else
+						temp_x += 2 * dist;
+				}
+			}
+			temp_y++;
+		}
+		dist++;
+	}
 }
 
 void	sprite_reset(t_mlx_params *mlx)

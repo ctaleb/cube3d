@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:52:50 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/05 15:42:23 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/17 15:16:23 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	mousespeed_calc(float speed, t_mlx_params *mlx)
 	float	step;
 
 	mlx->input->mouse_speed = malloc(sizeof(float) * (mlx->map->res_x));
-	mem_check(mlx->input->mouse_speed, mlx, 2, 30);
+	mem_check(mlx->input->mouse_speed, mlx, 2, mlx->stage);
 	i = 0;
 	j = 0;
 	factor = 100;

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:10:38 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/04 13:46:51 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/12 15:21:28 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ void	put_wall(t_texture *texture, t_mlx_params *mlx)
 
 t_texture	*select_wall(t_mlx_params *mlx)
 {
-	if (mlx->r->side == 1 && mlx->f->cam_x >= 0)
+	if (mlx->r->nt == 7)
+		return (mlx->cdoor);
+	else if (mlx->r->side == 1 && mlx->f->cam_x >= 0)
 		return (mlx->e_txt);
 	else if (mlx->r->side == 1 && mlx->f->cam_x < 0)
 		return (mlx->w_txt);
@@ -56,10 +58,10 @@ void	put_ray(t_mlx_params *mlx)
 		mlx->r->side = 0;
 	while (mlx->r->pos < mlx->map->res_y)
 	{
-		// if (mlx->r->pos < mlx->r->u_wall)
-		// 	my_mlx_multi_put(mlx, mlx->r->id, mlx->r->pos,
-		// 		mlx->f->shade[mlx->r->pos + ratio]);
-		if (mlx->r->pos >= mlx->r->u_wall && mlx->r->pos <= mlx->r->l_wall)
+		if (mlx->r->pos < mlx->r->u_wall && !mlx->defined->skybox)
+			my_mlx_multi_put(mlx, mlx->r->id, mlx->r->pos,
+				mlx->f->shade[mlx->r->pos + ratio]);
+		else if (mlx->r->pos >= mlx->r->u_wall && mlx->r->pos <= mlx->r->l_wall)
 			put_wall(select_wall(mlx), mlx);
 		else if (mlx->r->pos > mlx->r->l_wall)
 			my_mlx_multi_put(mlx, mlx->r->id, mlx->r->pos,
@@ -97,11 +99,11 @@ void	ray_cannon(float fish, t_mlx_params *mlx)
 		ray_len = mlx->r->dist_x * fish;
 	else
 		ray_len = mlx->r->dist_y * fish;
-	 distancer(ray_len, mlx);
+	distancer(ray_len, mlx);
 	mlx->f->mod = 0 + (int)ray_len * 0.05;
 	ray_height = (int)((mlx->map->res_y / ray_len)) + 1;
 	mlx->r->u_wall = roundf(- ((float)ray_height) / 2
 			+ (float)mlx->map->res_y / ratio);
-	mlx->r->l_wall = (float)ray_height / 2 + (float)mlx->map->res_y / ratio;
+	mlx->r->l_wall = roundf((float)ray_height / 2 + (float)mlx->map->res_y / ratio);
 	put_ray(mlx);
 }

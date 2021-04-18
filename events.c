@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 10:41:03 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/09 12:59:04 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/18 10:47:52 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	key_press(int keycode, t_mlx_params *mlx)
 		mlx->input->strafe_r = 1;
 	if (keycode == 257)
 		mlx->input->crouch = 1;
+	if (keycode == 49)
+		mlx->input->action = 1;
 	return (0);
 }
 
@@ -52,6 +54,8 @@ int	key_release(int keycode, t_mlx_params *mlx)
 		mlx->input->strafe_r = 0;
 	if (keycode == 257)
 		mlx->input->crouch = 0;
+	if (keycode == 49)
+		mlx->input->action = 0;
 	return (0);
 }
 
@@ -62,10 +66,46 @@ int mouse_move(int x, int y, t_mlx_params *mlx)
 	return (0);
 }
 
+void	action(t_mlx_params *mlx)
+{
+	int	x;
+	int	y;
+	int	d_x;
+	int	d_y;
+	int	i;
+
+	x = (int)mlx->pl->x;
+	y = (int)mlx->pl->y;
+	if (mlx->map->grid[y][x] == 'K' && mlx->input->action)
+	{
+		i = 0;
+		while (i < mlx->map->sprite_nb)
+		{
+			if ((int)mlx->sp[i]->x == x && (int)mlx->sp[i]->y == y)
+			{
+				d_x = mlx->sp[i]->door_x;
+				d_y = mlx->sp[i]->door_y;
+				if (mlx->map->grid[d_y][d_x] == '8')
+				{
+					mlx->map->grid[d_y][d_x] = '7';
+					mlx->sp[i]->state = 0;
+				}
+				else
+				{
+					mlx->map->grid[d_y][d_x] = '8';
+					mlx->sp[i]->state = 1;
+				}
+				mlx->input->action = 0;
+			}
+			i++;
+		}
+	}
+}
+
 void	input_init(t_mlx_params *mlx)
 {
 	mlx->input = malloc(sizeof(t_input));
-	mem_check(mlx->input, mlx, 2, 30);
+	mem_check(mlx->input, mlx, 2, mlx->stage);
 	mlx->input->forward = 0;
 	mlx->input->backward = 0;
 	mlx->input->strafe_l = 0;
@@ -73,6 +113,7 @@ void	input_init(t_mlx_params *mlx)
 	mlx->input->rotate_l = 0;
 	mlx->input->rotate_r = 0;
 	mlx->input->crouch = 0;
+	mlx->input->action = 0;
 	if (!mlx->save)
 		mlx_mouse_move(mlx->win, mlx->map->res_x / 2, mlx->map->res_y / 2);
 	mlx->input->mouse_x = mlx->map->res_x / 2;

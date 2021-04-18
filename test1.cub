@@ -1,45 +1,49 @@
-R 1920   1080
-NO ./src/textures/colorstone.xpm
-SO ./src/textures/wood.xpm
-WE ./src/textures/redbrick.xpm
+R 1920 1080
+NO ./src/textures/hierowall.xpm
+SO ./src/textures/ground.xpm
+WE ./src/textures/mosswall.xpm
 
 BX ./src/textures/skybox.xpm
+DC ./src/textures/hierodoor.xpm
 HB ./src/textures/healthbar.xpm
 
-O1 ./src/textures/food.xpm
-O2 ./src/textures/trap.xpm
+K1 ./src/textures/orb_red.xpm
+K2 ./src/textures/orb_green.xpm
+
+O1 ./src/textures/hpot.xpm
+O2 ./src/textures/cobra.xpm
 
 O3 ./src/textures/pillar.xpm
 
-T1 ./src/textures/teleporter1.xpm
-T2 ./src/textures/teleporter2.xpm
-T3 ./src/textures/teleporter3.xpm
-T4 ./src/textures/teleporter4.xpm
+T1 ./src/textures/portal1.xpm
+T2 ./src/textures/portal2.xpm
+T3 ./src/textures/portal3.xpm
+T4 ./src/textures/portal4.xpm
 
 GO ./src/textures/gameover.xpm
 ED ./src/textures/ending.xpm
 
-NL ./test2.cub
+NL test2.cub
 
-EA ./src/textures/texture15.xpm
-S./src/textures/pizza.xpm
-
-
-
-F 220 ,   100,0
+EA ./src/textures/cobblewall.xpm
+S ./src/textures/sarcophagus.xpm
 
 
-C0,     255     ,  0
+
+F 253 ,   223,119
+
+
+C 0,     255     ,  0
 
 
 
 11111   1111111111111111111111111
-10001   1000000000110060500400091
+10001   1000000000110060500400E91
 113111111011000001110000000000001
-1000000000000000000000000E0000021
-113111111011000001110000000000001
-100000000000000001110111111111111
-11110111111111011100000010001
+100000000000000000000000000000021
+11311111101100000111000K000000001
+100000000000000001117111111111111
+111101111111110111000K0010001
 11110111111111011101010010001
 11000000110101011100000010001
 10000000000000001100000000001

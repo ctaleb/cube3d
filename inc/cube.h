@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/09 15:41:24 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/18 13:33:15 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct	 s_map {
 	char		*sprite_t;
 	char		*sec_sp_t;
 	char		*skybox_t;
+	char		*cdoor_t;
 	char		*healthbar_t;
 	char		*food_t;
 	char		*trap_t;
@@ -41,6 +42,8 @@ typedef struct	 s_map {
 	char		*tp_b_t;
 	char		*tp_c_t;
 	char		*tp_d_t;
+	char		*key_a_t;
+	char		*key_b_t;
 	char		*ending_t;
 	char		*gameover_t;
 	char		*nextlevel;
@@ -58,6 +61,7 @@ typedef struct	s_input {
 	int			rotate_l;
 	int			rotate_r;
 	int			crouch;
+	int			action;
 	int			mouse_x;
 	int			mouse_y;
 	float		*mouse_speed;
@@ -85,6 +89,9 @@ typedef struct	s_ray {
 	int			pos;
 	float		nwall_x;
 	float		nwall_y;
+	int			nt_x;
+	int			nt_y;
+	int			nt;
 	int			shift_x;
 	int			shift_y;
 	float		s_x;
@@ -128,7 +135,10 @@ typedef struct	s_sprites {
 	int			visible;
 	float		x;
 	float		y;
+	int			door_x;
+	int			door_y;
 	float		dist;
+	float		true_dist;
 	float		d_x;
 	float		d_y;
 	float		r_x;
@@ -145,19 +155,35 @@ typedef struct	s_sprites {
 typedef struct s_defined {
 	int			nxt_lvl;
 	int			skybox;
+	int			cdoor;
 	int			healthbar;
 	int			h_pickup;
 	int			d_pickup;
 	int			sec_sp;
-	int			teleporter;
+	int			tp_a;
+	int			tp_b;
+	int			tp_c;
+	int			tp_d;
+	int			key_a;
+	int			key_b;
 	int			ending;
 	int			gameover;
+	int			sprite;
+	int			north;
+	int			south;
+	int			east;
+	int			west;
 }				t_defined;
 
 typedef struct	s_mlx_parmas {
 	void		*ptr;
 	void		*win;
 	int			save;
+	int			stage;
+	int			d_stage;
+	int			w_stage;
+	char		*memory[255];
+	char		**file;
 	t_image		*img;
 	t_map		*map;
 	t_defined	*defined;
@@ -173,9 +199,12 @@ typedef struct	s_mlx_parmas {
 	t_texture	*tp_b;
 	t_texture	*tp_c;
 	t_texture	*tp_d;
+	t_texture	*key_a;
+	t_texture	*key_b;
 	t_texture	*gameover;
 	t_texture	*ending;
 	t_texture	*skybox;
+	t_texture	*cdoor;
 	t_texture	*healthbar;
 	t_player	*pl;
 	t_ray		*r;
@@ -195,6 +224,12 @@ int				space_comma(char *line, int i, t_mlx_params *mlx);
 int				data_check(t_map *map_data);
 void			start_check(t_map *map_data, t_mlx_params *mlx);
 void			map_check(int x, int y, t_map *map_data, t_mlx_params *mlx);
+void			read_mandatory(int i, t_mlx_params *mlx);
+void			read_textures(int i, t_mlx_params *mlx);
+void			read_bonus_sprites(int i, t_mlx_params *mlx);
+void			read_bonus_textures(int i, t_mlx_params *mlx);
+void			read_bonus_teleporter(int i, t_mlx_params *mlx);
+void			read_bonus_info(int i, t_mlx_params *mlx);
 
 void			map_data_init(t_mlx_params *mlx, char *path);
 void			grid_init(t_mlx_params *mlx);
@@ -207,7 +242,7 @@ void			sprite_init(t_mlx_params *mlx);
 void			fov_init(t_mlx_params *mlx);
 void			ray_init(t_mlx_params *mlx);
 void			texture_init(t_mlx_params *mlx);
-t_texture		*texturer(t_mlx_params *mlx, char *path);
+t_texture		*texturer(t_mlx_params *mlx, char *path, int *check);
 void			input_init(t_mlx_params *mlx);
 void			mousespeed_calc(float speed, t_mlx_params *mlx);
 
@@ -224,17 +259,19 @@ void			put_fov(t_mlx_params *mlx);
 
 void			find_y(t_mlx_params *mlx);
 void			find_x(t_mlx_params *mlx);
-int				is_valid_coord(int shft_x, int shft_y, t_mlx_params *mlx);
+int				is_valid_coord(int shft_x, int shft_y, t_mlx_params *mlx, int mode);
 
 void			ray_cannon(float fish, t_mlx_params *mlx);
 void			sprite_check(t_mlx_params *mlx);
 void			sprite_dist(t_mlx_params *mlx);
 void			sprite_sort(t_mlx_params *mlx);
 void			sprite_disable(int i, t_mlx_params *mlx);
+void			sprite_deactivate(int x, int y, int status, t_mlx_params *mlx);
 
 void			sprite_reset(t_mlx_params *mlx);
 void			sprite_xpos(int i, t_mlx_params *mlx);
 void			sprite_sizer(int i, t_mlx_params *mlx);
+void			link_door(t_mlx_params *mlx, int i, int x, int y);
 
 int				anglizer(float vx1, float vy1, float vx2, float vy2);
 int				angler(float alpha, float beta);
@@ -247,6 +284,7 @@ int				check_coords(char dir, char side, t_mlx_params *mlx, float speed);
 void			wall_dist_calc(char dir, t_mlx_params *mlx);
 int				wall_check(float x, float y, t_mlx_params *mlx);
 void			inverse_cam(char dir, t_mlx_params *mlx);
+void			shift_init(t_mlx_params *mlx);
 
 void			put_sky(t_mlx_params *mlx);
 void			put_healthbar(t_mlx_params *mlx);
@@ -255,9 +293,10 @@ int				key_press(int keycode, t_mlx_params *mlx);
 int				key_release(int keycode, t_mlx_params *mlx);
 int				mouse_move(int x, int y, t_mlx_params *mlx);
 int				escape_key(int keycode);
+void			action(t_mlx_params *mlx);
 
 int				get_colour(char *line, t_mlx_params *mlx);
-char			*get_path(char *line, t_mlx_params *mlx);
+char			*get_path(char *line, char *dst, t_mlx_params *mlx);
 int				get_map(char **grid, int maxlen, char *line);
 void			dup_map(char **grid, char **dup);
 void			get_resolution(t_map *map_data, char *line, t_mlx_params *mlx);

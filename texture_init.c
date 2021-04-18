@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 15:50:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/09 15:42:03 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/18 13:14:44 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 
 static void	texture_check(t_mlx_params *mlx)
 {
-	mem_check(mlx->n_txt->ptr, mlx, 13, 20);
-	mem_check(mlx->s_txt->ptr, mlx, 13, 21);
-	mem_check(mlx->e_txt->ptr, mlx, 13, 22);
-	mem_check(mlx->w_txt->ptr, mlx, 13, 23);
+	mem_check(mlx->n_txt->ptr, mlx, 13, -1);
+	mlx->defined->north += 1;
+	mem_check(mlx->s_txt->ptr, mlx, 13, -1);
+	mlx->defined->south += 1;
+	mem_check(mlx->e_txt->ptr, mlx, 13, -1);
+	mlx->defined->east += 1;
+	mem_check(mlx->w_txt->ptr, mlx, 13, -1);
+	mlx->defined->west += 1;
 }
 
 static void	texture_convert(t_mlx_params *mlx)
@@ -44,25 +48,27 @@ static void	texture_convert(t_mlx_params *mlx)
 static void	bonus_textures(t_mlx_params *mlx)
 {
 	if (mlx->defined->skybox)
-		mlx->skybox = texturer(mlx, mlx->map->skybox_t);
+		mlx->skybox = texturer(mlx, mlx->map->skybox_t, &mlx->defined->skybox);
 	if (mlx->defined->healthbar)
-		mlx->healthbar = texturer(mlx, mlx->map->healthbar_t);
+		mlx->healthbar = texturer(mlx, mlx->map->healthbar_t, &mlx->defined->healthbar);
 	if (mlx->defined->ending)
-		mlx->ending = texturer(mlx, mlx->map->ending_t);
+		mlx->ending = texturer(mlx, mlx->map->ending_t, &mlx->defined->ending);
 	if (mlx->defined->gameover)
-		mlx->gameover = texturer(mlx, mlx->map->gameover_t);
+		mlx->gameover = texturer(mlx, mlx->map->gameover_t, &mlx->defined->gameover);
+	if (mlx->defined->cdoor)
+		mlx->cdoor = texturer(mlx, mlx->map->cdoor_t, &mlx->defined->cdoor);
 }
 
 void	texture_init(t_mlx_params *mlx)
 {
 	mlx->n_txt = malloc(sizeof(t_texture));
-	mem_check(mlx->n_txt, mlx, 2, 16);
+	mem_check(mlx->n_txt, mlx, 2, mlx->stage);
 	mlx->s_txt = malloc(sizeof(t_texture));
-	mem_check(mlx->s_txt, mlx, 2, 17);
+	mem_check(mlx->s_txt, mlx, 2, mlx->stage);
 	mlx->e_txt = malloc(sizeof(t_texture));
-	mem_check(mlx->e_txt, mlx, 2, 18);
+	mem_check(mlx->e_txt, mlx, 2, mlx->stage);
 	mlx->w_txt = malloc(sizeof(t_texture));
-	mem_check(mlx->w_txt, mlx, 2, 19);
+	mem_check(mlx->w_txt, mlx, 2, mlx->stage);
 	texture_convert(mlx);
 	bonus_textures(mlx);
 }

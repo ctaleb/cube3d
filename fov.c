@@ -6,13 +6,13 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 12:07:24 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/03 14:21:17 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/12 15:00:59 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-static void	shift_init(t_mlx_params *mlx)
+void	shift_init(t_mlx_params *mlx)
 {
 	if (mlx->f->cam_x >= 0)
 		mlx->r->shift_x = 0;
@@ -32,7 +32,7 @@ static void	step_x_calc(t_mlx_params *mlx)
 	if (mlx->f->cam_x == 0)
 		return ;
 	find_y(mlx);
-	while (is_valid_coord(mlx->r->shift_x, 0, mlx))
+	while (is_valid_coord(mlx->r->shift_x, 0, mlx, 0))
 	{
 		mlx->r->s_x += mlx->r->n_x;
 		mlx->r->s_y += mlx->r->n_y;
@@ -40,6 +40,7 @@ static void	step_x_calc(t_mlx_params *mlx)
 	mlx->r->dist_x = ft_dist(mlx->r->s_x, mlx->r->s_y, mlx->pl->x, mlx->pl->y);
 	mlx->r->nwall_x = mlx->r->s_x;
 	mlx->r->nwall_y = mlx->r->s_y;
+	mlx->r->nt = mlx->r->nt_x;
 }
 
 static void	step_y_calc(t_mlx_params *mlx)
@@ -50,16 +51,18 @@ static void	step_y_calc(t_mlx_params *mlx)
 	if (mlx->f->cam_y == 0)
 		return ;
 	find_x(mlx);
-	while (is_valid_coord(0, mlx->r->shift_y, mlx))
+	while (is_valid_coord(0, mlx->r->shift_y, mlx, 1))
 	{
 		mlx->r->s_x += mlx->r->n_x;
 		mlx->r->s_y += mlx->r->n_y;
 	}
 	mlx->r->dist_y = ft_dist(mlx->r->s_x, mlx->r->s_y, mlx->pl->x, mlx->pl->y);
 	if (mlx->r->dist_y < mlx->r->dist_x)
+	{
 		mlx->r->nwall_x = mlx->r->s_x;
-	if (mlx->r->dist_y < mlx->r->dist_x)
 		mlx->r->nwall_y = mlx->r->s_y;
+		mlx->r->nt = mlx->r->nt_y;
+	}
 }
 
 void	put_rov(float fish, t_mlx_params *mlx)

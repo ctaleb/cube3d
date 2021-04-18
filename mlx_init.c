@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 15:57:40 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/09 14:14:35 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/17 16:20:44 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@ t_mlx_params	*mlx_data_init(int ac, char **av)
 	mlx = malloc(sizeof(t_mlx_params));
 	mem_check(mlx, mlx, 2, 0);
 	map_open(av[1], mlx);
-	free_matrix(mlx, 1);
 	pl_init(mlx);
 	fov_init(mlx);
 	ray_init(mlx);
 	mlx->ptr = mlx_init();
-	mem_check(mlx->ptr, mlx, 2, 12);
+	mem_check(mlx->ptr, mlx, 2, -1);
 	mlx->save = 0;
 	if (ac == 2)
 		mlx->win = mlx_new_window(mlx->ptr, mlx->map->res_x,
@@ -33,7 +32,7 @@ t_mlx_params	*mlx_data_init(int ac, char **av)
 		mlx->save = 1;
 	else if (ac == 3)
 		error_handler(3, mlx, 12);
-	mem_check(mlx->win, mlx, 2, 13);
+	mem_check(mlx->win, mlx, 2, -1);
 	img_init(mlx);
 	texture_init(mlx);
 	sprite_init(mlx);

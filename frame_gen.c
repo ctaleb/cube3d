@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:38:27 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/09 14:47:58 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/18 13:28:38 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 void	img_init(t_mlx_params *mlx)
 {
+	mlx->w_stage = mlx->stage;
 	mlx->img = malloc(sizeof(t_image));
-	mem_check(mlx->img, mlx, 2, 14);
+	mem_check(mlx->img, mlx, 2, mlx->stage);
 	mlx->img->ptr = mlx_new_image(mlx->ptr,
 			mlx->map->res_x, mlx->map->res_y);
-	mem_check(mlx->img, mlx, 2, 15);
+	mem_check(mlx->img, mlx, 2, -1);
 	mlx->img->addr = mlx_get_data_addr(mlx->img->ptr,
 			&mlx->img->bpp, &mlx->img->len, &mlx->img->endian);
 }
@@ -53,11 +54,16 @@ int	frame_gen(t_mlx_params *mlx)
 	sprite_reset(mlx);
 	movement(mlx);
 	put_sky(mlx);
+	action(mlx);
 	put_fov(mlx);
 	sprite_check(mlx);
-	print_minimap(mlx);
-	put_camera(mlx);
-	put_player(mlx);
+	if (mlx->map->max_y <= mlx->map->res_y / 2
+		|| mlx->map->max_x <= mlx->map->res_x / 2)
+	{
+		print_minimap(mlx);
+		put_camera(mlx);
+		put_player(mlx);
+	}
 	put_healthbar(mlx);
 	if (mlx->save)
 	{

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:50:46 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/09 14:42:56 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/12 13:05:31 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	put_map(int x, int y, t_mlx_params *mlx)
 	if (x / mlx->map->ratio >= mlx->map->max_x
 		|| y / mlx->map->ratio >= mlx->map->max_y)
 		return ;
-	else if (x % mlx->map->ratio == 0 || y % mlx->map->ratio == 0)
-		my_mlx_pixel_put(mlx, x, y, rgbtoi(0, 0, 0, 0));
+	// else if (x % mlx->map->ratio == 0 || y % mlx->map->ratio == 0)
+	// 	my_mlx_pixel_put(mlx, x, y, rgbtoi(0, 0, 0, 0));
 	else if (mlx->map->grid[y / mlx->map->ratio][x / mlx->map->ratio] == ' ')
 		my_mlx_pixel_put(mlx, x, y, rgbtoi(0, 38, 38, 38));
 	else if (mlx->map->grid[y / mlx->map->ratio][x / mlx->map->ratio] == '1'
@@ -45,8 +45,9 @@ void	put_map(int x, int y, t_mlx_params *mlx)
 		my_mlx_pixel_put(mlx, x, y, rgbtoi(0, 80, 80, 80));
 	else if (mlx->map->grid[y / mlx->map->ratio][x / mlx->map->ratio] == '0')
 		my_mlx_pixel_put(mlx, x, y, rgbtoi(0, 255, 255, 255));
-	else if (mlx->map->grid[y / mlx->map->ratio][x / mlx->map->ratio] >= '2'
+	else if ((mlx->map->grid[y / mlx->map->ratio][x / mlx->map->ratio] >= '2'
 		&& mlx->map->grid[y / mlx->map->ratio][x / mlx->map->ratio] <= '9')
+		|| mlx->map->grid[y / mlx->map->ratio][x / mlx->map->ratio] == 'K')
 		my_mlx_pixel_put(mlx, x, y, rgbtoi(0, 65, 105, 225));
 	else if (mlx->map->grid[y / mlx->map->ratio][x / mlx->map->ratio] == 'N'
 		|| mlx->map->grid[y / mlx->map->ratio][x / mlx->map->ratio] == 'S'

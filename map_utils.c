@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 13:05:42 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/09 12:08:50 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/18 13:57:42 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	start_check(t_map *map_data, t_mlx_params *mlx)
 			if (map_data->grid[i][j] == 'N' || map_data->grid[i][j] == 'S'
 				|| map_data->grid[i][j] == 'E' || map_data->grid[i][j] == 'W')
 			{
-				if (map_data->start_x <= 0 && map_data->start_y <= 0)
+				if (map_data->start_x < 0 && map_data->start_y < 0)
 				{
 					map_data->start_x = j;
 					map_data->start_y = i;
@@ -102,7 +102,7 @@ int	get_map(char **grid, int maxlen, char *line)
 	{
 		grid[i][j] = line[j];
 		if (line[j] == '2' || line[j] == '4' || line[j] == '5'
-			|| line[j] == '6' || line[j] == '9')
+			|| line[j] == '6' || line[j] == '9' || line[j] == 'K')
 			sprite_nb++;
 		j++;
 	}

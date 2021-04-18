@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 15:14:24 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/09 13:00:35 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/18 13:05:35 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,25 +56,34 @@ void	put_sprite(int i, t_texture *texture, t_mlx_params *mlx)
 
 t_texture	*sprite_select(t_mlx_params *mlx, int i)
 {
-	if (mlx->sp[i]->type == '4')
+	if (mlx->sp[i]->type == 4 && mlx->defined->sec_sp)
 		return (mlx->sec_sp);
-	else if (mlx->sp[i]->type == '5')
+	else if (mlx->sp[i]->type == 5 && mlx->defined->h_pickup)
 		return (mlx->h_pickup);
-	else if (mlx->sp[i]->type == '6')
+	else if (mlx->sp[i]->type == 6 && mlx->defined->d_pickup)
 		return (mlx->d_pickup);
-	else if (mlx->sp[i]->type == '9')
+	else if (mlx->sp[i]->type == 9 && mlx->defined->tp_a
+		&& mlx->defined->tp_b && mlx->defined->tp_c && mlx->defined->tp_d)
 	{
-		if (mlx->sp[i]->state++ == 1)
+		mlx->sp[i]->state++;
+		if (mlx->sp[i]->state > 21)
+			mlx->sp[i]->state = 0;
+		if (mlx->sp[i]->state <= 6)
 			return (mlx->tp_a);
-		else if (mlx->sp[i]->state++ == 2)
+		else if (mlx->sp[i]->state <= 11)
 			return (mlx->tp_b);
-		else if (mlx->sp[i]->state++ == 3)
+		else if (mlx->sp[i]->state <= 16)
 			return (mlx->tp_c);
-		else if (mlx->sp[i]->state == 4)
-		{
-			mlx->sp[i]->state = 1;
+		else if (mlx->sp[i]->state <= 21)
 			return (mlx->tp_d);
-		}
+	}
+	else if (mlx->sp[i]->type == 10 && mlx->defined->key_a
+		&& mlx->defined->key_b)
+	{
+		if (mlx->sp[i]->state == 0)
+			return (mlx->key_a);
+		else
+			return (mlx->key_b);
 	}
 	return (mlx->sp_txt);
 }
