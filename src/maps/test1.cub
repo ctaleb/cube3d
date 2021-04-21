@@ -2,6 +2,7 @@ R 1920 1080
 NO ./src/textures/hierowall.xpm
 SO ./src/textures/ground.xpm
 WE ./src/textures/mosswall.xpm
+EA ./src/textures/cobblewall.xpm
 
 BX ./src/textures/skybox.xpm
 DC ./src/textures/hierodoor.xpm
@@ -23,25 +24,23 @@ T4 ./src/textures/portal4.xpm
 GO ./src/textures/gameover.xpm
 ED ./src/textures/endscreen.xpm
 
-NL ./test2.cub
-
-EA ./src/textures/cobblewall.xpm
 S ./src/textures/sarcophagus.xpm
 
 
 
 F 253 ,   223,119
 
+NL ./test2.cub
 
 C 0,     255     ,  0
 
 
 
 11111   1111111111111111111111111
-10001   1000000000110060500400091
+10001   1000000000110060050040091
 113111111011000001110000000000001
-10000000000000000000000000E000021
-11311111101100000111000K000000001
+100000000000000000000000000000E21
+1131111110110000011100K0000000001
 100000000000000001117111111111111
 111101111111110111000K0010001
 11110111111111011101010010001

@@ -1,1 +1,1 @@
-make && ./cub3D test1.cub
+make && ./cub3D src/maps/level0.cub

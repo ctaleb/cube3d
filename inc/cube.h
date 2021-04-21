@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 17:32:07 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/21 13:28:53 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include "libft.h"
 # include "mlx.h"
 
-typedef struct	 s_map {
+typedef struct s_map {
 	char		**file;
 	char		**grid;
 	int			map_id;
@@ -27,14 +27,14 @@ typedef struct	 s_map {
 	int			start_y;
 	int			res_x;
 	int			res_y;
-	char		*north_t;
-	char		*south_t;
-	char		*east_t;
-	char		*west_t;
+	char		*north;
+	char		*south;
+	char		*east;
+	char		*west;
 	char		*sp_t;
 	char		*sp_b_t;
 	char		*sky_t;
-	char		*cdoor_t;
+	char		*door;
 	char		*hb_t;
 	char		*food_t;
 	char		*trap_t;
@@ -42,8 +42,8 @@ typedef struct	 s_map {
 	char		*tp_b_t;
 	char		*tp_c_t;
 	char		*tp_d_t;
-	char		*key_a_t;
-	char		*key_b_t;
+	char		*key_a;
+	char		*key_b;
 	char		*end_t;
 	char		*go_t;
 	char		*nlvl;
@@ -51,9 +51,9 @@ typedef struct	 s_map {
 	int			file_len;
 	int			floor_c;
 	int			ceiling_c;
-}				t_map;
+}	t_map;
 
-typedef struct	s_input {
+typedef struct s_input {
 	int			forward;
 	int			backward;
 	int			strafe_l;
@@ -65,7 +65,7 @@ typedef struct	s_input {
 	int			mouse_x;
 	int			mouse_y;
 	float		*mouse_speed;
-}				t_input;
+}	t_input;
 
 typedef struct s_player {
 	float		x;
@@ -74,17 +74,17 @@ typedef struct s_player {
 	float		f_y;
 	int			colour;
 	int			health;
-}				t_player;
+}	t_player;
 
-typedef struct	s_image {
+typedef struct s_image {
 	void		*ptr;
 	char		*addr;
 	int			bpp;
 	int			len;
 	int			endian;
-}				t_image;
+}	t_image;
 
-typedef struct	s_ray {
+typedef struct s_ray {
 	int			id;
 	int			pos;
 	float		nwall_x;
@@ -103,9 +103,9 @@ typedef struct	s_ray {
 	int			side;
 	int			u_wall;
 	int			l_wall;
-}				t_ray;
+}	t_ray;
 
-typedef struct	s_fov {
+typedef struct s_fov {
 	int			fov;
 	int			multi;
 	float		cam_x;
@@ -114,9 +114,9 @@ typedef struct	s_fov {
 	float		*dist;
 	float		mod;
 	float		*shade;
-}				t_fov;
+}	t_fov;
 
-typedef struct	s_texture {
+typedef struct s_texture {
 	void		*ptr;
 	int			*addr;
 	char		*path;
@@ -125,9 +125,9 @@ typedef struct	s_texture {
 	int			bpp;
 	int			len;
 	int			endian;
-}				t_texture;
+}	t_texture;
 
-typedef struct	s_sprites {
+typedef struct s_sprites {
 	int			id;
 	int			type;
 	int			state;
@@ -150,12 +150,12 @@ typedef struct	s_sprites {
 	int			l_coord;
 	int			r_coord;
 	float		angle;
-}				t_sprites;
+}	t_sprites;
 
 typedef struct s_defined {
 	int			nxt_lvl;
 	int			skybox;
-	int			cdoor;
+	int			door;
 	int			hb;
 	int			h_pickup;
 	int			d_pickup;
@@ -173,9 +173,9 @@ typedef struct s_defined {
 	int			south;
 	int			east;
 	int			west;
-}				t_defined;
+}	t_defined;
 
-typedef struct	s_mlx_parmas {
+typedef struct s_mlx_parmas {
 	void		*ptr;
 	void		*win;
 	int			save;
@@ -205,14 +205,14 @@ typedef struct	s_mlx_parmas {
 	t_texture	*gameover;
 	t_texture	*ending;
 	t_texture	*skybox;
-	t_texture	*cdoor;
+	t_texture	*door;
 	t_texture	*healthbar;
 	t_player	*pl;
 	t_ray		*r;
 	t_fov		*f;
 	t_sprites	**sp;
 	t_input		*input;
-}				t_mlx_params;
+}	t_mlx_params;
 
 void			map_open(char *path, t_mlx_params *mlx);
 
@@ -260,7 +260,8 @@ void			put_fov(t_mlx_params *mlx);
 
 void			find_y(t_mlx_params *mlx);
 void			find_x(t_mlx_params *mlx);
-int				is_valid_coord(int shft_x, int shft_y, t_mlx_params *mlx, int mode);
+int				is_valid_coord(int shft_x, int shft_y,
+					t_mlx_params *mlx, int mode);
 
 void			ray_cannon(float fish, t_mlx_params *mlx);
 void			sprite_check(t_mlx_params *mlx);
@@ -282,7 +283,8 @@ int				movement(t_mlx_params *mlx);
 int				move_pl(int keycode, t_mlx_params *mlx, float speed);
 int				rotate_pl(int keycode, t_mlx_params *mlx, float speed);
 int				strafe_pl(int keycode, t_mlx_params *mlx, float speed);
-int				check_coords(char dir, char side, t_mlx_params *mlx, float speed);
+int				check_coords(char dir, char side,
+					t_mlx_params *mlx, float speed);
 void			wall_dist_calc(char dir, t_mlx_params *mlx);
 int				wall_check(float x, float y, t_mlx_params *mlx);
 void			inverse_cam(char dir, t_mlx_params *mlx);
@@ -302,7 +304,7 @@ int				escape_key(int keycode);
 void			action(t_mlx_params *mlx);
 
 int				get_colour(char *line, t_mlx_params *mlx);
-char			*get_path(char *line, char *dst, t_mlx_params *mlx);
+char			*get_path(char *line, char *dst, t_mlx_params *mlx, int mode);
 int				get_map(char **grid, int maxlen, char *line);
 void			dup_map(char **grid, char **dup);
 void			get_resolution(t_map *map_data, char *line, t_mlx_params *mlx);

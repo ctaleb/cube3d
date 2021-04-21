@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:10:38 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 16:46:40 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/21 13:21:55 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	put_wall(t_texture *texture, t_mlx_params *mlx)
 t_texture	*select_wall(t_mlx_params *mlx)
 {
 	if (mlx->r->nt == 7)
-		return (mlx->cdoor);
+		return (mlx->door);
 	else if (mlx->r->side == 1 && mlx->f->cam_x >= 0)
 		return (mlx->e_txt);
 	else if (mlx->r->side == 1 && mlx->f->cam_x < 0)
@@ -87,8 +87,8 @@ static void	distancer(float dist, t_mlx_params *mlx)
 
 void	ray_cannon(float fish, t_mlx_params *mlx)
 {
-	float	r_l;
-	int		r_h;
+	float	ray_len;
+	int		ray_height;
 	float	ratio;
 
 	if (mlx->input->crouch)
@@ -96,14 +96,15 @@ void	ray_cannon(float fish, t_mlx_params *mlx)
 	else
 		ratio = 2;
 	if (mlx->r->dist_x < mlx->r->dist_y && mlx->r->dist_x != 0)
-		r_l = mlx->r->dist_x * fish;
+		ray_len = mlx->r->dist_x * fish;
 	else
-		r_l = mlx->r->dist_y * fish;
-	distancer(r_l, mlx);
-	mlx->f->mod = 0 + (int)r_l * 0.05;
-	r_h = (int)((mlx->map->res_y / r_l)) + 1;
-	mlx->r->u_wall = roundf(- ((float)r_h) / 2
+		ray_len = mlx->r->dist_y * fish;
+	distancer(ray_len, mlx);
+	mlx->f->mod = 0 + (int)ray_len * 0.05;
+	ray_height = (int)((mlx->map->res_y / ray_len)) + 1;
+	mlx->r->u_wall = roundf(- ((float)ray_height) / 2
 			+ (float)mlx->map->res_y / ratio);
-	mlx->r->l_wall = roundf((float)r_h / 2 + (float)mlx->map->res_y / ratio);
+	mlx->r->l_wall = roundf((float)ray_height / 2
+			+ (float)mlx->map->res_y / ratio);
 	put_ray(mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 11:02:18 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/03/19 16:46:53 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/21 13:31:28 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@
 # include <fcntl.h>
 # include <math.h>
 
-typedef struct		s_list
-{
+typedef struct s_list {
 	void			*content;
 	struct s_list	*next;
-}					t_list;
+}	t_list;
 
 void				*ft_memset(void *ptr, int c, size_t size);
 void				ft_bzero(void *ptr, size_t size);

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 13:05:42 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 13:57:42 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/21 12:28:33 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	file_len(char *path, t_mlx_params *mlx)
 	int		i;
 	char	*line;
 
+	if (ft_strncmp(&path[ft_strlen(path) - 4], ".cub", 5))
+		error_handler(4, mlx, 2);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		error_handler(11, mlx, 2);

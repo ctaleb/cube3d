@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 15:23:57 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 17:32:07 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/21 13:21:02 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	bonus_set(t_mlx_params *mlx)
 {
 	mlx->map->sky_t = NULL;
-	mlx->map->cdoor_t = NULL;
+	mlx->map->door = NULL;
 	mlx->map->sp_b_t = NULL;
 	mlx->map->hb_t = NULL;
 	mlx->map->food_t = NULL;
@@ -24,8 +24,8 @@ void	bonus_set(t_mlx_params *mlx)
 	mlx->map->tp_b_t = NULL;
 	mlx->map->tp_c_t = NULL;
 	mlx->map->tp_d_t = NULL;
-	mlx->map->key_a_t = NULL;
-	mlx->map->key_b_t = NULL;
+	mlx->map->key_a = NULL;
+	mlx->map->key_b = NULL;
 	mlx->map->end_t = NULL;
 	mlx->map->go_t = NULL;
 	mlx->map->nlvl = NULL;
@@ -43,10 +43,10 @@ void	map_data_init(t_mlx_params *mlx, char *path)
 	mlx->map->floor_c = -1;
 	mlx->map->ceiling_c = -1;
 	mlx->map->max_x = 0;
-	mlx->map->north_t = NULL;
-	mlx->map->south_t = NULL;
-	mlx->map->east_t = NULL;
-	mlx->map->west_t = NULL;
+	mlx->map->north = NULL;
+	mlx->map->south = NULL;
+	mlx->map->east = NULL;
+	mlx->map->west = NULL;
 	mlx->map->sp_t = NULL;
 	mlx->map->sprite_nb = 0;
 	mlx->map->file_len = file_len(path, mlx);
@@ -124,5 +124,7 @@ void	map_init(t_mlx_params *mlx)
 	}
 	dup_map(mlx->map->grid, mlx->map->dup);
 	start_check(mlx->map, mlx);
+	if (mlx->map->start_x < 0 || mlx->map->start_y < 0)
+		error_handler(27, mlx, 2);
 	map_check(mlx->map->start_x, mlx->map->start_y, mlx->map, mlx);
 }

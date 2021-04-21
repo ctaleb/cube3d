@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 14:20:18 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 17:28:43 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/21 13:19:25 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@ void	bonus_sprites(t_mlx_params *mlx)
 	if (mlx->def->tp_d)
 		mlx->tp_d = texturer(mlx, mlx->map->tp_d_t, &mlx->def->tp_d);
 	if (mlx->def->key_a)
-		mlx->key_a = texturer(mlx, mlx->map->key_a_t, &mlx->def->key_a);
+		mlx->key_a = texturer(mlx, mlx->map->key_a, &mlx->def->key_a);
 	if (mlx->def->key_b)
-		mlx->key_b = texturer(mlx, mlx->map->key_b_t, &mlx->def->key_b);
+		mlx->key_b = texturer(mlx, mlx->map->key_b, &mlx->def->key_b);
 }
 
 void	sprite_init(t_mlx_params *mlx)

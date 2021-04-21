@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 14:00:22 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 17:32:07 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/21 13:50:33 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 int	data_check(t_map *map_data)
 {
-	if (map_data->res_x && map_data->res_y && map_data->north_t
-		&& map_data->south_t && map_data->east_t && map_data->west_t
+	if (map_data->res_x && map_data->res_y && map_data->north
+		&& map_data->south && map_data->east && map_data->west
 		&& map_data->sp_t && map_data->floor_c >= 0
 		&& map_data->ceiling_c >= 0
-		/*&& map_data->sky_t && map_data->hb_t && map_data->food_t
+		&& map_data->sky_t && map_data->hb_t && map_data->food_t
 		&& map_data->trap_t && map_data->tp_a_t && map_data->tp_b_t
 		&& map_data->tp_c_t && map_data->tp_d_t && map_data->sp_b_t
-		&& map_data->end_t && map_data->go_t && map_data->nlvl*/)
+		&& map_data->end_t && map_data->go_t && map_data->nlvl
+		&& map_data->door && map_data->key_a && map_data->key_b)
 		return (1);
 	return (0);
 }
@@ -51,7 +52,7 @@ int	get_colour(char *line, t_mlx_params *mlx)
 	return (rgbtoi(0, r, g, b));
 }
 
-char	*get_path(char *line, char *dst, t_mlx_params *mlx)
+char	*get_path(char *line, char *dst, t_mlx_params *mlx, int mode)
 {
 	int		i;
 	int		j;
@@ -73,6 +74,9 @@ char	*get_path(char *line, char *dst, t_mlx_params *mlx)
 		j++;
 	}
 	dest[j] = '\0';
+	if (mode)
+		if (ft_strncmp(&dest[ft_strlen(dest) - 4], ".xpm", 5))
+			error_handler(21, mlx, 2);
 	return (dest);
 }
 
@@ -98,4 +102,6 @@ void	get_resolution(t_map *map_data, char *line, t_mlx_params *mlx)
 		map_data->res_x = 2560;
 		map_data->res_y = 1440;
 	}
+	else if (map_data->res_x == 0 || map_data->res_y == 0)
+		error_handler(21, mlx, 1);
 }

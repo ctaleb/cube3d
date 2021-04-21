@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 15:14:24 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 16:14:21 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/21 12:10:56 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ void	put_sprite(int i, t_texture *texture, t_mlx_params *mlx)
 	{
 		if (x >= 0 && x < mlx->map->res_x && mlx->sp[i]->dist < mlx->f->dist[x])
 			put_sprite_pixel(i, x, texture, mlx);
-		x += mlx->f->multi;
+		if (x < 0)
+			x++;
+		else
+			x += mlx->f->multi;
 	}
 }
 

@@ -1,0 +1,25 @@
+R 1920 1080
+NO ./src/textures/woodwall.xpm
+SO ./src/textures/woodwall.xpm
+WE ./src/textures/woodwall.xpm
+EA ./src/textures/woodwall.xpm
+
+S ./src/textures/barrel.xpm
+O3 ./src/textures/chest.xpm
+
+T1 ./src/textures/portal1.xpm
+T2 ./src/textures/portal2.xpm
+T3 ./src/textures/portal3.xpm
+T4 ./src/textures/portal4.xpm
+
+C 164 ,   116, 73
+NL src/maps/level2.cub
+
+F 133,     94     ,  66
+
+1111111111111
+1S00019000001
+1400211111101
+1240244000201
+1220000020001
+1111111111111

@@ -1,0 +1,32 @@
+R 1920 1080
+NO ./src/textures/slabwall.xpm
+SO ./src/textures/slabwall.xpm
+WE ./src/textures/slabwall.xpm
+EA ./src/textures/slabwall.xpm
+
+BX ./src/textures/skybox.xpm
+
+S ./src/textures/barrel.xpm
+O1 ./src/textures/hpot.xpm
+O2 ./src/textures/cobra.xpm
+O3 ./src/textures/pillar.xpm
+
+T1 ./src/textures/portal1.xpm
+T2 ./src/textures/portal2.xpm
+T3 ./src/textures/portal3.xpm
+T4 ./src/textures/portal4.xpm
+
+HB ./src/textures/healthbar.xpm
+GO ./src/textures/gameover.xpm
+
+F 128 ,   132,135
+C 155,     163     ,  164
+NL src/maps/level4.cub
+
+111111111111111111
+10S619000000000661
+106011111111111161
+106620555502000001
+160011111011111611
+106660000000006061
+111111111111111111

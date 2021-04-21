@@ -6,12 +6,12 @@
 #    By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 11:40:32 by ctaleb            #+#    #+#              #
-#    Updated: 2021/04/18 17:55:11 by ctaleb           ###   ########lyon.fr    #
+#    Updated: 2021/04/21 18:35:00 by ctaleb           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -O3 -g3 -Wall -Wextra #-Werror -fsanitize=address
+CFLAGS = -O3 -fno-builtin -g3 -Wall -Wextra -Werror #-fsanitize=address
 RM = rm -f
 
 AR = ar
@@ -20,15 +20,15 @@ ARFLAGS = rcs
 INCS_PATH = inc/
 LIB_PATH = libft/
 
-# SRC_DIR = src
-# OBJ_DIR = obj
+SRC_DIR = ./src/
+# OBJ_DIR = ./obj/
 
 MLX = -L minilibx -lmlx -framework OpenGL -framework AppKit
 MLX_PATH = minilibx/
 
 INCS = cube.h
 
-SRCS = main.c\
+SRC = main.c\
 		map_extractor.c\
 		data_extractor.c\
 		colour_utils.c\
@@ -63,18 +63,18 @@ SRCS = main.c\
 		movement_utils.c\
 		events_utils.c
 
+SRCS = $(addprefix $(SRC_DIR), $(SRC))
+
 # OBJ_FILES = $(SRC_FILES:.c=.o)
 
 # SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
-# OBJS = $(addprefix $(OBJ_DIR)/, $(OBJ_FILES))
+# OBJS = $(SRCS:%.c=$(OBJ_DIR)%.o)
 # OBJS = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 OBJS = $(SRCS:.c=.o)
 
 LIB = libft.a
 MLIB = libmlx.a
 NAME = cub3D
-
-RESOLUTION = 1
 
 GREEN = \033[32m
 RED = \033[31m
@@ -91,8 +91,17 @@ DELAY = 0.02
 
 .PHONY = all $(LIB_PATH)$(LIB) $(NAME) bonus clean fclean re project all42 42logo
 
+# $(OBJS): | $(OBJ_DIR)
+
+# $(OBJ_DIR):
+# 	@mkdir &(OBJ_DIR)
+
+# $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCS_PATH)$(INCS)
+# 	@printf "$(YELLOW)building$(DEFAULT)	%-20s	" "$@"
+# 	@$(CC) $(CFLAGS) -I $(INCS_PATH). -o $@ -c $<
+# 	@printf "$(GREEN)[ok]$(DEFAULT)\n"
+
 %.o: %.c $(INCS_PATH)$(INCS)
-	@mkdir -p obj
 	@printf "$(YELLOW)building$(DEFAULT)	%-20s	" "$@"
 	@$(CC) $(CFLAGS) -I $(INCS_PATH). -o $@ -c $<
 	@printf "$(GREEN)[ok]$(DEFAULT)\n"

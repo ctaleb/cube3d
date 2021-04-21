@@ -1,0 +1,43 @@
+R 1920 1080
+NO ./src/textures/ground.xpm
+SO ./src/textures/ground.xpm
+WE ./src/textures/ground.xpm
+EA ./src/textures/ground.xpm
+
+BX ./src/textures/skybox.xpm
+
+S ./src/textures/pillar.xpm
+O1 ./src/textures/hpot.xpm
+O2 ./src/textures/cobra.xpm
+O3 ./src/textures/pillar.xpm
+
+T1 ./src/textures/portal1.xpm
+T2 ./src/textures/portal2.xpm
+T3 ./src/textures/portal3.xpm
+T4 ./src/textures/portal4.xpm
+
+HB ./src/textures/healthbar.xpm
+GO ./src/textures/gameover.xpm
+
+DC ./src/textures/runedoor.xpm
+K1 ./src/textures/orb_red.xpm
+K2 ./src/textures/orb_green.xpm
+
+F 253 ,   223,119
+C 155,     163     ,  164
+
+NL src/maps/level8.cub
+
+  11111111111111111111
+1114700000000000000041
+1060011111111111110111
+1014114006000070000051
+101111K011111111111111
+101S1140000000000003K1
+1916111111111111110111
+11100706003016006001
+15001111011011101101
+11K12500010070600001
+11111111110111111111
+         1000K1
+         111111

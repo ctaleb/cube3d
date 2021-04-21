@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 12:30:10 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 17:19:07 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/21 13:18:19 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ static void	free_bonus_textures(t_mlx_params *mlx)
 {
 	if (mlx->def->skybox > 1)
 		mlx_destroy_image(mlx->ptr, mlx->skybox->ptr);
-	if (mlx->def->cdoor > 1)
-		mlx_destroy_image(mlx->ptr, mlx->cdoor->ptr);
+	if (mlx->def->door > 1)
+		mlx_destroy_image(mlx->ptr, mlx->door->ptr);
 	if (mlx->def->hb > 1)
 		mlx_destroy_image(mlx->ptr, mlx->healthbar->ptr);
 	if (mlx->def->ending > 1)

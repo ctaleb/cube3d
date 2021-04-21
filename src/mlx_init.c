@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 15:57:40 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/17 16:20:44 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/21 15:27:05 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ t_mlx_params	*mlx_data_init(int ac, char **av)
 		mlx->save = 1;
 	else if (ac == 3)
 		error_handler(3, mlx, 12);
-	mem_check(mlx->win, mlx, 2, -1);
+	if (!mlx->save)
+		mem_check(mlx->win, mlx, 2, -1);
 	img_init(mlx);
 	texture_init(mlx);
 	sprite_init(mlx);

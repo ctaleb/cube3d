@@ -1,0 +1,36 @@
+R 1920 1080
+NO ./src/textures/runewall.xpm
+SO ./src/textures/runewall.xpm
+WE ./src/textures/runewall.xpm
+EA ./src/textures/runewall.xpm
+
+BX ./src/textures/skybox.xpm
+
+S ./src/textures/barrel.xpm
+O1 ./src/textures/hpot.xpm
+O2 ./src/textures/cobra.xpm
+O3 ./src/textures/pillar.xpm
+
+T1 ./src/textures/portal1.xpm
+T2 ./src/textures/portal2.xpm
+T3 ./src/textures/portal3.xpm
+T4 ./src/textures/portal4.xpm
+
+HB ./src/textures/healthbar.xpm
+GO ./src/textures/gameover.xpm
+
+DC ./src/textures/runedoor.xpm
+K1 ./src/textures/orb_red.xpm
+K2 ./src/textures/orb_green.xpm
+
+F 128 ,   132,135
+C 155,     163     ,  164
+NL src/maps/level5.cub
+
+111111111111111111
+10S019000000000001
+100011111111111171
+100000K01000000001
+100011111011111611
+160000000000006061
+111111111111111111

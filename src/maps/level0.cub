@@ -1,0 +1,25 @@
+R 1920 1080
+NO ./src/textures/cobblewall.xpm
+SO ./src/textures/cobblewall.xpm
+WE ./src/textures/cobblewall.xpm
+EA ./src/textures/cobblewall.xpm
+
+S ./src/textures/barrel.xpm
+O3 ./src/textures/chest.xpm
+
+T1 ./src/textures/portal1.xpm
+T2 ./src/textures/portal2.xpm
+T3 ./src/textures/portal3.xpm
+T4 ./src/textures/portal4.xpm
+
+F 128 ,   132,135
+NL src/maps/level1.cub
+
+C 155,     163     ,  164
+
+1111111111111
+111S001900001
+1000001111101
+1100011000101
+1000000010001
+1111111111111

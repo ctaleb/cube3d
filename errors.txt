@@ -2,7 +2,7 @@
 01: Invalid launch argument count
 02: Memory allocation error
 03: Invalid launch argument
-
+04: Invalid file argument
 
 
 
@@ -25,3 +25,4 @@
 24: Invalid .cub (improper definitions)
 25: Invalid .cub (duplicate start points)
 26: Invalid .cub (play area isn't enclosed properly)
+27: Invalid .cub (no start point)

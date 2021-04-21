@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 13:27:33 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 17:13:25 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/21 13:21:02 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,27 +61,27 @@ void	read_textures(int i, t_mlx_params *mlx)
 {
 	if (mlx->file[i][0] == 'S' && mlx->file[i][1] != 'O')
 	{
-		mlx->map->sp_t = get_path(&mlx->file[i][1], mlx->map->sp_t, mlx);
+		mlx->map->sp_t = get_path(&mlx->file[i][1], mlx->map->sp_t, mlx, 1);
 		mlx->def->sprite = 1;
 	}
 	else if (mlx->file[i][0] == 'N' && mlx->file[i][1] == 'O')
 	{
-		mlx->map->north_t = get_path(&mlx->file[i][2], mlx->map->north_t, mlx);
+		mlx->map->north = get_path(&mlx->file[i][2], mlx->map->north, mlx, 1);
 		mlx->def->north = 1;
 	}
 	else if (mlx->file[i][0] == 'S' && mlx->file[i][1] == 'O')
 	{
-		mlx->map->south_t = get_path(&mlx->file[i][2], mlx->map->south_t, mlx);
+		mlx->map->south = get_path(&mlx->file[i][2], mlx->map->south, mlx, 1);
 		mlx->def->south = 1;
 	}
 	else if (mlx->file[i][0] == 'E' && mlx->file[i][1] == 'A')
 	{
-		mlx->map->east_t = get_path(&mlx->file[i][2], mlx->map->east_t, mlx);
+		mlx->map->east = get_path(&mlx->file[i][2], mlx->map->east, mlx, 1);
 		mlx->def->east = 1;
 	}
 	else if (mlx->file[i][0] == 'W' && mlx->file[i][1] == 'E')
 	{
-		mlx->map->west_t = get_path(&mlx->file[i][2], mlx->map->west_t, mlx);
+		mlx->map->west = get_path(&mlx->file[i][2], mlx->map->west, mlx, 1);
 		mlx->def->west = 1;
 	}
 }

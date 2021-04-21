@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:56:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 16:06:59 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/21 13:18:19 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	define_init(t_mlx_params *mlx)
 	mlx->d_stage = mlx->stage;
 	mlx->def->nxt_lvl = 0;
 	mlx->def->skybox = 0;
-	mlx->def->cdoor = 0;
+	mlx->def->door = 0;
 	mlx->def->hb = 0;
 	mlx->def->h_pickup = 0;
 	mlx->def->d_pickup = 0;

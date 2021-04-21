@@ -1,0 +1,31 @@
+R 1920 1080
+NO ./src/textures/mosswall.xpm
+SO ./src/textures/mosswall.xpm
+WE ./src/textures/mosswall.xpm
+EA ./src/textures/mosswall.xpm
+
+BX ./src/textures/skybox.xpm
+
+S ./src/textures/barrel.xpm
+O2 ./src/textures/cobra.xpm
+O3 ./src/textures/chest.xpm
+
+HB ./src/textures/healthbar.xpm
+GO ./src/textures/gameover.xpm
+
+T1 ./src/textures/portal1.xpm
+T2 ./src/textures/portal2.xpm
+T3 ./src/textures/portal3.xpm
+T4 ./src/textures/portal4.xpm
+
+C 164 ,   116, 73
+NL src/maps/level3.cub
+
+F 128 ,   132, 135
+
+1111111111111
+1S06619000601
+1606011111101
+1600600000601
+1660066060001
+1111111111111
