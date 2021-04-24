@@ -6,7 +6,7 @@
 #    By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 11:40:32 by ctaleb            #+#    #+#              #
-#    Updated: 2021/04/21 18:35:00 by ctaleb           ###   ########lyon.fr    #
+#    Updated: 2021/04/24 13:42:23 by ctaleb           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,6 @@ INCS_PATH = inc/
 LIB_PATH = libft/
 
 SRC_DIR = ./src/
-# OBJ_DIR = ./obj/
 
 MLX = -L minilibx -lmlx -framework OpenGL -framework AppKit
 MLX_PATH = minilibx/
@@ -47,7 +46,6 @@ SRC = main.c\
 		fov.c\
 		fov_utils.c\
 		wallcheck.c\
-		wallcheck_utils.c\
 		camera.c\
 		raycaster.c\
 		spriter.c\
@@ -65,11 +63,6 @@ SRC = main.c\
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 
-# OBJ_FILES = $(SRC_FILES:.c=.o)
-
-# SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
-# OBJS = $(SRCS:%.c=$(OBJ_DIR)%.o)
-# OBJS = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 OBJS = $(SRCS:.c=.o)
 
 LIB = libft.a
@@ -90,16 +83,6 @@ PROJECT = CUBE3D
 DELAY = 0.02
 
 .PHONY = all $(LIB_PATH)$(LIB) $(NAME) bonus clean fclean re project all42 42logo
-
-# $(OBJS): | $(OBJ_DIR)
-
-# $(OBJ_DIR):
-# 	@mkdir &(OBJ_DIR)
-
-# $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCS_PATH)$(INCS)
-# 	@printf "$(YELLOW)building$(DEFAULT)	%-20s	" "$@"
-# 	@$(CC) $(CFLAGS) -I $(INCS_PATH). -o $@ -c $<
-# 	@printf "$(GREEN)[ok]$(DEFAULT)\n"
 
 %.o: %.c $(INCS_PATH)$(INCS)
 	@printf "$(YELLOW)building$(DEFAULT)	%-20s	" "$@"
