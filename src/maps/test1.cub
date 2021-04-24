@@ -30,7 +30,7 @@ S ./src/textures/sarcophagus.xpm
 
 F 253 ,   223,119
 
-NL ./test2.cub
+NL ./src/maps/test2.cub
 
 C 0,     255     ,  0
 

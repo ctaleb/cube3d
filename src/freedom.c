@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 12:30:10 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/21 13:18:19 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/23 13:25:20 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ void	free_all(t_mlx_params *mlx, int stage)
 {
 	int	i;
 
-	(void)stage;
+	if (stage == -9)
+		return ;
 	i = mlx->stage;
 	if (mlx->stage >= mlx->d_stage && mlx->d_stage)
 	{

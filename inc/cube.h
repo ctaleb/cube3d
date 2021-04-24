@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/21 13:28:53 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/24 13:21:11 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,7 @@ typedef struct s_mlx_parmas {
 	int			d_stage;
 	int			w_stage;
 	int			finished;
-	char		*memory[255];
+	char		*memory[500];
 	char		**file;
 	t_image		*img;
 	t_map		*map;

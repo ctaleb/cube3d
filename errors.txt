@@ -3,7 +3,7 @@
 02: Memory allocation error
 03: Invalid launch argument
 04: Invalid file argument
-
+05: Memory set too low
 
 
 

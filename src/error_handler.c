@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 11:01:02 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/17 17:14:43 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/24 13:20:56 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,62 +38,6 @@ void	error_handler(int ernum, t_mlx_params *mlx, int stage)
 	exit(-99);
 }
 
-// void	file_check(void *ptr, t_mlx_params *mlx, int j)
-// {
-// 	int	i;
-
-// 	if (ptr)
-// 		return ;
-// 	i = 0;
-// 	while (i < j)
-// 	{
-// 		free(mlx->file[i]);
-// 		i++;
-// 	}
-// 	error_handler(2, mlx, 3);
-// }
-
-// void	matrix_check(void *ptr, t_mlx_params *mlx, int j, int mode)
-// {
-// 	int	i;
-
-// 	if (ptr)
-// 		return ;
-// 	i = 0;
-// 	if (mode == 0)
-// 	{
-// 		while (i < j)
-// 		{
-// 			free(mlx->map->grid[i]);
-// 			i++;
-// 		}
-// 	}
-// 	else
-// 	{
-// 		while (i < j)
-// 		{
-// 			free(mlx->map->dup[i]);
-// 			i++;
-// 		}
-// 	}
-// 	error_handler(2, mlx, 4);
-// }
-
-// void	sp_check(void *ptr, t_mlx_params *mlx, int j)
-// {
-// 	int	i;
-
-// 	if (ptr)
-// 		return ;
-// 	i = 0;
-// 	while (i < j)
-// 	{
-// 		free(mlx->sp[i]);
-// 		i++;
-// 	}
-// 	error_handler(2, mlx, 25);
-// }
-
 void	mem_check(void *ptr, t_mlx_params *mlx, int ernum, int stage)
 {
 	if (!ptr)
@@ -104,4 +48,6 @@ void	mem_check(void *ptr, t_mlx_params *mlx, int ernum, int stage)
 		mlx->stage++;
 	if (stage >= 0)
 		mlx->memory[mlx->stage] = ptr;
+	if (mlx->stage + 1 > 255)
+			error_handler(5, mlx, stage);
 }
