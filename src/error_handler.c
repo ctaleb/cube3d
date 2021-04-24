@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 11:01:02 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/24 13:20:56 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/24 13:30:23 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,5 @@ void	mem_check(void *ptr, t_mlx_params *mlx, int ernum, int stage)
 	if (stage >= 0)
 		mlx->memory[mlx->stage] = ptr;
 	if (mlx->stage + 1 > 255)
-			error_handler(5, mlx, stage);
+		error_handler(5, mlx, stage);
 }
