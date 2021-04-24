@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 16:47:45 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 17:05:34 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/24 17:09:01 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@ void	relocate(t_mlx_params *mlx)
 		&& mlx->pl->y < (int)mlx->pl->y + 0.1)
 		mlx->pl->y = (int)mlx->pl->y + 0.1;
 	if (!mlx->save)
-		mlx_mouse_move(mlx->win, mlx->map->res_x / 2, mlx->map->res_y / 2);
+	{
+		if (mlx->input->mouse_on)
+			mlx_mouse_move(mlx->win, mlx->map->res_x / 2, mlx->map->res_y / 2);
+	}
 	mlx->input->mouse_x = mlx->map->res_x / 2;
 	mlx->input->mouse_y = mlx->map->res_x / 2;
 }

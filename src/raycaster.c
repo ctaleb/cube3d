@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:10:38 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/21 13:21:55 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/24 17:48:53 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	put_wall(t_texture *texture, t_mlx_params *mlx)
 
 t_texture	*select_wall(t_mlx_params *mlx)
 {
-	if (mlx->r->nt == 7)
+	if (mlx->r->nt == 7 && mlx->def->door)
 		return (mlx->door);
 	else if (mlx->r->side == 1 && mlx->f->cam_x >= 0)
 		return (mlx->e_txt);

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:52:50 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/24 13:36:19 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/24 17:02:48 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static void	move(t_mlx_params *mlx, float speed)
 		rotate_pl(123, mlx, speed * 1.5);
 	else if (mlx->input->rotate_r && !mlx->input->rotate_l)
 		rotate_pl(124, mlx, speed * 1.5);
-	if (mlx->input->mouse_x < mlx->map->res_x / 2)
+	if (mlx->input->mouse_x < mlx->map->res_x / 2 && mlx->input->mouse_on)
 		rotate_pl(123, mlx, speed);
-	else if (mlx->input->mouse_x > mlx->map->res_x / 2)
+	else if (mlx->input->mouse_x > mlx->map->res_x / 2 && mlx->input->mouse_on)
 		rotate_pl(124, mlx, speed);
 }
 

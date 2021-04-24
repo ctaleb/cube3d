@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 17:24:10 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 17:27:40 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/24 17:43:53 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,21 @@ void	door_opener(t_mlx_params *mlx, int i)
 		mlx->sp[i]->state = 1;
 	}
 	mlx->input->action = 0;
+}
+
+void	switch_mouse(t_mlx_params *mlx, int keycode)
+{
+	if (keycode == 48)
+	{
+		if (mlx->input->mouse_on)
+		{
+			mlx->input->mouse_on = 0;
+			mlx_mouse_show();
+		}
+		else
+		{
+			mlx->input->mouse_on = 1;
+			mlx_mouse_hide();
+		}
+	}
 }

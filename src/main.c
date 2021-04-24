@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 13:36:57 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/23 13:26:10 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/24 17:08:16 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ int	main(int ac, char *av[])
 	if (ac > 3 || ac < 2)
 		error_handler(1, NULL, -9);
 	mlx = mlx_data_init(ac, av);
-	mlx_mouse_hide();
 	if (!mlx->save)
 	{
 		mlx_hook(mlx->win, 2, 1L << 0, key_press, mlx);

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 13:27:33 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/24 13:25:31 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/24 17:29:34 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	read_cub(t_mlx_params *mlx)
 	i = 0;
 	while (!data_check(mlx->map) && !is_map(mlx->file[i]))
 	{
+		if (!mlx->file[i])
+			error_handler(22, mlx, 4);
 		read_mandatory(i, mlx);
 		read_textures(i, mlx);
 		read_bonus_sprites(i, mlx);

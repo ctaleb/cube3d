@@ -6,9 +6,12 @@
 #    By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 11:40:32 by ctaleb            #+#    #+#              #
-#    Updated: 2021/04/24 13:42:23 by ctaleb           ###   ########lyon.fr    #
+#    Updated: 2021/04/24 17:13:57 by ctaleb           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
+
+MAP = src/maps/test1.cub
+SAVE = --save
 
 CC = gcc
 CFLAGS = -O3 -fno-builtin -g3 -Wall -Wextra -Werror #-fsanitize=address
@@ -82,7 +85,7 @@ DEFAULT = \033[0m
 PROJECT = CUBE3D
 DELAY = 0.02
 
-.PHONY = all $(LIB_PATH)$(LIB) $(NAME) bonus clean fclean re project all42 42logo
+.PHONY = all $(LIB_PATH)$(LIB) $(NAME) bonus clean fclean re project all42 42logo run
 
 %.o: %.c $(INCS_PATH)$(INCS)
 	@printf "$(YELLOW)building$(DEFAULT)	%-20s	" "$@"
@@ -107,6 +110,11 @@ $(LIB_PATH)$(LIB):
 $(MLX_PATH)$(MLIB):
 	@make -C $(MLX_PATH)
 
+run: all
+	./cub3D $(MAP)
+
+save: all
+	./cub3D $(MAP) $(SAVE)
 
 clean:
 	@printf "$(RED)"

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/24 13:21:11 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/24 17:41:50 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_input {
 	int			rotate_r;
 	int			crouch;
 	int			action;
+	int			mouse_on;
 	int			mouse_x;
 	int			mouse_y;
 	float		*mouse_speed;
@@ -223,6 +224,7 @@ int				space_dig(char *line, int i, t_mlx_params *mlx);
 int				space_comma(char *line, int i, t_mlx_params *mlx);
 
 int				data_check(t_map *map_data);
+void			validate_data(t_mlx_params *mlx);
 void			start_check(t_map *map_data, t_mlx_params *mlx);
 void			map_check(int x, int y, t_map *map_data, t_mlx_params *mlx);
 int				read_cub(t_mlx_params *mlx);
@@ -296,6 +298,8 @@ void			put_healthbar(t_mlx_params *mlx);
 int				key_press(int keycode, t_mlx_params *mlx);
 int				key_release(int keycode, t_mlx_params *mlx);
 int				mouse_move(int x, int y, t_mlx_params *mlx);
+void			switch_mouse(t_mlx_params *mlx, int keycode);
+
 int				check_f_coords(char side, t_mlx_params *mlx, float speed);
 int				check_b_coords(char side, t_mlx_params *mlx, float speed);
 void			relocate(t_mlx_params *mlx);
