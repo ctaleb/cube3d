@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/24 17:41:50 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 12:15:24 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,7 +224,8 @@ int				space_dig(char *line, int i, t_mlx_params *mlx);
 int				space_comma(char *line, int i, t_mlx_params *mlx);
 
 int				data_check(t_map *map_data);
-void			validate_data(t_mlx_params *mlx);
+void			validate_mandatory(t_mlx_params *mlx);
+void			unvalidator(int i, t_mlx_params *mlx);
 void			start_check(t_map *map_data, t_mlx_params *mlx);
 void			map_check(int x, int y, t_map *map_data, t_mlx_params *mlx);
 int				read_cub(t_mlx_params *mlx);

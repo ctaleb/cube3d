@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 15:23:57 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/24 17:41:18 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 12:15:24 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	grid_init(t_mlx_params *mlx)
 	int		temp;
 
 	i = read_cub(mlx);
-	validate_data(mlx);
+	validate_mandatory(mlx);
 	while (mlx->file[i] != NULL && mlx->file[i][0] == '\0')
 		i++;
 	if (mlx->file[i] != NULL && is_map(mlx->file[i]))

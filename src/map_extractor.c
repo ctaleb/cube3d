@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 13:27:33 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/24 17:29:34 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 12:18:34 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	read_cub(t_mlx_params *mlx)
 		read_bonus_textures(i, mlx);
 		read_bonus_teleporter(i, mlx);
 		read_bonus_info(i, mlx);
+		unvalidator(i, mlx);
 		i++;
 	}
 	return (i);
