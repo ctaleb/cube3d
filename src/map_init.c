@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 15:23:57 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/28 12:15:24 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 16:31:28 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	map_data_init(t_mlx_params *mlx, char *path)
 	mlx->map->dup = NULL;
 	mlx->map->res_x = -1;
 	mlx->map->res_y = -1;
-	mlx->map->floor_c = -1;
-	mlx->map->ceiling_c = -1;
+	mlx->map->flr_c = -1;
+	mlx->map->clg_c = -1;
 	mlx->map->max_x = 0;
 	mlx->map->north = NULL;
 	mlx->map->south = NULL;

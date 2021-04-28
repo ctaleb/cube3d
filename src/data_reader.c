@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 13:59:18 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/24 17:30:10 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 16:31:28 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	read_mandatory(int i, t_mlx_params *mlx)
 {
 	if (mlx->file[i][0] == 'R')
 		get_resolution(mlx->map, &mlx->file[i][1], mlx);
-	else if (mlx->file[i][0] == 'F' && mlx->map->floor_c < 0)
-		mlx->map->floor_c = get_colour(&mlx->file[i][1], mlx);
-	else if (mlx->file[i][0] == 'C' && mlx->map->ceiling_c < 0)
-		mlx->map->ceiling_c = get_colour(&mlx->file[i][1], mlx);
+	else if (mlx->file[i][0] == 'F')
+		mlx->map->flr_c = get_colour(&mlx->file[i][1], mlx->map->flr_c, mlx);
+	else if (mlx->file[i][0] == 'C')
+		mlx->map->clg_c = get_colour(&mlx->file[i][1], mlx->map->clg_c, mlx);
 }
 
 void	read_bonus_sprites(int i, t_mlx_params *mlx)

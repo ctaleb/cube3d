@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/28 12:15:24 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 16:31:28 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ typedef struct s_map {
 	char		*nlvl;
 	int			sprite_nb;
 	int			file_len;
-	int			floor_c;
-	int			ceiling_c;
+	int			flr_c;
+	int			clg_c;
 }	t_map;
 
 typedef struct s_input {
@@ -308,7 +308,7 @@ void			relocate(t_mlx_params *mlx);
 int				escape_key(int keycode);
 void			action(t_mlx_params *mlx);
 
-int				get_colour(char *line, t_mlx_params *mlx);
+int				get_colour(char *line, int value, t_mlx_params *mlx);
 char			*get_path(char *line, char *dst, t_mlx_params *mlx, int mode);
 int				get_map(char **grid, int maxlen, char *line);
 void			dup_map(char **grid, char **dup);

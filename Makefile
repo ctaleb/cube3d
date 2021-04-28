@@ -6,11 +6,11 @@
 #    By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 11:40:32 by ctaleb            #+#    #+#              #
-#    Updated: 2021/04/28 13:40:37 by ctaleb           ###   ########lyon.fr    #
+#    Updated: 2021/04/28 16:19:37 by ctaleb           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-MAP = src/maps/test1.cub
+MAP = src/maps/level8.cub
 SAVE = --save
 
 CC = gcc

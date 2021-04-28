@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 14:00:22 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/21 13:50:33 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 16:31:28 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	data_check(t_map *map_data)
 {
-	if (map_data->res_x && map_data->res_y && map_data->north
+	if (map_data->res_x > 0 && map_data->res_y > 0 && map_data->north
 		&& map_data->south && map_data->east && map_data->west
-		&& map_data->sp_t && map_data->floor_c >= 0
-		&& map_data->ceiling_c >= 0
+		&& map_data->sp_t && map_data->flr_c >= 0
+		&& map_data->clg_c >= 0
 		&& map_data->sky_t && map_data->hb_t && map_data->food_t
 		&& map_data->trap_t && map_data->tp_a_t && map_data->tp_b_t
 		&& map_data->tp_c_t && map_data->tp_d_t && map_data->sp_b_t
@@ -27,13 +27,15 @@ int	data_check(t_map *map_data)
 	return (0);
 }
 
-int	get_colour(char *line, t_mlx_params *mlx)
+int	get_colour(char *line, int value, t_mlx_params *mlx)
 {
 	int	i;
 	int	r;
 	int	g;
 	int	b;
 
+	if (value >= 0)
+		error_handler(23, mlx, 5);
 	i = 0;
 	i = space_dig(line, i, mlx);
 	r = ft_atoi(&line[i]);
