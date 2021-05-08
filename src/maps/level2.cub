@@ -23,6 +23,9 @@ NL src/maps/level3.cub
 
 F 128 ,   132, 135
 
+MC ./src/audio/stage_2.mp3
+ML 120
+
 1111111111111
 1S06619000601
 1606011111101

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 15:23:57 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/28 16:31:28 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/05/08 13:22:40 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,13 @@ void	bonus_set(t_mlx_params *mlx)
 	mlx->map->end_t = NULL;
 	mlx->map->go_t = NULL;
 	mlx->map->nlvl = NULL;
+	mlx->map->music = NULL;
+	mlx->map->m_len = -1;
+	mlx->time = 0;
 	mlx->finished = 0;
+	mlx->over = 0;
+	mlx->end = 0;
+	mlx->cmd = NULL;
 }
 
 void	map_data_init(t_mlx_params *mlx, char *path)

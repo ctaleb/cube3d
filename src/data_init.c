@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:56:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/21 13:18:19 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/05/08 14:25:02 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,6 @@ void	define_init(t_mlx_params *mlx)
 	mlx->def->south = 0;
 	mlx->def->east = 0;
 	mlx->def->west = 0;
+	mlx->def->music = 0;
+	mlx->def->m_len = 0;
 }

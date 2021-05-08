@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 14:00:22 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/28 16:31:28 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/05/08 14:25:24 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	data_check(t_map *map_data)
 		&& map_data->trap_t && map_data->tp_a_t && map_data->tp_b_t
 		&& map_data->tp_c_t && map_data->tp_d_t && map_data->sp_b_t
 		&& map_data->end_t && map_data->go_t && map_data->nlvl
-		&& map_data->door && map_data->key_a && map_data->key_b)
+		&& map_data->door && map_data->key_a && map_data->key_b
+		&& map_data->music && map_data->m_len >= 0)
 		return (1);
 	return (0);
 }

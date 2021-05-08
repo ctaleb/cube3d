@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 17:24:10 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/24 17:43:53 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/05/02 14:06:37 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ void	door_opener(t_mlx_params *mlx, int i)
 	if (mlx->map->grid[d_y][d_x] == '8')
 	{
 		mlx->map->grid[d_y][d_x] = '7';
+		system("afplay -q 1 ./src/audio/close_door.mp3 &");
 		mlx->sp[i]->state = 0;
 	}
 	else
 	{
 		mlx->map->grid[d_y][d_x] = '8';
+		system("afplay -q 1 ./src/audio/open_door.mp3 &");
 		mlx->sp[i]->state = 1;
 	}
 	mlx->input->action = 0;

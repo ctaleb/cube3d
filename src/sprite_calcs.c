@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 11:41:06 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 16:45:36 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/05/02 14:45:46 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	health_change(int status, t_mlx_params *mlx)
 			mlx->pl->health = 100;
 		else
 			mlx->pl->health += 20;
+		system("afplay -q 1 ./src/audio/potion.mp3 &");
 	}
 	else
 	{
@@ -82,6 +83,7 @@ void	health_change(int status, t_mlx_params *mlx)
 			mlx->pl->health = 0;
 		else
 			mlx->pl->health -= 20;
+		system("afplay -q 1 ./src/audio/snake.mp3 &");
 	}
 }
 

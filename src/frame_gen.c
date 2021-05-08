@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 11:38:27 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/18 15:40:03 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/05/08 15:26:02 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	my_mlx_multi_put(t_mlx_params *mlx, int x, int y, int color)
 
 static void	framer(t_mlx_params *mlx)
 {
+	music_reload(mlx);
 	sprite_reset(mlx);
 	movement(mlx);
 	put_sky(mlx);

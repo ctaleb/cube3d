@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 13:36:57 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/24 17:08:16 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/05/08 13:30:37 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	exit_window(t_mlx_params *mlx)
 {
+	system("killall afplay 2>/dev/null");
 	free_all(mlx, 31);
 	exit(0);
 }
@@ -22,6 +23,8 @@ void	ender(t_mlx_params *mlx)
 {
 	char	*argv[3];
 
+	system("killall afplay 2>/dev/null");
+	system("afplay -t 4 ./src/audio/finish_level.mp3");
 	if (mlx->def->ending && !mlx->def->nxt_lvl)
 		mlx->finished = 1;
 	else if (mlx->def->nxt_lvl)
@@ -46,6 +49,12 @@ void	put_ending(t_mlx_params *mlx)
 	int	x;
 	int	y;
 
+	if (!mlx->end)
+	{
+		system("killall afplay 2>/dev/null");
+		mlx->end++;
+		system("afplay ./src/audio/recap.mp3 &");
+	}
 	y = 0;
 	while (y < mlx->map->res_y)
 	{
@@ -69,8 +78,14 @@ void	put_gameover(t_mlx_params *mlx)
 	int	x;
 	int	y;
 
+	if (!mlx->over)
+	{
+		system("killall afplay 2>/dev/null");
+		mlx->over++;
+		system("afplay ./src/audio/killed.mp3 &");
+	}
 	y = 0;
-	while (y < mlx->map->res_y)
+	while (mlx->def->go && y < mlx->map->res_y)
 	{
 		x = 0;
 		while (x < mlx->map->res_x)
@@ -92,6 +107,7 @@ int	main(int ac, char *av[])
 	if (ac > 3 || ac < 2)
 		error_handler(1, NULL, -9);
 	mlx = mlx_data_init(ac, av);
+	music_cmd(mlx);
 	if (!mlx->save)
 	{
 		mlx_hook(mlx->win, 2, 1L << 0, key_press, mlx);

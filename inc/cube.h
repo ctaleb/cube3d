@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:46:12 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/28 16:31:28 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/05/08 14:20:37 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUBE_H
 # include "libft.h"
 # include "mlx.h"
+# include <time.h>
 
 typedef struct s_map {
 	char		**file;
@@ -46,6 +47,8 @@ typedef struct s_map {
 	char		*key_b;
 	char		*end_t;
 	char		*go_t;
+	char		*music;
+	int			m_len;
 	char		*nlvl;
 	int			sprite_nb;
 	int			file_len;
@@ -174,11 +177,17 @@ typedef struct s_defined {
 	int			south;
 	int			east;
 	int			west;
+	int			music;
+	int			m_len;
 }	t_defined;
 
 typedef struct s_mlx_parmas {
 	void		*ptr;
 	void		*win;
+	clock_t		time;
+	char		*cmd;
+	int			over;
+	int			end;
 	int			save;
 	int			stage;
 	int			d_stage;
@@ -235,6 +244,10 @@ void			read_bonus_sprites(int i, t_mlx_params *mlx);
 void			read_bonus_textures(int i, t_mlx_params *mlx);
 void			read_bonus_teleporter(int i, t_mlx_params *mlx);
 void			read_bonus_info(int i, t_mlx_params *mlx);
+void			read_music(int i, t_mlx_params *mlx);
+
+void			music_cmd(t_mlx_params *mlx);
+void			music_reload(t_mlx_params *mlx);
 
 void			map_data_init(t_mlx_params *mlx, char *path);
 void			grid_init(t_mlx_params *mlx);

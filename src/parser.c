@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 11:39:55 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/28 16:31:28 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/05/02 14:43:57 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ void	unvalidator(int i, t_mlx_params *mlx)
 		|| mlx->file[i][1] != '2' || mlx->file[i][1] != '3'
 		|| mlx->file[i][1] != '4')) && (mlx->file[i][0] != 'D'
 		&& mlx->file[i][1] != 'C') && mlx->file[i][0] != 'K'
-		&& (mlx->file[i][1] != '1' || mlx->file[i][1] != '2'))
+		&& (mlx->file[i][1] != '1' || mlx->file[i][1] != '2')
+		&& (mlx->file[i][0] != 'M'
+		&& (mlx->file[i][1] != 'C' || mlx->file[i][1] != 'L')))
 		error_handler(22, mlx, 5);
 	if (mlx->file[i][1] == '\0' || mlx->file[i][2] == '\0')
 		error_handler(22, mlx, 5);

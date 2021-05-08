@@ -6,11 +6,11 @@
 #    By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 11:40:32 by ctaleb            #+#    #+#              #
-#    Updated: 2021/04/28 17:17:20 by ctaleb           ###   ########lyon.fr    #
+#    Updated: 2021/05/08 15:44:25 by ctaleb           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-MAP = src/maps/test1.cub
+MAP = src/maps/level0.cub
 SAVE = --save
 
 CC = gcc
@@ -62,7 +62,8 @@ SRC = main.c\
 		data_reader.c\
 		doors.c\
 		movement_utils.c\
-		events_utils.c
+		events_utils.c\
+		music.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 

@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 10:41:03 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/04/24 17:05:05 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/05/08 15:28:38 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	key_press(int keycode, t_mlx_params *mlx)
 {
 	if (keycode == 53)
 	{
+		system("killall afplay 2>/dev/null");
 		free_all(mlx, 31);
 		exit(0);
 	}
