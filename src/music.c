@@ -6,7 +6,7 @@
 /*   By: ctaleb <ctaleb@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 14:22:25 by ctaleb            #+#    #+#             */
-/*   Updated: 2021/05/08 15:28:49 by ctaleb           ###   ########lyon.fr   */
+/*   Updated: 2021/05/08 16:14:00 by ctaleb           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ void	music_cmd(t_mlx_params *mlx)
 	char	*prefix;
 	char	*len;
 
-	if (mlx->def->music && mlx->def->m_len)
+	if (mlx->save)
+		return ;
+	else if (mlx->def->music && mlx->def->m_len)
 	{
 		len = ft_itoa(mlx->map->m_len);
 		mem_check(len, mlx, 2, 4);
@@ -65,9 +67,7 @@ void	music_cmd(t_mlx_params *mlx)
 		system(mlx->cmd);
 	}
 	else
-	{
 		system("afplay -q 1 -t 78 ./src/audio/stage_1.mp3 &");
-	}
 	mlx->time = clock();
 }
 
@@ -75,6 +75,8 @@ void	music_reload(t_mlx_params *mlx)
 {
 	clock_t	new;
 
+	if (mlx->save)
+		return ;
 	new = clock();
 	if (mlx->def->music && mlx->def->m_len)
 	{
